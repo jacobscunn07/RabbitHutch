@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -14,8 +15,8 @@ namespace RabbitHutch.Host
             using (var channel = conn.CreateModel())
             {
                 channel.QueueDeclare(
-                    queue: "hello",
-                    durable: false,
+                    queue: "audit",
+                    durable: true,
                     exclusive: false,
                     autoDelete: false,
                     arguments: null);
@@ -23,14 +24,29 @@ namespace RabbitHutch.Host
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += (model, ea) =>
                 {
+                    var headers = new Dictionary<string, string>();
+                    foreach (var header in ea.BasicProperties.Headers)
+                    {
+                        headers.Add(header.Key, Encoding.UTF8.GetString((byte[])header.Value));
+                    }
+
                     var body = ea.Body;
                     var message = Encoding.UTF8.GetString(body);
-                    Console.WriteLine($"Received {message}");
+                    Console.WriteLine("***** Received Message *****");
+                    Console.WriteLine("Headers:");
+                    foreach (var header in headers)
+                    {
+                        Console.WriteLine($"{header.Key}: {header.Value}");
+                    }
+                    Console.WriteLine("Body:");
+                    Console.WriteLine(message);
+                    Console.WriteLine();
+                    Console.WriteLine();
                 };
 
                 channel.BasicConsume(
-                    queue: "hello",
-                    autoAck: true,
+                    queue: "audit",
+                    autoAck: false,
                     consumer: consumer);
 
                 Console.WriteLine("Press any key to exit.");
