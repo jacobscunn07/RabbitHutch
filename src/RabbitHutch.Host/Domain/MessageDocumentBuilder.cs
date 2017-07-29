@@ -54,7 +54,8 @@ namespace RabbitHutch.Host.Domain
                 Body = _body,
                 ServiceBusTechnology = _busTechnology,
                 ApplicationId = _applicationId,
-                MessageTypes = _messageTypes
+                MessageTypes = _messageTypes,
+                IsError = _headers.ContainsKey(ServiceBusTechnologies.NServiceBus.Headers.ExceptionType)
             };
         }
     }

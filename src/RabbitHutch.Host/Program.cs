@@ -9,7 +9,7 @@ namespace RabbitHutch.Host
         {
             var container = Container.For<RabbitHutchRegistry>();
 
-            var app = container.GetInstance<Application>();
+            var app = container.GetInstance<App>();
             app.Run();
             Console.ReadLine();
         }

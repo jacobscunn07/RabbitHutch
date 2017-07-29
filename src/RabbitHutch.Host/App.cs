@@ -1,16 +1,16 @@
 ﻿using MediatR;
-using RabbitHutch.Host.CommandHandlers;
+using RabbitHutch.Host.Application.CommandHandlers;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 
 namespace RabbitHutch.Host
 {
-    public class Application
+    public class App
     {
         private readonly IMediator _mediator;
 
-        public Application(IMediator mediator)
+        public App(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -28,16 +28,7 @@ namespace RabbitHutch.Host
                 {
                     var result = await _mediator.Send(new HandleMessageCommand { DeliveryArgs = ea });
                     var document = await _mediator.Send(new BuildMessageDocumentCommand { RawMessage = result.RawMessage });
-
-                    Console.WriteLine("***** Received Message *****");
-                    Console.WriteLine($"Bus Technology: {result.RawMessage.BusTechnology}");
-                    Console.WriteLine("Headers:");
-                    foreach (var header in result.RawMessage.Headers)
-                    {
-                        Console.WriteLine($"{header.Key}: {header.Value}");
-                    }
-                    Console.WriteLine("Body:");
-                    Console.WriteLine(result.RawMessage.Body);
+                    //document store command
                     //channel.BasicAck(ea.DeliveryTag, false);
                     Console.WriteLine();
                     Console.WriteLine();

@@ -9,5 +9,6 @@ namespace RabbitHutch.Host.Domain
         public string ServiceBusTechnology { get; set; }
         public string ApplicationId { get; set; }
         public string MessageTypes { get; set; }
+        public bool IsError { get; set; }
     }
 }

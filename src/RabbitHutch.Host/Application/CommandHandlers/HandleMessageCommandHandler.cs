@@ -2,7 +2,7 @@
 using RabbitHutch.Host.Domain;
 using RabbitMQ.Client.Events;
 
-namespace RabbitHutch.Host.CommandHandlers
+namespace RabbitHutch.Host.Application.CommandHandlers
 {
     public class HandleMessageCommand : IRequest<HandleMessageCommandResult>
     {

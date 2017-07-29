@@ -57,9 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
-    <Compile Include="CommandHandlers\BuildMessageDocumentCommandHandler.cs" />
-    <Compile Include="CommandHandlers\HandleMessageCommandHandler.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="Application\CommandHandlers\BuildMessageDocumentCommandHandler.cs" />
+    <Compile Include="Application\CommandHandlers\HandleMessageCommandHandler.cs" />
     <Compile Include="Domain\IMessageDocumentBuilder.cs" />
     <Compile Include="Domain\IRawMessage.cs" />
     <Compile Include="Domain\MessageDocument.cs" />

@@ -2,7 +2,7 @@
 using RabbitHutch.Host.Domain;
 using System.Collections.Generic;
 
-namespace RabbitHutch.Host.CommandHandlers
+namespace RabbitHutch.Host.Application.CommandHandlers
 {
     public class BuildMessageDocumentCommand : IRequest<BuildMessageDocumentCommandResult>
     {
