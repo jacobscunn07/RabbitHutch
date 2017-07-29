@@ -18,7 +18,6 @@ namespace RabbitHutch.Host
         public void Run()
         {
             Console.WriteLine(nameof(Application) + " started.");
-            
 
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var conn = factory.CreateConnection())
@@ -28,6 +27,7 @@ namespace RabbitHutch.Host
                 consumer.Received += async (model, ea) =>
                 {
                     var result = await _mediator.Send(new HandleMessageCommand { DeliveryArgs = ea });
+                    var document = await _mediator.Send(new BuildMessageDocumentCommand { RawMessage = result.RawMessage });
 
                     Console.WriteLine("***** Received Message *****");
                     Console.WriteLine($"Bus Technology: {result.RawMessage.BusTechnology}");

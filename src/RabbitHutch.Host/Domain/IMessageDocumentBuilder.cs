@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RabbitHutch.Host.Domain
 {
     public interface IMessageHeaders
     {
-        IMessageBody WithHeaders(Dictionary<string, string> headers);
+        IMessageBody WithHeaders(IDictionary<string, string> headers);
     }
 
     public interface IMessageBody
@@ -28,5 +24,11 @@ namespace RabbitHutch.Host.Domain
 
     public interface IMessageTypes
     {
+        IMessageDocumentOptionalValues WithMessageTypes(string messageTypes);
+    }
+
+    public interface IMessageDocumentOptionalValues
+    {
+        MessageDocument Finish();
     }
 }

@@ -58,10 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="CommandHandlers\BuildMessageDocumentCommandHandler.cs" />
     <Compile Include="CommandHandlers\HandleMessageCommandHandler.cs" />
     <Compile Include="Domain\IMessageDocumentBuilder.cs" />
     <Compile Include="Domain\IRawMessage.cs" />
     <Compile Include="Domain\MessageDocument.cs" />
+    <Compile Include="Domain\MessageDocumentBuilder.cs" />
     <Compile Include="Domain\RawMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
