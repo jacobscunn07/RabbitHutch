@@ -6,7 +6,7 @@ using System;
 
 namespace RabbitHutch.Host.Application
 {
-    public class Queue
+    public class Queue : IQueue
     {
         private readonly IMediator _mediator;
 
@@ -27,6 +27,7 @@ namespace RabbitHutch.Host.Application
                 consumer.Received += async (model, ea) =>
                 {
                     var result = await _mediator.Send(new HandleMessageCommand { DeliveryArgs = ea });
+                    //channel.BasicAck(ea.DeliveryTag, false);
                 };
 
                 channel.BasicConsume(
@@ -37,6 +38,11 @@ namespace RabbitHutch.Host.Application
                 Console.WriteLine("Press any key to exit.");
                 Console.ReadLine();
             }
+        }
+
+        public void Stop()
+        {
+            throw new NotImplementedException();
         }
     }
 }
