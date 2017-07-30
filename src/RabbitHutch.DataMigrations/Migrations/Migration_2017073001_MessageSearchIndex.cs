@@ -8,7 +8,8 @@ namespace RabbitHutch.DataMigrations.Migrations
     {
         public override void Up()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Testing Migrations....");
+            Console.ReadKey();
         }
     }
 }

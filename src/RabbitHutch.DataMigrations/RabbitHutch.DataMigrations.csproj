@@ -60,5 +60,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RabbitHutch.Host\RabbitHutch.Host.csproj">
+      <Project>{cb40693f-4cba-4021-8260-cc85c9312153}</Project>
+      <Name>RabbitHutch.Host</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

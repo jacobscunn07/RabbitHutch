@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Raven.Client.Document;
+using RavenMigrations;
 
 namespace RabbitHutch.DataMigrations
 {
@@ -10,6 +7,13 @@ namespace RabbitHutch.DataMigrations
     {
         static void Main(string[] args)
         {
+            var store = new DocumentStore
+            {
+                Url = "http://localhost:8080/",
+                DefaultDatabase = "RabbitHutch"
+            }.Initialize();
+
+            Runner.Run(store);
         }
     }
 }
