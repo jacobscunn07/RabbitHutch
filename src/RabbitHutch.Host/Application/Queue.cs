@@ -37,14 +37,8 @@ namespace RabbitHutch.Host.Application
                     autoAck: false,
                     consumer: consumer);
 
-                Console.WriteLine("Press any key to exit.");
                 Console.ReadLine();
             }
-        }
-
-        public void Stop()
-        {
-            throw new NotImplementedException();
         }
     }
 }

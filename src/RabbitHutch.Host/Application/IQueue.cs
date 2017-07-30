@@ -9,6 +9,5 @@ namespace RabbitHutch.Host.Application
     public interface IQueue
     {
         void Run();
-        void Stop();
     }
 }
