@@ -9,17 +9,19 @@ namespace RabbitHutch.Host.Application
     public class Queue : IQueue
     {
         private readonly IMediator _mediator;
+        private readonly IQueueSettings _queueSettings;
 
-        public Queue(IMediator mediator)
+        public Queue(IMediator mediator, IQueueSettings queueSettings)
         {
             _mediator = mediator;
+            _queueSettings = queueSettings;
         }
 
         public void Run()
         {
-            Console.WriteLine(nameof(Application) + " started.");
+            Console.WriteLine($"Watching queue {_queueSettings.QueueName} on host {_queueSettings.HostName}");
 
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = _queueSettings.HostName };
             using (var conn = factory.CreateConnection())
             using (var channel = conn.CreateModel())
             {
@@ -31,7 +33,7 @@ namespace RabbitHutch.Host.Application
                 };
 
                 channel.BasicConsume(
-                    queue: "Autobahn.Configuration.Host",
+                    queue: _queueSettings.QueueName,
                     autoAck: false,
                     consumer: consumer);
 

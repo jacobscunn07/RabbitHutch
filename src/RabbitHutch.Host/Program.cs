@@ -12,11 +12,11 @@ namespace RabbitHutch.Host
 
             HostFactory.Run(x =>
             {
-                x.Service<IQueue>(s =>
+                x.Service<IHost>(s =>
                 {
-                    s.ConstructUsing(name => container.GetInstance<Queue>());
-                    s.WhenStarted(queue => queue.Run());
-                    s.WhenStopped(queue => queue.Stop());
+                    s.ConstructUsing(name => container.GetInstance<Application.Host>());
+                    s.WhenStarted(host => host.Start());
+                    s.WhenStopped(host => host.Stop());
                 });
                 x.RunAsLocalSystem();
 
