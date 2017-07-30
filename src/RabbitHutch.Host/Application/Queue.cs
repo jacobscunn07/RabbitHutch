@@ -4,13 +4,13 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 
-namespace RabbitHutch.Host
+namespace RabbitHutch.Host.Application
 {
-    public class App
+    public class Queue
     {
         private readonly IMediator _mediator;
 
-        public App(IMediator mediator)
+        public Queue(IMediator mediator)
         {
             _mediator = mediator;
         }

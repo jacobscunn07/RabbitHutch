@@ -64,7 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.cs" />
+    <Compile Include="Application\Queue.cs" />
     <Compile Include="Application\CommandHandlers\HandleMessageCommandHandler.cs" />
     <Compile Include="DataAccess\IDatabase.cs" />
     <Compile Include="DataAccess\RavenDatabase.cs" />

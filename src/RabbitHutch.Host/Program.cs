@@ -1,5 +1,6 @@
 ﻿using System;
 using StructureMap;
+using RabbitHutch.Host.Application;
 
 namespace RabbitHutch.Host
 {
@@ -9,7 +10,7 @@ namespace RabbitHutch.Host
         {
             var container = Container.For<RabbitHutchRegistry>();
 
-            var app = container.GetInstance<App>();
+            var app = container.GetInstance<Queue>();
             app.Run();
             Console.ReadLine();
         }
