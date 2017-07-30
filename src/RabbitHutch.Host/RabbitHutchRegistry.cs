@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using RabbitHutch.Host.DataAccess;
 using StructureMap;
 
 namespace RabbitHutch.Host
@@ -21,6 +22,7 @@ namespace RabbitHutch.Host
             For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => t => ctx.GetInstance(t));
             For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => t => ctx.GetAllInstances(t));
             For<IMediator>().Use<Mediator>();
+            For<IDatabase>().Use(new RavenDatabase());
         }
     }
 }

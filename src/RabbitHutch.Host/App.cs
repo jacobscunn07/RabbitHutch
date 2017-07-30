@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using RabbitHutch.Host.Application.CommandHandlers;
-using RabbitHutch.Host.DataAccess;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
@@ -28,13 +27,6 @@ namespace RabbitHutch.Host
                 consumer.Received += async (model, ea) =>
                 {
                     var result = await _mediator.Send(new HandleMessageCommand { DeliveryArgs = ea });
-                    var document = await _mediator.Send(new BuildMessageDocumentCommand { RawMessage = result.RawMessage });
-                    //document store command
-                    //channel.BasicAck(ea.DeliveryTag, false);
-                    var ravenDb = new RavenDatabase();
-                    var success = ravenDb.Insert(document.MessageDocument);
-                    Console.WriteLine();
-                    Console.WriteLine();
                 };
 
                 channel.BasicConsume(
