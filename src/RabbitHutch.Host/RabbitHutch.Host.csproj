@@ -44,10 +44,17 @@
       <HintPath>..\packages\RabbitMQ.Client.5.0.1\lib\net451\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Raven.Abstractions, Version=3.5.4.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <HintPath>..\packages\RavenDB.Client.3.5.4\lib\net45\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=3.5.4.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <HintPath>..\packages\RavenDB.Client.3.5.4\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap, Version=4.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StructureMap.4.5.1\lib\net45\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,6 +67,8 @@
     <Compile Include="App.cs" />
     <Compile Include="Application\CommandHandlers\BuildMessageDocumentCommandHandler.cs" />
     <Compile Include="Application\CommandHandlers\HandleMessageCommandHandler.cs" />
+    <Compile Include="DataAccess\IDatabase.cs" />
+    <Compile Include="DataAccess\RavenDatabase.cs" />
     <Compile Include="Domain\IMessageDocumentBuilder.cs" />
     <Compile Include="Domain\IRawMessage.cs" />
     <Compile Include="Domain\MessageDocument.cs" />

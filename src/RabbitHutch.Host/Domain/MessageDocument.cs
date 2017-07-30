@@ -4,6 +4,7 @@ namespace RabbitHutch.Host.Domain
 {
     public class MessageDocument
     {
+        public long Id { get; set; }
         public IDictionary<string, string> Headers { get; set; }
         public string Body { get; set; }
         public string ServiceBusTechnology { get; set; }
