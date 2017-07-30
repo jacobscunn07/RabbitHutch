@@ -1,5 +1,5 @@
-﻿using RavenMigrations;
-using System;
+﻿using RabbitHutch.Host.DataAccess.Raven.Indexes;
+using RavenMigrations;
 
 namespace RabbitHutch.DataMigrations.Migrations
 {
@@ -8,8 +8,8 @@ namespace RabbitHutch.DataMigrations.Migrations
     {
         public override void Up()
         {
-            Console.WriteLine("Testing Migrations....");
-            Console.ReadKey();
+            var index = new MessageDocument_Search();
+            index.Execute(DocumentStore);
         }
     }
 }

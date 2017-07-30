@@ -1,7 +1,7 @@
 ﻿using RabbitHutch.Host.Domain;
 using Raven.Client;
 
-namespace RabbitHutch.Host.DataAccess
+namespace RabbitHutch.Host.DataAccess.Raven
 {
     public class RavenDatabase : IDatabase
     {

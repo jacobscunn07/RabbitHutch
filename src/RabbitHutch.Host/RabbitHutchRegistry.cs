@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using RabbitHutch.Host.DataAccess;
+using RabbitHutch.Host.DataAccess.Raven;
 using Raven.Client;
 using Raven.Client.Document;
 using StructureMap;
