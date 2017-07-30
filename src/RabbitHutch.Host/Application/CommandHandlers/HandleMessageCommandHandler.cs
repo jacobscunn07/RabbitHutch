@@ -23,10 +23,10 @@ namespace RabbitHutch.Host.Application.CommandHandlers
         public HandleMessageCommandResult Handle(HandleMessageCommand cmd)
         {
             var msg = new RawMessage(cmd.DeliveryArgs);
-
-            var messageDocumentBuilder = new MessageDocumentBuilder();
+            
             var messageDocument =
-                messageDocumentBuilder
+                MessageDocumentBuilder
+                    .BuildDocument()
                     .WithHeaders(msg.Headers)
                     .WithBody(msg.Body)
                     .WithBusTechnology(msg.BusTechnology)

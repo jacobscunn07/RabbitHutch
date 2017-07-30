@@ -16,6 +16,15 @@ namespace RabbitHutch.Host.Domain
         private string _applicationId;
         private string _messageTypes;
 
+        private MessageDocumentBuilder()
+        {
+        }
+
+        public static IMessageHeaders BuildDocument()
+        {
+            return new MessageDocumentBuilder();
+        }
+
         public IMessageBody WithHeaders(IDictionary<string, string> headers)
         {
             _headers = headers;
