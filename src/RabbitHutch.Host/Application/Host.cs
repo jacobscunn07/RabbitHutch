@@ -21,19 +21,15 @@ namespace RabbitHutch.Host.Application
 
         public void Start()
         {
-            var auditSettings = new QueueSettings("audit");
-            var errorSettings = new QueueSettings("error");
-            var testSettings = new QueueSettings("Autobahn.Configuration.Host");
-
             _cancellationTokenSource = new CancellationTokenSource();
 
-            var audit = new Queue(_mediator, auditSettings, _cancellationTokenSource);
-            var error = new Queue(_mediator, errorSettings, _cancellationTokenSource);
-            var test = new Queue(_mediator, testSettings, _cancellationTokenSource);
-
-            _tasks.Add(GetQueueTask(audit));
-            _tasks.Add(GetQueueTask(error));
-            _tasks.Add(GetQueueTask(test));
+            var rabbitconfiguration = new RabbitConfiguration();
+            _tasks.Add(GetQueueTask(new Queue(_mediator,
+                new QueueSettings(rabbitconfiguration.AuditQueue, rabbitconfiguration.Host),
+                _cancellationTokenSource)));
+            _tasks.Add(GetQueueTask(new Queue(_mediator,
+                new QueueSettings(rabbitconfiguration.ErrorQueue, rabbitconfiguration.Host),
+                _cancellationTokenSource)));
 
             Task.Factory.StartNew(() => Parallel.ForEach(_tasks, task => task.Start()));
         }
@@ -55,7 +51,6 @@ namespace RabbitHutch.Host.Application
 
         private Task GetQueueTask(Queue queue)
         {
-            
             return new Task(() =>
             {
                 try

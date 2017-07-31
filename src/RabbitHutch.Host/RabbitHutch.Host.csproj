@@ -71,9 +71,11 @@
     <Compile Include="Application\IHost.cs" />
     <Compile Include="Application\IQueue.cs" />
     <Compile Include="Application\IQueueSettings.cs" />
+    <Compile Include="Application\IRabbitConfiguration.cs" />
     <Compile Include="Application\Queue.cs" />
     <Compile Include="Application\CommandHandlers\HandleMessageCommandHandler.cs" />
     <Compile Include="Application\QueueSettings.cs" />
+    <Compile Include="Application\RabbitConfiguration.cs" />
     <Compile Include="DataAccess\IDatabase.cs" />
     <Compile Include="DataAccess\Raven\Indexes\MessageDocument_Search.cs" />
     <Compile Include="DataAccess\Raven\RavenDatabase.cs" />
