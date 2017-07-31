@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RabbitHutch.Host.Application
@@ -10,6 +11,7 @@ namespace RabbitHutch.Host.Application
     {
         private readonly IMediator _mediator;
         private readonly IList<Task> _tasks;
+	    private CancellationTokenSource _cancellationTokenSource;
 
         public Host(IMediator mediator)
         {
@@ -23,9 +25,11 @@ namespace RabbitHutch.Host.Application
             var errorSettings = new QueueSettings("error");
             var testSettings = new QueueSettings("Autobahn.Configuration.Host");
 
-            var audit = new Queue(_mediator, auditSettings);
-            var error = new Queue(_mediator, errorSettings);
-            var test = new Queue(_mediator, testSettings);
+            _cancellationTokenSource = new CancellationTokenSource();
+
+            var audit = new Queue(_mediator, auditSettings, _cancellationTokenSource);
+            var error = new Queue(_mediator, errorSettings, _cancellationTokenSource);
+            var test = new Queue(_mediator, testSettings, _cancellationTokenSource);
 
             _tasks.Add(GetQueueTask(audit));
             _tasks.Add(GetQueueTask(error));
@@ -38,16 +42,20 @@ namespace RabbitHutch.Host.Application
         {
             try
             {
+				_cancellationTokenSource.Cancel();
                 Task.WaitAll(_tasks.ToArray());
             }
             catch(Exception ex)
             {
+                Console.WriteLine(ex);
+                throw;
                 // add logging 
             }
         }
 
         private Task GetQueueTask(Queue queue)
         {
+            
             return new Task(() =>
             {
                 try
@@ -56,9 +64,11 @@ namespace RabbitHutch.Host.Application
                 }
                 catch(Exception ex)
                 {
+                    Console.WriteLine(ex);
+                    throw;
                     // add logging
                 }
-            });
+            }, _cancellationTokenSource.Token, TaskCreationOptions.LongRunning);
         }
     }
 }
