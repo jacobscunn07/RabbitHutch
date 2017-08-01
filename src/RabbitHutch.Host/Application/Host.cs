@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using RabbitHutch.Host.Application.Interfaces;
 
 namespace RabbitHutch.Host.Application
 {
@@ -23,13 +24,12 @@ namespace RabbitHutch.Host.Application
         {
             _cancellationTokenSource = new CancellationTokenSource();
 
-            var rabbitconfiguration = new RabbitConfiguration();
-            _tasks.Add(GetQueueTask(new Queue(_mediator,
-                new QueueSettings(rabbitconfiguration.AuditQueue, rabbitconfiguration.Host),
-                _cancellationTokenSource)));
-            _tasks.Add(GetQueueTask(new Queue(_mediator,
-                new QueueSettings(rabbitconfiguration.ErrorQueue, rabbitconfiguration.Host),
-                _cancellationTokenSource)));
+            var rabbitConfiguration = new RabbitConfiguration();
+	        var queues = GetApplicationQueues(rabbitConfiguration);
+	        foreach (var queue in queues)
+	        {
+		        _tasks.Add(GetQueueTask(queue));
+	        }
 
             Task.Factory.StartNew(() => Parallel.ForEach(_tasks, task => task.Start()));
         }
@@ -49,7 +49,7 @@ namespace RabbitHutch.Host.Application
             }
         }
 
-        private Task GetQueueTask(Queue queue)
+        private Task GetQueueTask(IQueue queue)
         {
             return new Task(() =>
             {
@@ -65,5 +65,16 @@ namespace RabbitHutch.Host.Application
                 }
             }, _cancellationTokenSource.Token, TaskCreationOptions.LongRunning);
         }
+
+	    private IEnumerable<Queue> GetApplicationQueues(IRabbitConfiguration configuration)
+	    {
+			var audit = new Queue(_mediator,
+				new QueueSettings(configuration.AuditQueue, false, configuration.Host), _cancellationTokenSource);
+
+		    var error = new Queue(_mediator,
+			    new QueueSettings(configuration.ErrorQueue, true, configuration.Host), _cancellationTokenSource);
+
+		    return new List<Queue> {audit, error};
+	    }
     }
 }

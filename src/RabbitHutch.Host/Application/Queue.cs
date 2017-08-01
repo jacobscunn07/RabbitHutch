@@ -4,6 +4,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Threading;
+using RabbitHutch.Host.Application.Interfaces;
 
 namespace RabbitHutch.Host.Application
 {
@@ -42,10 +43,7 @@ namespace RabbitHutch.Host.Application
                     Console.WriteLine($"Shutting down queue: {_queueSettings.QueueName}");
                 };
 
-                _channel.BasicConsume(
-                    queue: _queueSettings.QueueName,
-                    autoAck: false,
-                    consumer: consumer);
+                _channel.BasicConsume(_queueSettings.QueueName, false, consumer);
 
                 PreventShutdown();
             }

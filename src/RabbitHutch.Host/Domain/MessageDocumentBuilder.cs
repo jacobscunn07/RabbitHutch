@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RabbitHutch.Host.Domain.Interfaces;
 
 namespace RabbitHutch.Host.Domain
 {

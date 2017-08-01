@@ -1,6 +1,7 @@
 ﻿using RabbitMQ.Client.Events;
 using System.Collections.Generic;
 using System.Text;
+using RabbitHutch.Host.Domain.Interfaces;
 
 namespace RabbitHutch.Host.Domain
 {

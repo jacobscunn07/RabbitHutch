@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RabbitHutch.Host.Domain
+namespace RabbitHutch.Host.Domain.Interfaces
 {
     public interface IRawMessage
     {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RabbitHutch.Host.Application
+﻿namespace RabbitHutch.Host.Application.Interfaces
 {
     public interface IRabbitConfiguration
     {

@@ -8,6 +8,7 @@ namespace RabbitHutch.Host.Application.CommandHandlers
 {
     public class HandleMessageCommand : IRequest<HandleMessageCommandResult>
     {
+	    public string Application { get; set; }
         public BasicDeliverEventArgs DeliveryArgs { get; set; }
     }
 
