@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RabbitHutch.Host.Application.ServiceBusTechnologies.NServiceBus;
 using RabbitHutch.Host.Domain.Interfaces;
 
 namespace RabbitHutch.Host.Domain
@@ -65,7 +66,7 @@ namespace RabbitHutch.Host.Domain
                 ServiceBusTechnology = _busTechnology,
                 ApplicationId = _applicationId,
                 MessageTypes = _messageTypes,
-                IsError = _headers.ContainsKey(ServiceBusTechnologies.NServiceBus.Headers.ExceptionType)
+                IsError = _headers.ContainsKey(Headers.ExceptionType)
             };
         }
     }
