@@ -69,10 +69,10 @@ namespace RabbitHutch.Host.Application
 	    private IEnumerable<Queue> GetApplicationQueues(IRabbitConfiguration configuration)
 	    {
 			var audit = new Queue(_mediator,
-				new QueueSettings(configuration.AuditQueue, false, configuration.Host), _cancellationTokenSource);
+				new QueueSettings(configuration.AuditQueue, configuration.ApplicationName, false, configuration.Host), _cancellationTokenSource);
 
 		    var error = new Queue(_mediator,
-			    new QueueSettings(configuration.ErrorQueue, true, configuration.Host), _cancellationTokenSource);
+			    new QueueSettings(configuration.ErrorQueue, configuration.ApplicationName, true, configuration.Host), _cancellationTokenSource);
 
 		    return new List<Queue> {audit, error};
 	    }
