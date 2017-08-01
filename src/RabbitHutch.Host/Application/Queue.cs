@@ -35,7 +35,7 @@ namespace RabbitHutch.Host.Application
                 consumer.Received += async (model, ea) =>
                 {
                     var result = await _mediator.Send(new HandleMessageCommand { DeliveryArgs = ea, Application = _queueSettings.ApplicationName});
-                    //channel.BasicAck(ea.DeliveryTag, false);
+                    _channel.BasicAck(ea.DeliveryTag, false);
                 };
 
                 consumer.Shutdown += (model, ea) =>
