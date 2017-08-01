@@ -2,7 +2,7 @@
 using RabbitHutch.Host.DataAccess;
 using RabbitHutch.Host.Domain;
 using RabbitMQ.Client.Events;
-using System.Collections.Generic;
+using RabbitHutch.Host.Application.ServiceBusTechnologies;
 
 namespace RabbitHutch.Host.Application.CommandHandlers
 {
@@ -23,28 +23,22 @@ namespace RabbitHutch.Host.Application.CommandHandlers
 
         public HandleMessageCommandResult Handle(HandleMessageCommand cmd)
         {
-            var msg = new RawMessage(cmd.DeliveryArgs);
+	        var messageParserFactory = new MessageParserFactory();
+	        var messageParser = messageParserFactory.GetMessageParser(cmd.DeliveryArgs);
             
             var messageDocument =
                 MessageDocumentBuilder
                     .BuildDocument()
-                    .WithHeaders(msg.Headers)
-                    .WithBody(msg.Body)
-                    .WithBusTechnology(msg.BusTechnology)
-                    .WithApplication(GetValueFromHeaders(ServiceBusTechnologies.NServiceBus.Headers.OriginatingEndPoint, msg.Headers))
-                    .WithMessageTypes(GetValueFromHeaders(ServiceBusTechnologies.NServiceBus.Headers.EnclosedMessageTypes, msg.Headers))
+                    .WithHeaders(messageParser.Headers)
+                    .WithBody(messageParser.Body)
+                    .WithBusTechnology(messageParser.ServiceBusTechnology)
+                    .WithApplication(cmd.Application)
+                    .WithMessageTypes(messageParser.MessageTypes)
                     .Finish();
 
             var success = _database.Insert(messageDocument);
 
             return new HandleMessageCommandResult { IsSuccessful = success, MessageDocument = messageDocument };
-        }
-
-        private string GetValueFromHeaders(string key, IDictionary<string, string> headers)
-        {
-            string val;
-            headers.TryGetValue(key, out val);
-            return val;
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using RabbitMQ.Client.Events;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using RabbitHutch.Host.Domain.Interfaces;
 
@@ -28,6 +29,6 @@ namespace RabbitHutch.Host.Domain
 
         public string Body => _body;
 
-        public string BusTechnology => "NServiceBus";
+        public string BusTechnology => _headers.Any(x => x.Key.StartsWith("NServiceBus")) ? "NServiceBus" : "Unknown";
     }
 }

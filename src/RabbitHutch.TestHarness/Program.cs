@@ -12,18 +12,13 @@ namespace RabbitHutch.TestHarness
             using (var conn = factory.CreateConnection())
             using (var channel = conn.CreateModel())
             {
-                channel.QueueDeclare(
-                    queue: "hello",
-                    exclusive: false,
-                    autoDelete: false,
-                    arguments: null);
 
                 var message = "Hello World!";
                 var body = Encoding.UTF8.GetBytes(message);
 
                 channel.BasicPublish(
                     exchange: "",
-                    routingKey: "hello",
+                    routingKey: "audit",
                     basicProperties: null,
                     body: body);
                 Console.WriteLine($"[x] Sent {message}");
