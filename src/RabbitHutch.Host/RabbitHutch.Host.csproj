@@ -84,10 +84,8 @@
     <Compile Include="DataAccess\Raven\Indexes\MessageDocument_Search.cs" />
     <Compile Include="DataAccess\Raven\RavenDatabase.cs" />
     <Compile Include="Domain\Interfaces\IMessageDocumentBuilder.cs" />
-    <Compile Include="Domain\Interfaces\IRawMessage.cs" />
     <Compile Include="Domain\MessageDocument.cs" />
     <Compile Include="Domain\MessageDocumentBuilder.cs" />
-    <Compile Include="Domain\RawMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RabbitHutchRegistry.cs" />
