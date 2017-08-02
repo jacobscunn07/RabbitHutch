@@ -25,8 +25,8 @@ const App = () => (
               Applications
             </p>
             <ul className="menu-list">
-              <li><a className="is-active">localhost</a></li>
-              <li><a>localhost1</a></li>
+              <li><a className="is-active">localhost <span className="tag is-danger is-rounded is-pulled-right">5,499</span></a></li>
+              <li><a>localhost1 <span className="tag is-danger is-rounded is-pulled-right">7</span></a></li>
             </ul>
             </aside>
           </div>
@@ -52,16 +52,67 @@ const App = () => (
             </div>
             <nav className="panel">
               <a className="panel-block">
-                <span className="panel-icon">
-                  <i className="fa fa-book"></i>
-                </span>
-                bulma
+                <div className="field is-grouped">
+
+
+                  <div className="control">
+                    <div className="tags has-addons">
+                      <span className="tag is-dark">Document Id</span>
+                      <span className="tag is-primary">3123</span>
+                    </div>
+                  </div>
+
+                  <div className="control">
+                    <div className="tags has-addons">
+                      <span className="tag is-dark">Endpoint</span>
+                      <span className="tag is-info">RabbitHutch.Host</span>
+                    </div>
+                  </div>
+
+                  <div className="control">
+                    <div className="tags has-addons">
+                      <span className="tag is-dark">Class Type</span>
+                      <span className="tag is-success">RecordMessage</span>
+                    </div>
+                  </div>
+
+                  <div className="control">
+                    <div className="tags">
+                      <span className="tag is-danger">ERROR</span>
+                    </div>
+                  </div>
+
+                  <div className="control">
+                    <div className="tags has-addons">
+                      <span className="tag is-dark">Replays</span>
+                      <span className="tag is-warning">0</span>
+                    </div>
+                  </div>
+                </div>
               </a>
               <a className="panel-block">
-                <span className="panel-icon">
-                  <i className="fa fa-book"></i>
-                </span>
-                marksheet
+              <div className="field is-grouped">
+                <div className="control">
+                  <div className="tags has-addons">
+                    <span className="tag is-dark">Document Id</span>
+                    <span className="tag is-primary">3123</span>
+                  </div>
+                </div>
+
+                <div className="control">
+                  <div className="tags has-addons">
+                    <span className="tag is-dark">Endpoint</span>
+                    <span className="tag is-info">ThisEndpointIsLongerThanExpected</span>
+                  </div>
+                </div>
+
+                <div className="control">
+                  <div className="tags has-addons">
+                    <span className="tag is-dark">Class Type</span>
+                    <span className="tag is-success">RecordMessage</span>
+                  </div>
+                </div>
+              </div>
               </a>
               <a className="panel-block">
                 <span className="panel-icon">
