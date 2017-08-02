@@ -1,5 +1,13 @@
 import React from 'react';
-import { Column, Columns, Container, Menu, Section } from './common';
+import {
+  Column,
+  Columns,
+  Container,
+  Menu,
+  MenuLabel,
+  MenuList,
+  MenuListItem,
+  Section } from './common';
 // import { Route } from 'react-router-dom';
 
 const App = () => (
@@ -21,12 +29,12 @@ const App = () => (
       <Container>
         <Columns>
           <Column className="column is-3">
-            <Menu className="menu">
-              <p className="menu-label">Applications</p>
-              <ul className="menu-list">
-                <li><a className="is-active">localhost <span className="tag is-danger is-rounded is-pulled-right">5,499</span></a></li>
-                <li><a>localhost1 <span className="tag is-danger is-rounded is-pulled-right">7</span></a></li>
-              </ul>
+            <Menu>
+              <MenuLabel>Applications</MenuLabel>
+              <MenuList>
+                <MenuListItem><a className="is-active">localhost <span className="tag is-danger is-rounded is-pulled-right">5,499</span></a></MenuListItem>
+                <MenuListItem><a>localhost1 <span className="tag is-danger is-rounded is-pulled-right">7</span></a></MenuListItem>
+              </MenuList>
             </Menu>
           </Column>
           <Column className="column is-9">

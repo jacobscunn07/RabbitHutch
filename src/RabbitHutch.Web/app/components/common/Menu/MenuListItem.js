@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-const Menu = (props) => {
+const MenuListItem = (props) => {
   const {
       tag: Tag,
       className,
     } = props;
-  const classes = classNames('menu', className);
+  const classes = classNames(className);
   return (
     <Tag className={classes}>
       {props.children}
@@ -14,16 +14,16 @@ const Menu = (props) => {
   );
 };
 
-Menu.propTypes = {
+MenuListItem.propTypes = {
   children: PropTypes.node,
   tag: PropTypes.string,
   className: PropTypes.string,
 };
 
-Menu.defaultProps = {
+MenuListItem.defaultProps = {
   children: '',
-  tag: 'aside',
+  tag: 'li',
   className: '',
 };
 
-export default Menu;
+export default MenuListItem;
