@@ -1,0 +1,20 @@
+{
+  "name": "rabbithutch",
+  "version": "1.0.0",
+  "description": "Rabbit Hutch Web Interface",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "author": "Jacob Cunningham",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacobscunn07/RabbitHutch"
+  }
+}
