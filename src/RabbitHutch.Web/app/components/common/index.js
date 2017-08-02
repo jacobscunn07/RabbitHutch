@@ -6,6 +6,8 @@ import Menu from './Menu/Menu';
 import MenuLabel from './Menu/MenuLabel';
 import MenuList from './Menu/MenuList';
 import MenuListItem from './Menu/MenuListItem';
+import Tag from './Tag';
+import Tags from './Tags';
 
 export {
   Column,
@@ -16,4 +18,6 @@ export {
   MenuList,
   MenuListItem,
   Section,
+  Tag,
+  Tags,
 };

@@ -7,7 +7,9 @@ import {
   MenuLabel,
   MenuList,
   MenuListItem,
-  Section } from './common';
+  Section,
+  Tag,
+  Tags } from './common';
 // import { Route } from 'react-router-dom';
 
 const App = () => (
@@ -55,55 +57,55 @@ const App = () => (
               <a className="panel-block">
                 <div className="field is-grouped">
                   <div className="control">
-                    <div className="tags has-addons">
-                      <span className="tag is-dark">Document Id</span>
-                      <span className="tag is-primary">3123</span>
-                    </div>
+                    <Tags className="has-addons">
+                      <Tag className="is-dark">Document Id</Tag>
+                      <Tag className="is-primary">3123</Tag>
+                    </Tags>
                   </div>
                   <div className="control">
-                    <div className="tags has-addons">
-                      <span className="tag is-dark">Endpoint</span>
-                      <span className="tag is-info">RabbitHutch.Host</span>
-                    </div>
+                    <Tags className="has-addons">
+                      <Tag className="is-dark">Endpoint</Tag>
+                      <Tag className="is-info">RabbitHutch.Host</Tag>
+                    </Tags>
                   </div>
                   <div className="control">
-                    <div className="tags has-addons">
-                      <span className="tag is-dark">Class Type</span>
-                      <span className="tag is-success">RecordMessage</span>
-                    </div>
+                    <Tags className="has-addons">
+                      <Tag className="is-dark">Class Type</Tag>
+                      <Tag className="is-success">RecordMessage</Tag>
+                    </Tags>
                   </div>
                   <div className="control">
-                    <div className="tags">
-                      <span className="tag is-danger">ERROR</span>
-                    </div>
+                    <Tags>
+                      <Tag className="is-danger">ERROR</Tag>
+                    </Tags>
                   </div>
                   <div className="control">
-                    <div className="tags has-addons">
-                      <span className="tag is-dark">Replays</span>
-                      <span className="tag is-warning">0</span>
-                    </div>
+                    <Tags className="has-addons">
+                      <Tag className="is-dark">Replays</Tag>
+                      <Tag className="is-warning">0</Tag>
+                    </Tags>
                   </div>
                 </div>
               </a>
               <a className="panel-block">
                 <div className="field is-grouped">
                   <div className="control">
-                    <div className="tags has-addons">
-                      <span className="tag is-dark">Document Id</span>
-                      <span className="tag is-primary">3123</span>
-                    </div>
+                    <Tags className="has-addons">
+                      <Tag className="is-dark">Document Id</Tag>
+                      <Tag className="is-primary">3123</Tag>
+                    </Tags>
                   </div>
                   <div className="control">
-                    <div className="tags has-addons">
-                      <span className="tag is-dark">Endpoint</span>
-                      <span className="tag is-info">ThisEndpointIsLongerThanExpected</span>
-                    </div>
+                    <Tags className="has-addons">
+                      <Tag className="is-dark">Endpoint</Tag>
+                      <Tag className="is-info">ThisEndpointIsLongerThanExpected</Tag>
+                    </Tags>
                   </div>
                   <div className="control">
-                    <div className="tags has-addons">
-                      <span className="tag is-dark">Class Type</span>
-                      <span className="tag is-success">RecordMessage</span>
-                    </div>
+                    <Tags className="has-addons">
+                      <Tag className="is-dark">Class Type</Tag>
+                      <Tag className="is-success">RecordMessage</Tag>
+                    </Tags>
                   </div>
                 </div>
               </a>
