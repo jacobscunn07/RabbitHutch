@@ -5,8 +5,9 @@ import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { syncHistoryWithStore } from 'react-router-redux';
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import '../node_modules/bootstrap/dist/js/bootstrap';
+// import '../node_modules/bootstrap/dist/css/bootstrap.css';
+// import '../node_modules/bootstrap/dist/js/bootstrap';
+import '../node_modules/bulma/css/bulma.css';
 import configureStore from './store/configureStore';
 import App from './components/App';
 
