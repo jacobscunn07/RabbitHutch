@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.TestHarness", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.DataMigrations", "RabbitHutch.DataMigrations\RabbitHutch.DataMigrations.csproj", "{D4F85B6B-DDF7-4B0B-8A54-C8CD90EA2492}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.Web", "RabbitHutch.Web\RabbitHutch.Web.csproj", "{3B7AFB9D-CA9B-428D-AFEB-C020D8D45977}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D4F85B6B-DDF7-4B0B-8A54-C8CD90EA2492}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4F85B6B-DDF7-4B0B-8A54-C8CD90EA2492}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4F85B6B-DDF7-4B0B-8A54-C8CD90EA2492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B7AFB9D-CA9B-428D-AFEB-C020D8D45977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B7AFB9D-CA9B-428D-AFEB-C020D8D45977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B7AFB9D-CA9B-428D-AFEB-C020D8D45977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B7AFB9D-CA9B-428D-AFEB-C020D8D45977}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
