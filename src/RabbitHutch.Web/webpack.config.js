@@ -3,6 +3,7 @@ var webpack = require("webpack");
 
 module.exports = {
     entry: {
+      app: "./app/index",
     },
     target: 'web',
     output: {

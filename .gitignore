@@ -293,3 +293,6 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# Webpack Assets
+src/RabbitHutch.Web/content/build/**
