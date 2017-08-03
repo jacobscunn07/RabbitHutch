@@ -1,6 +1,6 @@
-import REQUEST_SWITCH_APP from './actions';
+import { REQUEST_SWITCH_APP } from './constants';
 
-export default function requestActivitySummary(applicationId) {
+export default function requestSwitchApp(applicationId) {
   return {
     type: REQUEST_SWITCH_APP,
     applicationId,
