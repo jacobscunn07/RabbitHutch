@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using RabbitHutch.Host.DataAccess;
-using RabbitHutch.Host.Domain;
+using RabbitHutch.DataAccess;
+using RabbitHutch.Domain;
 using RabbitMQ.Client.Events;
 using RabbitHutch.Host.Application.ServiceBusTechnologies;
 

@@ -1,9 +1,9 @@
-﻿using RabbitHutch.Host.Domain;
-using Raven.Client.Indexes;
+﻿using System.Linq;
+using RabbitHutch.Domain;
 using Raven.Abstractions.Indexing;
-using System.Linq;
+using Raven.Client.Indexes;
 
-namespace RabbitHutch.Host.DataAccess.Raven.Indexes
+namespace RabbitHutch.DataAccess.Raven.Indexes
 {
     public class MessageDocument_Search : AbstractIndexCreationTask<MessageDocument>
     {

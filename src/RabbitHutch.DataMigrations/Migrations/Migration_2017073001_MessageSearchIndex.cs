@@ -1,4 +1,4 @@
-﻿using RabbitHutch.Host.DataAccess.Raven.Indexes;
+﻿using RabbitHutch.DataAccess.Raven.Indexes;
 using RavenMigrations;
 
 namespace RabbitHutch.DataMigrations.Migrations

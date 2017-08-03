@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RabbitHutch.Host.Domain.Interfaces
+namespace RabbitHutch.Domain.Interfaces
 {
     public interface IMessageHeaders
     {

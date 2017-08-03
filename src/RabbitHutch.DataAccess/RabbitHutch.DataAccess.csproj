@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D4F85B6B-DDF7-4B0B-8A54-C8CD90EA2492}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>RabbitHutch.DataMigrations</RootNamespace>
-    <AssemblyName>RabbitHutch.DataMigrations</AssemblyName>
+    <ProjectGuid>{7350D796-D6A7-4046-B647-A1028A2E9C17}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RabbitHutch.DataAccess</RootNamespace>
+    <AssemblyName>RabbitHutch.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -38,9 +36,6 @@
     <Reference Include="Raven.Client.Lightweight, Version=3.5.4.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <HintPath>..\packages\RavenDB.Client.3.5.4\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
-    <Reference Include="RavenMigrations, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RavenMigrations.2.1.0\lib\net45\RavenMigrations.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -52,22 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\Migration_2017073001_MessageSearchIndex.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="IDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Raven\Indexes\MessageDocument_Search.cs" />
+    <Compile Include="Raven\RavenDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RabbitHutch.DataAccess\RabbitHutch.DataAccess.csproj">
-      <Project>{7350D796-D6A7-4046-B647-A1028A2E9C17}</Project>
-      <Name>RabbitHutch.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RabbitHutch.Host\RabbitHutch.Host.csproj">
-      <Project>{cb40693f-4cba-4021-8260-cc85c9312153}</Project>
-      <Name>RabbitHutch.Host</Name>
+    <ProjectReference Include="..\RabbitHutch.Domain\RabbitHutch.Domain.csproj">
+      <Project>{BCB3D73D-CC5C-42BE-B884-56A9A4C6D020}</Project>
+      <Name>RabbitHutch.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

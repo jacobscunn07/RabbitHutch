@@ -1,6 +1,6 @@
-﻿using RabbitHutch.Host.Domain;
+﻿using RabbitHutch.Domain;
 
-namespace RabbitHutch.Host.DataAccess
+namespace RabbitHutch.DataAccess
 {
     public interface IDatabase
     {
