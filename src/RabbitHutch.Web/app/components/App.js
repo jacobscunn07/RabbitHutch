@@ -10,6 +10,9 @@ import {
   MenuList,
   MenuListItem,
   Section,
+  Tab,
+  Tabs,
+  TabList,
   Tag,
   Tags } from './common';
 // import { Route } from 'react-router-dom';
@@ -42,19 +45,19 @@ const App = () => (
             </Menu>
           </Column>
           <Column className="is-9">
-            <div className="tabs is-boxed is-marginless">
-              <ul>
-                <li className="is-active">
+            <Tabs className="is-boxed is-marginless">
+              <TabList>
+                <Tab className="is-active">
                   <a><span>Error</span></a>
-                </li>
-                <li>
+                </Tab>
+                <Tab>
                   <a><span>Audit</span></a>
-                </li>
-                <li>
+                </Tab>
+                <Tab>
                   <a><span>All</span></a>
-                </li>
-              </ul>
-            </div>
+                </Tab>
+              </TabList>
+            </Tabs>
             <nav className="panel">
               <a className="panel-block">
                 <div className="field is-grouped">

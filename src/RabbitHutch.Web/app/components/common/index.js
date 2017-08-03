@@ -8,6 +8,9 @@ import Menu from './Menu/Menu';
 import MenuLabel from './Menu/MenuLabel';
 import MenuList from './Menu/MenuList';
 import MenuListItem from './Menu/MenuListItem';
+import Tab from './Tabs/Tab';
+import Tabs from './Tabs/Tabs';
+import TabList from './Tabs/TabList';
 import Tag from './Tag';
 import Tags from './Tags';
 
@@ -22,6 +25,9 @@ export {
   MenuList,
   MenuListItem,
   Section,
+  Tab,
+  Tabs,
+  TabList,
   Tag,
   Tags,
 };
