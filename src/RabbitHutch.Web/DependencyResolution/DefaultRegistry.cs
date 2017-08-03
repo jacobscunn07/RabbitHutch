@@ -17,6 +17,8 @@
 
 namespace RabbitHutch.Web.DependencyResolution {
     using MediatR;
+    using Raven.Client;
+    using Raven.Client.Document;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 	
@@ -38,6 +40,13 @@ namespace RabbitHutch.Web.DependencyResolution {
             For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => t => ctx.GetInstance(t));
             For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => t => ctx.GetAllInstances(t));
             For<IMediator>().Use<Mediator>();
+            For<IDocumentStore>()
+                .Singleton()
+                .Use(new DocumentStore
+                {
+                    Url = "http://localhost:8080/",
+                    DefaultDatabase = "RabbitHutch"
+                }.Initialize());
         }
 
         #endregion

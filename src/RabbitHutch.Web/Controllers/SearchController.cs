@@ -17,7 +17,7 @@ namespace RabbitHutch.Web.Controllers
             _mediator = mediator;
         }
 
-        public string Index()
+        public string Get()
         {
             return "1";
         }
