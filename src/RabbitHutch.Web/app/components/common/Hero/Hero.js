@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-const Column = (props) => {
+const Hero = (props) => {
   const {
       tag: Tag,
       className,
     } = props;
-  const classes = classNames('column', className);
+  const classes = classNames('hero', className);
   return (
     <Tag className={classes}>
       {props.children}
@@ -14,16 +14,16 @@ const Column = (props) => {
   );
 };
 
-Column.propTypes = {
+Hero.propTypes = {
   children: PropTypes.node,
   tag: PropTypes.string,
   className: PropTypes.string,
 };
 
-Column.defaultProps = {
+Hero.defaultProps = {
   children: '',
-  tag: 'div',
+  tag: 'section',
   className: '',
 };
 
-export default Column;
+export default Hero;

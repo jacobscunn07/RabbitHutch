@@ -3,6 +3,8 @@ import {
   Column,
   Columns,
   Container,
+  Hero,
+  HeroBody,
   Menu,
   MenuLabel,
   MenuList,
@@ -14,23 +16,23 @@ import {
 
 const App = () => (
   <div>
-    <Section className="hero is-primary">
-      <div className="hero-body">
-        <div className="container">
+    <Hero className="is-primary">
+      <HeroBody>
+        <Container>
           <h1 className="title">
             Rabbit Hutch
           </h1>
           <h2 className="subtitle">
             Where the fluffsters can run free
           </h2>
-        </div>
-      </div>
-    </Section>
+        </Container>
+      </HeroBody>
+    </Hero>
     <section style={{ marginTop: '10px' }} />
     <Section>
       <Container>
         <Columns>
-          <Column className="column is-3">
+          <Column className="is-3">
             <Menu>
               <MenuLabel>Applications</MenuLabel>
               <MenuList>
@@ -39,7 +41,7 @@ const App = () => (
               </MenuList>
             </Menu>
           </Column>
-          <Column className="column is-9">
+          <Column className="is-9">
             <div className="tabs is-boxed is-marginless">
               <ul>
                 <li className="is-active">
