@@ -18,7 +18,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    requestSwitchApp: () => dispatch(requestSwitchApp('localhost1')),
+    requestSwitchApp: appId => dispatch(requestSwitchApp(appId)),
   };
 }
 
