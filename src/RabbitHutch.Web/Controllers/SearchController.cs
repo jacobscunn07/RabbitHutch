@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
 using MediatR;
+using RabbitHutch.Host.Application.CommandHandlers;
 
 namespace RabbitHutch.Web.Controllers
 {
@@ -17,9 +14,10 @@ namespace RabbitHutch.Web.Controllers
             _mediator = mediator;
         }
 
-        public string Get()
+        public async Task<DocumentSearchQueryResult> Get()
         {
-            return "1";
+            var result = await _mediator.Send(new DocumentSearchQuery {PageSize = 2, PageIndex = 1, QueryString = ""});
+            return result;
         }
     }
 }

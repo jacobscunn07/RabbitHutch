@@ -15,8 +15,12 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using RabbitHutch.Host.Application.CommandHandlers;
+
 namespace RabbitHutch.Web.DependencyResolution {
     using MediatR;
+    using RabbitHutch.DataAccess;
+    using RabbitHutch.DataAccess.Raven;
     using Raven.Client;
     using Raven.Client.Document;
     using StructureMap.Configuration.DSL;
@@ -30,6 +34,7 @@ namespace RabbitHutch.Web.DependencyResolution {
                 scan => {
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
+//                    scan.AssemblyContainingType<DocumentSearchQuery>();
                     scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<>));
                     scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
                     scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<>));
@@ -47,6 +52,7 @@ namespace RabbitHutch.Web.DependencyResolution {
                     Url = "http://localhost:8080/",
                     DefaultDatabase = "RabbitHutch"
                 }.Initialize());
+            For<IDatabase>().Use<RavenDatabase>();
         }
 
         #endregion

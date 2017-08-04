@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\CommandHandlers\DocumentSearchQueryHandler.cs" />
     <Compile Include="Application\Helpers\BasicPropertiesExtensions.cs" />
     <Compile Include="Application\Helpers\DictionaryExtensions.cs" />
     <Compile Include="Application\Host.cs" />
