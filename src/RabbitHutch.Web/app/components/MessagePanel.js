@@ -6,7 +6,7 @@ import {
 
 const MessagePanel = ({ message }) => (
   <a className="panel-block">
-    <div className="field is-grouped">
+    <div className="field is-grouped is-grouped-multiline">
       <div className="control">
         <Tags className="has-addons">
           <Tag className="is-dark">Message Id</Tag>
@@ -22,7 +22,7 @@ const MessagePanel = ({ message }) => (
       <div className="control">
         <Tags className="has-addons">
           <Tag className="is-dark">Class Type</Tag>
-          <Tag className="is-success">RecordMessage</Tag>
+          <Tag className="is-success">{message.ClassType}</Tag>
         </Tags>
       </div>
       {

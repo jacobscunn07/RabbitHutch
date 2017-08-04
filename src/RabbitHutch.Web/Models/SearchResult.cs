@@ -14,6 +14,7 @@ namespace RabbitHutch.Web.Models
             public string Body { get; set; }
             public bool IsError { get; set; }
             public string ProcessedEndpoint { get; set; }
+            public string ClassType { get; set; }
         }
     }
 }

@@ -40,7 +40,8 @@ namespace RabbitHutch.Web.Controllers
                 MessageId = parser.MessageId,
                 IsError = document.IsError,
                 Body = document.Body,
-                ProcessedEndpoint = parser.ProcessingEndPoint
+                ProcessedEndpoint = parser.ProcessingEndPoint,
+                ClassType = parser.MessageTypes.Split(' ').Select(x => x.Remove(x.Length-1)).FirstOrDefault()
             };
         }
     }
