@@ -1,26 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using RabbitHutch.Application.Helpers;
+using RabbitHutch.Domain;
 using RabbitMQ.Client.Events;
 
 namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 {
 	public class NServiceBusMessageParser : IMessageParser
 	{
-		private readonly BasicDeliverEventArgs _ea;
-	    private readonly IDictionary<string, string> _headers;
 
-		public NServiceBusMessageParser(BasicDeliverEventArgs ea)
+	    public NServiceBusMessageParser(BasicDeliverEventArgs ea)
 		{
-			_ea = ea;
-		    _headers = _ea.BasicProperties.GetHeadersDictionary();
-		}
+		    Headers = ea.BasicProperties.GetHeadersDictionary();
+		    Body = Encoding.UTF8.GetString(ea.Body);
+        }
+
+	    public NServiceBusMessageParser(MessageDocument document)
+	    {
+	        Headers = document.Headers;
+	        Body = document.Body;
+	    }
 
 		public string MessageId => Headers.GetValueByKey(NServiceBus.Headers.MessageId);
 
-		public IDictionary<string, string> Headers => _headers;
+		public IDictionary<string, string> Headers { get; }
 
-		public string Body => Encoding.UTF8.GetString(_ea.Body);
+	    public string Body { get; }
 
 		public bool IsError => Headers.ContainsKey(NServiceBus.Headers.ExceptionType);
 

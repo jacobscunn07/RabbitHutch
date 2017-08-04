@@ -13,6 +13,7 @@ namespace RabbitHutch.Web.Models
             public string MessageId { get; set; }
             public string Body { get; set; }
             public bool IsError { get; set; }
+            public string ProcessedEndpoint { get; set; }
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using MediatR;
 using RabbitHutch.Application.CommandHandlers;
+using RabbitHutch.Application.ServiceBusTechnologies;
+using RabbitHutch.Domain;
 using RabbitHutch.Web.Models;
 
 namespace RabbitHutch.Web.Controllers
@@ -23,12 +25,22 @@ namespace RabbitHutch.Web.Controllers
             return new SearchResult
             {
                 TotalResults = result.TotalResults,
-                Results = result.Results.Select(x => new SearchResult.SearchMessageResult
-                {
-                    DocId = x.DocId,
-                    Body = x.Body,
-                    IsError = x.IsError
-                })
+                Results = result.Results.Select(ParseMessage)
+            };
+        }
+
+        private static SearchResult.SearchMessageResult ParseMessage(MessageDocument document)
+        {
+            var factory = new MessageParserFactory();
+            var parser = factory.GetMessageDocumentParser(document);
+
+            return new SearchResult.SearchMessageResult
+            {
+                DocId = document.DocId,
+                MessageId = parser.MessageId,
+                IsError = document.IsError,
+                Body = document.Body,
+                ProcessedEndpoint = parser.ProcessingEndPoint
             };
         }
     }

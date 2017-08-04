@@ -9,14 +9,14 @@ const MessagePanel = ({ message }) => (
     <div className="field is-grouped">
       <div className="control">
         <Tags className="has-addons">
-          <Tag className="is-dark">Document Id</Tag>
-          <Tag className="is-primary">{message.DocId}</Tag>
+          <Tag className="is-dark">Message Id</Tag>
+          <Tag className="is-primary">{message.MessageId}</Tag>
         </Tags>
       </div>
       <div className="control">
         <Tags className="has-addons">
           <Tag className="is-dark">Endpoint</Tag>
-          <Tag className="is-info">RabbitHutch.Host</Tag>
+          <Tag className="is-info">{message.ProcessedEndpoint}</Tag>
         </Tags>
       </div>
       <div className="control">
