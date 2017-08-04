@@ -10,7 +10,7 @@ const MessagePanel = ({ message }) => (
       <div className="control">
         <Tags className="has-addons">
           <Tag className="is-dark">Message Id</Tag>
-          <Tag className="is-primary">{message.MessageId}</Tag>
+          <Tag className="is-warning">{message.MessageId}</Tag>
         </Tags>
       </div>
       <div className="control">
