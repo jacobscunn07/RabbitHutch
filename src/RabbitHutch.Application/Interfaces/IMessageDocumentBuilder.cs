@@ -30,6 +30,8 @@ namespace RabbitHutch.Application.Interfaces
 
     public interface IMessageDocumentOptionalValues
     {
+        IMessageDocumentOptionalValues IsError(bool error);
+
         MessageDocument Finish();
     }
 }

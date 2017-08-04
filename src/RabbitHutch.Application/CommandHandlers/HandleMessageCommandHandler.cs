@@ -34,6 +34,7 @@ namespace RabbitHutch.Application.CommandHandlers
                     .WithBusTechnology(messageParser.ServiceBusTechnology)
                     .WithApplication(cmd.Application)
                     .WithMessageTypes(messageParser.MessageTypes)
+                    .IsError(messageParser.IsError)
                     .Finish();
 
             var success = _database.Insert(messageDocument);

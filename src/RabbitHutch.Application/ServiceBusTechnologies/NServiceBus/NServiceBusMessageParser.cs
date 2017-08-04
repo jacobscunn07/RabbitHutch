@@ -16,23 +16,23 @@ namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 		    _headers = _ea.BasicProperties.GetHeadersDictionary();
 		}
 
-		public string MessageId => Headers.GetValueByKey(RabbitHutch.Application.ServiceBusTechnologies.NServiceBus.Headers.MessageId);
+		public string MessageId => Headers.GetValueByKey(NServiceBus.Headers.MessageId);
 
 		public IDictionary<string, string> Headers => _headers;
 
 		public string Body => Encoding.UTF8.GetString(_ea.Body);
 
-		public bool IsError => Headers.ContainsKey(RabbitHutch.Application.ServiceBusTechnologies.NServiceBus.Headers.ExceptionType);
+		public bool IsError => Headers.ContainsKey(NServiceBus.Headers.ExceptionType);
 
-		public string ContentType => Headers.GetValueByKey(RabbitHutch.Application.ServiceBusTechnologies.NServiceBus.Headers.ContentType);
+		public string ContentType => Headers.GetValueByKey(NServiceBus.Headers.ContentType);
 
-		public string OriginatingEndPoint => Headers.GetValueByKey(RabbitHutch.Application.ServiceBusTechnologies.NServiceBus.Headers.OriginatingEndPoint);
+		public string OriginatingEndPoint => Headers.GetValueByKey(NServiceBus.Headers.OriginatingEndPoint);
 
-		public string ProcessingEndPoint => Headers.GetValueByKey(RabbitHutch.Application.ServiceBusTechnologies.NServiceBus.Headers.ProcessingEndPoint);
+		public string ProcessingEndPoint => Headers.GetValueByKey(NServiceBus.Headers.ProcessingEndPoint);
 
-		public string FailedQueue => Headers.GetValueByKey(RabbitHutch.Application.ServiceBusTechnologies.NServiceBus.Headers.FailedQ);
+		public string FailedQueue => Headers.GetValueByKey(NServiceBus.Headers.FailedQ);
 
-		public string MessageTypes => Headers.GetValueByKey(RabbitHutch.Application.ServiceBusTechnologies.NServiceBus.Headers.EnclosedMessageTypes);
+		public string MessageTypes => Headers.GetValueByKey(NServiceBus.Headers.EnclosedMessageTypes);
 
 		public string ServiceBusTechnology => "NServiceBus";
 	}

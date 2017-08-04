@@ -18,9 +18,11 @@ namespace RabbitHutch.Application
         private string _busTechnology;
         private string _applicationId;
         private string _messageTypes;
+        private bool _isError;
 
         private MessageDocumentBuilder()
         {
+            _isError = false;
         }
 
         public static IMessageHeaders BuildDocument()
@@ -58,6 +60,12 @@ namespace RabbitHutch.Application
             return this;
         }
 
+        public IMessageDocumentOptionalValues IsError(bool error)
+        {
+            _isError = error;
+            return this; 
+        }
+
         public MessageDocument Finish()
         {
             return new MessageDocument
@@ -67,7 +75,7 @@ namespace RabbitHutch.Application
                 ServiceBusTechnology = _busTechnology,
                 ApplicationId = _applicationId,
                 MessageTypes = _messageTypes,
-                IsError = _headers.ContainsKey(Headers.ExceptionType)
+                IsError = _isError
             };
         }
     }
