@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
 using MediatR;
-using RabbitHutch.Host.Application.CommandHandlers;
+using RabbitHutch.Application.CommandHandlers;
 
 namespace RabbitHutch.Web.Controllers
 {

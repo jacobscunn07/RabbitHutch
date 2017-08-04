@@ -95,6 +95,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RabbitHutch.Application\RabbitHutch.Application.csproj">
+      <Project>{c1edcd4d-9f9d-4916-95cd-40f07e4f10c2}</Project>
+      <Name>RabbitHutch.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RabbitHutch.DataAccess\RabbitHutch.DataAccess.csproj">
       <Project>{7350D796-D6A7-4046-B647-A1028A2E9C17}</Project>
       <Name>RabbitHutch.DataAccess</Name>

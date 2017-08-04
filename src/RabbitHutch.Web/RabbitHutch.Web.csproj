@@ -251,6 +251,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RabbitHutch.Application\RabbitHutch.Application.csproj">
+      <Project>{C1EDCD4D-9F9D-4916-95CD-40F07E4F10C2}</Project>
+      <Name>RabbitHutch.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RabbitHutch.DataAccess\RabbitHutch.DataAccess.csproj">
       <Project>{7350d796-d6a7-4046-b647-a1028a2e9c17}</Project>
       <Name>RabbitHutch.DataAccess</Name>
@@ -258,10 +262,6 @@
     <ProjectReference Include="..\RabbitHutch.Domain\RabbitHutch.Domain.csproj">
       <Project>{BCB3D73D-CC5C-42BE-B884-56A9A4C6D020}</Project>
       <Name>RabbitHutch.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RabbitHutch.Host\RabbitHutch.Host.csproj">
-      <Project>{cb40693f-4cba-4021-8260-cc85c9312153}</Project>
-      <Name>RabbitHutch.Host</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -15,7 +15,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using RabbitHutch.Host.Application.CommandHandlers;
+using RabbitHutch.Application.CommandHandlers;
 
 namespace RabbitHutch.Web.DependencyResolution {
     using MediatR;
@@ -32,9 +32,8 @@ namespace RabbitHutch.Web.DependencyResolution {
         public DefaultRegistry() {
             Scan(
                 scan => {
-                    scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
-//                    scan.AssemblyContainingType<DocumentSearchQuery>();
+                    scan.AssemblyContainingType<DocumentSearchQuery>();
                     scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<>));
                     scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
                     scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<>));
