@@ -1,6 +1,6 @@
 ﻿using RabbitMQ.Client.Events;
 
-namespace RabbitHutch.Host.Application.ServiceBusTechnologies
+namespace RabbitHutch.Application.ServiceBusTechnologies
 {
 	public interface IMessageParserFactory
 	{

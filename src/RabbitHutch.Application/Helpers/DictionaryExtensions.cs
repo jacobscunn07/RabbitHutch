@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RabbitHutch.Host.Application.Helpers
+namespace RabbitHutch.Application.Helpers
 {
     public static class DictionaryExtensions
     {

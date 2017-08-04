@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using RabbitHutch.Application.Interfaces;
+using RabbitHutch.Application.ServiceBusTechnologies.NServiceBus;
 using RabbitHutch.Domain;
-using RabbitHutch.Domain.Interfaces;
-using RabbitHutch.Host.Application.ServiceBusTechnologies.NServiceBus;
 
-namespace RabbitHutch.Host.Application
+namespace RabbitHutch.Application
 {
     public class MessageDocumentBuilder :
         IMessageHeaders,

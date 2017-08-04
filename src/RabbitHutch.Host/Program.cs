@@ -1,6 +1,5 @@
-﻿using StructureMap;
-using RabbitHutch.Host.Application;
-using RabbitHutch.Host.Application.Interfaces;
+﻿using RabbitHutch.Application.Interfaces;
+using StructureMap;
 using Topshelf;
 
 namespace RabbitHutch.Host

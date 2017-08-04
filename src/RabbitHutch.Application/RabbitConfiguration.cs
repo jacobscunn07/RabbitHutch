@@ -1,6 +1,6 @@
-﻿using RabbitHutch.Host.Application.Interfaces;
+﻿using RabbitHutch.Application.Interfaces;
 
-namespace RabbitHutch.Host.Application
+namespace RabbitHutch.Application
 {
     public class RabbitConfiguration : IRabbitConfiguration
     {

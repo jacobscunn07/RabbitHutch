@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using RabbitHutch.Host.Application.Helpers;
-using RabbitHutch.Host.Application.ServiceBusTechnologies.NServiceBus;
+using RabbitHutch.Application.Helpers;
+using RabbitHutch.Application.ServiceBusTechnologies.NServiceBus;
 using RabbitMQ.Client.Events;
 
-namespace RabbitHutch.Host.Application.ServiceBusTechnologies
+namespace RabbitHutch.Application.ServiceBusTechnologies
 {
 	public class MessageParserFactory : IMessageParserFactory
 	{

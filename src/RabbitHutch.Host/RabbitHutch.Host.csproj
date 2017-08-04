@@ -67,28 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\CommandHandlers\DocumentSearchQueryHandler.cs" />
-    <Compile Include="Application\Helpers\BasicPropertiesExtensions.cs" />
-    <Compile Include="Application\Helpers\DictionaryExtensions.cs" />
-    <Compile Include="Application\Host.cs" />
-    <Compile Include="Application\Interfaces\IHost.cs" />
-    <Compile Include="Application\Interfaces\IMessageDocumentBuilder.cs" />
-    <Compile Include="Application\Interfaces\IQueue.cs" />
-    <Compile Include="Application\Interfaces\IQueueSettings.cs" />
-    <Compile Include="Application\Interfaces\IRabbitConfiguration.cs" />
-    <Compile Include="Application\MessageDocumentBuilder.cs" />
-    <Compile Include="Application\Queue.cs" />
-    <Compile Include="Application\CommandHandlers\HandleMessageCommandHandler.cs" />
-    <Compile Include="Application\QueueSettings.cs" />
-    <Compile Include="Application\RabbitConfiguration.cs" />
-    <Compile Include="Application\ServiceBusTechnologies\IMessageParser.cs" />
-    <Compile Include="Application\ServiceBusTechnologies\IMessageParserFactory.cs" />
-    <Compile Include="Application\ServiceBusTechnologies\MessageParserFactory.cs" />
-    <Compile Include="Application\ServiceBusTechnologies\NServiceBus\NServiceBusMessageParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RabbitHutchRegistry.cs" />
-    <Compile Include="Application\ServiceBusTechnologies\NServiceBus\Headers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

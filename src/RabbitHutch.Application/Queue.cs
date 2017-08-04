@@ -1,12 +1,12 @@
-﻿using MediatR;
-using RabbitHutch.Host.Application.CommandHandlers;
+﻿using System;
+using System.Threading;
+using MediatR;
+using RabbitHutch.Application.CommandHandlers;
+using RabbitHutch.Application.Interfaces;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System;
-using System.Threading;
-using RabbitHutch.Host.Application.Interfaces;
 
-namespace RabbitHutch.Host.Application
+namespace RabbitHutch.Application
 {
     public class Queue : IQueue
     {

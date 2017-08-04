@@ -1,12 +1,12 @@
-﻿using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using RabbitHutch.Host.Application.Interfaces;
+using MediatR;
+using RabbitHutch.Application.Interfaces;
 
-namespace RabbitHutch.Host.Application
+namespace RabbitHutch.Application
 {
     public class Host : IHost
     {

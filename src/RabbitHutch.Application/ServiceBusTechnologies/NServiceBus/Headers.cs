@@ -1,4 +1,4 @@
-﻿namespace RabbitHutch.Host.Application.ServiceBusTechnologies.NServiceBus
+﻿namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 {
     public static class Headers
     {

@@ -2,7 +2,7 @@
 using System.Text;
 using RabbitMQ.Client;
 
-namespace RabbitHutch.Host.Application.Helpers
+namespace RabbitHutch.Application.Helpers
 {
 	public static class BasicPropertiesExtensions
 	{

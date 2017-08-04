@@ -1,10 +1,10 @@
 ﻿using MediatR;
+using RabbitHutch.Application.ServiceBusTechnologies;
 using RabbitHutch.DataAccess;
 using RabbitHutch.Domain;
 using RabbitMQ.Client.Events;
-using RabbitHutch.Host.Application.ServiceBusTechnologies;
 
-namespace RabbitHutch.Host.Application.CommandHandlers
+namespace RabbitHutch.Application.CommandHandlers
 {
     public class HandleMessageCommand : IRequest<HandleMessageCommandResult>
     {

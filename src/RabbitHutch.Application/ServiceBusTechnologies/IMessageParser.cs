@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RabbitHutch.Host.Application.ServiceBusTechnologies
+namespace RabbitHutch.Application.ServiceBusTechnologies
 {
 	public interface IMessageParser
 	{

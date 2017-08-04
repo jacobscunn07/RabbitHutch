@@ -13,7 +13,8 @@ namespace RabbitHutch.Host
         {
             Scan(scan =>
             {
-                scan.TheCallingAssembly();
+//                scan.TheCallingAssembly();
+                scan.AssemblyContainingType<RabbitHutch.Application.CommandHandlers.DocumentSearchQuery>();
                 scan.WithDefaultConventions();
                 scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<>));
                 scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
