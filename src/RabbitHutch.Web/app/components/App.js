@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 // import Applications from './Applications';
 import ApplicationsContainer from './ApplicationsContainer';
-import MessageList from './MessageList';
+import MessageListContainer from './MessageListContainer';
 import {
   Column,
   Columns,
@@ -21,7 +21,7 @@ const App = () => (
             <ApplicationsContainer />
           </Column>
           <Column className="is-9">
-            <MessageList />
+            <MessageListContainer />
           </Column>
         </Columns>
       </Container>
