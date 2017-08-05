@@ -1,32 +1,24 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Header from './Header';
-// import Applications from './Applications';
-import ApplicationsContainer from './ApplicationsContainer';
-import MessageListContainer from './MessageListContainer';
-import {
-  Column,
-  Columns,
-  Container,
-  Section } from './common';
+import { Section } from './common';
 // import { Route } from 'react-router-dom';
 
-const App = () => (
+const App = props => (
   <div>
     <Header />
     <section style={{ marginTop: '10px' }} />
     <Section>
-      <Container>
-        <Columns>
-          <Column className="is-3">
-            <ApplicationsContainer />
-          </Column>
-          <Column className="is-9">
-            <MessageListContainer />
-          </Column>
-        </Columns>
-      </Container>
+      {props.children}
     </Section>
   </div>
 );
+
+App.propTypes = {
+  children: PropTypes.node,
+};
+
+App.defaultProps = {
+  children: '',
+};
 
 export default App;

@@ -3,7 +3,6 @@ import { REQUEST_SWITCH_APP, REQUEST_APP_MESSAGES_SUCCESS } from './constants';
 
 const initialState = fromJS({
   applicationId: 'localhost',
-  messages: [],
   totalMessages: 0,
 });
 

@@ -12,7 +12,7 @@ class MessageListContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { messages: state.applications.get('messages') };
+  return { messages: state.applications.get('messages', []) };
 }
 
 function mapDispatchToProps() {

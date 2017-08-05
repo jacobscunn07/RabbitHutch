@@ -1,11 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Applications from './Applications';
 import { requestSwitchApp, requestAppMessages } from './../redux/application/actions';
 
 class ApplicationsContainer extends React.Component {
   componentWillMount() {
-    this.props.requestApplicationMessages();
   }
 
   render() {
@@ -25,7 +24,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 ApplicationsContainer.propTypes = {
-  requestApplicationMessages: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationsContainer);
