@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Tag,
   Tags } from './common';
 // import { Route } from 'react-router-dom';
 
 const MessagePanel = ({ message }) => (
-  <a className="panel-block">
+  <Link className="panel-block" to={{ pathname: `/message/${message.MessageId}` }}>
     <div className="field is-grouped is-grouped-multiline">
       <div className="control">
         <Tags className="has-addons">
@@ -34,7 +35,7 @@ const MessagePanel = ({ message }) => (
         </div>
       }
     </div>
-  </a>
+  </Link>
 );
 
 MessagePanel.propTypes = {

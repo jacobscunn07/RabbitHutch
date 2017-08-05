@@ -11,6 +11,7 @@ import '../node_modules/bulma/css/bulma.css';
 import configureStore from './store/configureStore';
 import App from './components/App';
 import HomePage from './components/HomePage';
+import MessagePage from './components/MessagePage';
 
 const browserHistory = createBrowserHistory();
 const store = configureStore({}, browserHistory);
@@ -20,7 +21,8 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <App>
-        <Route exact path="/" component={HomePage} />
+        <Route exact name="home" path="/" component={HomePage} />
+        <Route exact name="message" path="/message/:id" component={MessagePage} />
       </App>
     </Router>
   </Provider>,
