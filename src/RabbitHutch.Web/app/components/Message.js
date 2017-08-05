@@ -4,12 +4,12 @@ const Message = ({ message }) => (
   <div>
     <div className="field is-horizontal">
       <div className="field-label is-normal">
-        <label htmlFor="a" className="label">Message Id</label>
+        <label htmlFor="a" className="label">Service Bus</label>
       </div>
       <div className="field-body">
         <div className="field">
           <div className="control">
-            <input className="input" type="text" placeholder="Normal sized input" value={message.MessageId} disabled />
+            <input className="input" type="text" placeholder="Normal sized input" value={message.ServiceBusTechnology} disabled />
           </div>
         </div>
       </div>

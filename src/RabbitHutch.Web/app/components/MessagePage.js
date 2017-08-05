@@ -8,7 +8,17 @@ import {
 import { requestSwitchApp, requestAppMessages } from './../redux/application/actions';
 
 class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { message: {} };
+  }
+
   componentWillMount() {
+    fetch(`/api/message?guid=${this.props.match.params.id}`, {
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(json => this.setState({ message: json }));
   }
 
   render() {
@@ -16,7 +26,7 @@ class HomePage extends React.Component {
       <Container>
         <Columns>
           <Column className="is-12">
-            <Message />
+            <Message message={this.state.message} />
           </Column>
         </Columns>
       </Container>);
@@ -35,7 +45,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 HomePage.propTypes = {
-  requestApplicationMessages: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

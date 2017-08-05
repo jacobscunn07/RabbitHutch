@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using MediatR;
 using RabbitHutch.Application.CommandHandlers;
+using RabbitHutch.Domain;
 
 namespace RabbitHutch.Web.Controllers
 {
@@ -15,9 +16,11 @@ namespace RabbitHutch.Web.Controllers
             _mediator = mediator;
         }
 
-        public async Task<MessageDocumentQueryResult> Get(Guid guid)
+        public async Task<MessageDocument> Get(Guid guid)
         {
-            return await _mediator.Send(new MessageDocumentQuery {MessageId = guid});
+            var result = await _mediator.Send(new MessageDocumentQuery {MessageId = guid});
+
+            return result.MessageDocument;
         }
     }
 }
