@@ -27,6 +27,24 @@ const Message = props => (
         </div>
       </div>
     </div>
+
+    {
+      props.message.headers &&
+      props.message.headers.map(header => (
+        <div className="field is-horizontal">
+          <div className="field-label is-normal">
+            <label htmlFor="a" className="label">{header.key}</label>
+          </div>
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <input className="input" type="text" placeholder="Normal sized input" value={header.value} disabled />
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
   </div>
 );
 
@@ -34,6 +52,7 @@ Message.propTypes = {
   message: PropTypes.shape({
     serviceBusTechnology: PropTypes.string,
     body: PropTypes.string,
+    headers: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
 

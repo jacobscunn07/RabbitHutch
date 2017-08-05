@@ -10,7 +10,13 @@ import { requestSwitchApp, requestAppMessages } from './../redux/application/act
 class MessagePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { message: { serviceBusTechnology: '', body: '' } };
+    this.state = {
+      message: {
+        serviceBusTechnology: '',
+        body: '',
+        headers: [],
+      },
+    };
   }
 
   componentWillMount() {

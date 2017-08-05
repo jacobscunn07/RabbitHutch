@@ -27,7 +27,7 @@ namespace RabbitHutch.Web.Controllers
             var msg = new MessageResult
             {
                 Body = result.MessageDocument.Body,
-                Headers = result.MessageDocument.Headers,
+                Headers = result.MessageDocument.Headers.Select(x=> new { x.Key, x.Value}).Where(x => !x.Key.StartsWith("$")).ToList(),
                 ServiceBusTechnology = result.MessageDocument.ServiceBusTechnology
             };
             
