@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using RabbitHutch.DataAccess.Raven.Indexes;
 using RabbitHutch.Domain;
 using Raven.Client;
@@ -30,10 +29,14 @@ namespace RabbitHutch.DataAccess.Raven
             using (IDocumentSession session = _documentStore.OpenSession())
             {
                 session.Advanced.MaxNumberOfRequestsPerSession = int.MaxValue;
-                var docs = session.Query<MessageDocument, MessageDocument_Search>()
+
+                var docs = session
+                    .Advanced
+                    .DocumentQuery<MessageDocument, MessageDocument_Search>()
                     .Statistics(out RavenQueryStatistics stats)
-                    .Skip((pageIndex - 1) * pageIndex)
+                    .Skip((pageIndex - 1) * pageSize)
                     .Take(pageSize)
+                    .Where(query)
                     .ToList();
 
                 return new RavenSearchResult
