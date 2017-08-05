@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Message = ({ message }) => (
+const Message = props => (
   <div>
     <div className="field is-horizontal">
       <div className="field-label is-normal">
@@ -9,7 +9,7 @@ const Message = ({ message }) => (
       <div className="field-body">
         <div className="field">
           <div className="control">
-            <input className="input" type="text" placeholder="Normal sized input" value={message.ServiceBusTechnology} disabled />
+            <input className="input" type="text" placeholder="Normal sized input" value={props.message.serviceBusTechnology} disabled />
           </div>
         </div>
       </div>
@@ -18,11 +18,9 @@ const Message = ({ message }) => (
 );
 
 Message.propTypes = {
-  message: PropTypes.shape({}),
-};
-
-Message.defaultProps = {
-  message: {},
+  message: PropTypes.shape({
+    serviceBusTechnology: PropTypes.string,
+  }).isRequired,
 };
 
 export default Message;

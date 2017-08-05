@@ -7,10 +7,10 @@ import {
   Container } from './common';
 import { requestSwitchApp, requestAppMessages } from './../redux/application/actions';
 
-class HomePage extends React.Component {
+class MessagePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { message: {} };
+    this.state = { message: { serviceBusTechnology: '' } };
   }
 
   componentWillMount() {
@@ -44,7 +44,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-HomePage.propTypes = {
+MessagePage.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -52,4 +52,4 @@ HomePage.propTypes = {
   }).isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(MessagePage);

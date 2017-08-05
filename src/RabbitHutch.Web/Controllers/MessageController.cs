@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using MediatR;
@@ -16,11 +18,11 @@ namespace RabbitHutch.Web.Controllers
             _mediator = mediator;
         }
 
-        public async Task<MessageDocument> Get(Guid guid)
+        public async Task<HttpResponseMessage> Get(Guid guid)
         {
             var result = await _mediator.Send(new MessageDocumentQuery {MessageId = guid});
-
-            return result.MessageDocument;
+            
+            return Request.CreateResponse(HttpStatusCode.OK, result.MessageDocument);
         }
     }
 }
