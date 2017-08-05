@@ -14,12 +14,26 @@ const Message = props => (
         </div>
       </div>
     </div>
+
+    <div className="field is-horizontal">
+      <div className="field-label is-normal">
+        <label htmlFor="a" className="label">Body</label>
+      </div>
+      <div className="field-body">
+        <div className="field">
+          <div className="control">
+            <textarea className="textarea" type="text" placeholder="Disabled textarea" value={props.message.body} disabled />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 );
 
 Message.propTypes = {
   message: PropTypes.shape({
     serviceBusTechnology: PropTypes.string,
+    body: PropTypes.string,
   }).isRequired,
 };
 

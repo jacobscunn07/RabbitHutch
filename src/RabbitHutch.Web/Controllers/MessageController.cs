@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using System.Web.Http;
 using MediatR;
 using RabbitHutch.Application.CommandHandlers;
 using RabbitHutch.Domain;
+using RabbitHutch.Web.Models;
 
 namespace RabbitHutch.Web.Controllers
 {
@@ -21,8 +23,15 @@ namespace RabbitHutch.Web.Controllers
         public async Task<HttpResponseMessage> Get(Guid guid)
         {
             var result = await _mediator.Send(new MessageDocumentQuery {MessageId = guid});
+
+            var msg = new MessageResult
+            {
+                Body = result.MessageDocument.Body,
+                Headers = result.MessageDocument.Headers,
+                ServiceBusTechnology = result.MessageDocument.ServiceBusTechnology
+            };
             
-            return Request.CreateResponse(HttpStatusCode.OK, result.MessageDocument);
+            return Request.CreateResponse(HttpStatusCode.OK, msg);
         }
     }
 }

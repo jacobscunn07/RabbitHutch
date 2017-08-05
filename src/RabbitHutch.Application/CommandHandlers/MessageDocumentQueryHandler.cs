@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MediatR;
 using RabbitHutch.DataAccess;
@@ -34,5 +35,6 @@ namespace RabbitHutch.Application.CommandHandlers
     public class MessageDocumentQueryResult
     {
         public MessageDocument MessageDocument { get; set; }
+
     }
 }
