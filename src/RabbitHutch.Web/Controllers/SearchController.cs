@@ -18,9 +18,9 @@ namespace RabbitHutch.Web.Controllers
             _mediator = mediator;
         }
 
-        public async Task<SearchResult> Get()
+        public async Task<SearchResult> Get(string query = "", int pageSize = 20, int pageIndex = 1)
         {
-            var result = await _mediator.Send(new DocumentSearchQuery {PageSize = 20, PageIndex = 1, QueryString = ""});
+            var result = await _mediator.Send(new DocumentSearchQuery {PageSize = pageSize, PageIndex = pageIndex, QueryString = query});
 
             return new SearchResult
             {

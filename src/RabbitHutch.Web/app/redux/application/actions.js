@@ -3,8 +3,8 @@ import {
   REQUEST_APP_MESSAGES_SUCCESS,
   REQUEST_APP_MESSAGES_FAILURE } from './constants';
 
-function fetchMessages() {
-  return fetch('/api/search', {
+function fetchMessages(query = '') {
+  return fetch(`/api/search?query=${query}`, {
     method: 'GET',
   });
 }
@@ -30,9 +30,9 @@ export function requestAppMessagesFailure(message) {
   };
 }
 
-export function requestAppMessages() {
+export function requestAppMessages(query) {
   return (dispatch) => {
-    fetchMessages()
+    fetchMessages(query)
     .then(response => response.json())
     .then(response => dispatch(requestAppMessagesSuccess(response)))
     .catch(err => dispatch(requestAppMessagesFailure(err.message)));
