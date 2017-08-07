@@ -33,7 +33,7 @@ const MessageList = ({ messages }) => (
     </Tabs>
     <nav className="panel">
       {
-        messages.map(message => <MessagePanel key={message.DocId} message={message} />)
+        messages.map(message => <MessagePanel key={message.docId} message={message} />)
       }
     </nav>
   </div>

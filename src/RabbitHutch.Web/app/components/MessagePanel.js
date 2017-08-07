@@ -6,28 +6,28 @@ import {
 // import { Route } from 'react-router-dom';
 
 const MessagePanel = ({ message }) => (
-  <Link className="panel-block" to={{ pathname: `/message/${message.MessageId}` }}>
+  <Link className="panel-block" to={{ pathname: `/message/${message.messageId}` }}>
     <div className="field is-grouped is-grouped-multiline">
       <div className="control">
         <Tags className="has-addons">
           <Tag className="is-dark">Message Id</Tag>
-          <Tag className="is-warning">{message.MessageId}</Tag>
+          <Tag className="is-warning">{message.messageId}</Tag>
         </Tags>
       </div>
       <div className="control">
         <Tags className="has-addons">
           <Tag className="is-dark">Endpoint</Tag>
-          <Tag className="is-info">{message.ProcessedEndpoint}</Tag>
+          <Tag className="is-info">{message.processedEndpoint}</Tag>
         </Tags>
       </div>
       <div className="control">
         <Tags className="has-addons">
           <Tag className="is-dark">Class Type</Tag>
-          <Tag className="is-success">{message.ClassType}</Tag>
+          <Tag className="is-success">{message.classType}</Tag>
         </Tags>
       </div>
       {
-        message.IsError &&
+        message.isError &&
         <div className="control">
           <Tags>
             <Tag className="is-danger">ERROR</Tag>

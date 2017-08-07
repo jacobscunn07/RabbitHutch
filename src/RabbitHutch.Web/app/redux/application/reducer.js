@@ -11,7 +11,7 @@ function applicationReducer(state = initialState, action) {
     case REQUEST_SWITCH_APP:
       return state.set('applicationId', action.applicationId);
     case REQUEST_APP_MESSAGES_SUCCESS:
-      return state.set('messages', action.result.Results);
+      return state.set('messages', action.result.results);
     default:
       return state;
   }
