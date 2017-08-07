@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Hero,
@@ -17,6 +18,15 @@ const Header = () => (
         </h2>
       </Container>
     </HeroBody>
+    <div className="hero-foot">
+      <nav className="tabs">
+        <div className="container">
+          <ul>
+            <li className="is-active"><Link to={{ pathname: '/' }}>Home</Link></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
   </Hero>
 );
 

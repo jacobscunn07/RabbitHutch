@@ -21,13 +21,13 @@ const MessageList = ({ messages }) => (
     <Tabs className="is-boxed is-marginless">
       <TabList>
         <Tab className="is-active">
-          <a><span>Error</span></a>
+          <a><span>All</span></a>
         </Tab>
         <Tab>
           <a><span>Audit</span></a>
         </Tab>
         <Tab>
-          <a><span>All</span></a>
+          <a><span>Error</span></a>
         </Tab>
       </TabList>
     </Tabs>
