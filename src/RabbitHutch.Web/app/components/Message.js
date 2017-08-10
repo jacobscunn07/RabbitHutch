@@ -31,7 +31,7 @@ const Message = props => (
     {
       props.message.headers &&
       props.message.headers.map(header => (
-        <div className="field is-horizontal">
+        <div className="field is-horizontal" key={header.key}>
           <div className="field-label is-normal">
             <label htmlFor="a" className="label">{header.key}</label>
           </div>
