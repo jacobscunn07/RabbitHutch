@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using MediatR;
 using RabbitHutch.Domain;
 using RabbitMQ.Client;
@@ -22,7 +24,11 @@ namespace RabbitHutch.Application.CommandHandlers
                 var basicProps = channel.CreateBasicProperties();
                 basicProps.ContentType = "text/plain";
                 basicProps.DeliveryMode = 2;
-                basicProps.Headers = new Dictionary<string, object> {{"RabbitHutch.IsReplay", true}};
+                basicProps.Headers = new Dictionary<string, object>
+                {
+                    {"RabbitHutch.IsReplay", true},
+                    {"RabbitHutch.ReplayDateTime", $"{DateTime.UtcNow:u}"}
+                };
                 foreach (var header in cmd.MessageDocument.Headers)
                 {
                     basicProps.Headers.Add(header.Key, header.Value);
