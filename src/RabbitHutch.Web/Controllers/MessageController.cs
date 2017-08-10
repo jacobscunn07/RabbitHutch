@@ -20,9 +20,9 @@ namespace RabbitHutch.Web.Controllers
             _mediator = mediator;
         }
 
-        public async Task<HttpResponseMessage> Get(Guid guid)
+        public async Task<HttpResponseMessage> Get(long id)
         {
-            var result = await _mediator.Send(new MessageDocumentQuery {MessageId = guid});
+            var result = await _mediator.Send(new MessageDocumentQuery {DocumentId = id});
 
             var msg = new MessageResult
             {

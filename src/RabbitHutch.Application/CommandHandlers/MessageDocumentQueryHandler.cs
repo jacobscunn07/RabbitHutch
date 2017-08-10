@@ -9,7 +9,7 @@ namespace RabbitHutch.Application.CommandHandlers
 {
     public class MessageDocumentQuery : IRequest<MessageDocumentQueryResult>
     {
-        public Guid MessageId { get; set; }
+        public long DocumentId { get; set; }
     }
 
     public class MessageDocumentQueryHandler : IRequestHandler<MessageDocumentQuery, MessageDocumentQueryResult>
@@ -23,11 +23,11 @@ namespace RabbitHutch.Application.CommandHandlers
 
         public MessageDocumentQueryResult Handle(MessageDocumentQuery message)
         {
-            var searchResult = _database.Search($"Any: {message.MessageId}", 1, 1);
+            var searchResult = _database.Search($"DocId: {message.DocumentId}", 1, 1);
             if (searchResult.TotalResults > 1)
-                throw new Exception($"There was more than 1 document with Message Id {message.MessageId}");
+                throw new Exception($"There was more than 1 document with Message Id {message.DocumentId}");
             if (searchResult.TotalResults == 0)
-                throw new Exception($"There was 0 documents with Message Id {message.MessageId}");
+                throw new Exception($"There was 0 documents with Message Id {message.DocumentId}");
             return new MessageDocumentQueryResult {MessageDocument = searchResult.DocumentResults.SingleOrDefault()};
         }
     }

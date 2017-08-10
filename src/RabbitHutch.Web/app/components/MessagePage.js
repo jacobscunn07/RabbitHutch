@@ -20,7 +20,7 @@ class MessagePage extends React.Component {
   }
 
   componentWillMount() {
-    fetch(`/api/message?guid=${this.props.match.params.id}`, {
+    fetch(`/api/message?id=${this.props.match.params.id}`, {
       method: 'GET',
     })
     .then(response => response.json())

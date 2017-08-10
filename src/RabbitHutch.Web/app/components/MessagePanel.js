@@ -6,7 +6,7 @@ import {
 // import { Route } from 'react-router-dom';
 
 const MessagePanel = ({ message }) => (
-  <Link className="panel-block" to={{ pathname: `/message/${message.messageId}` }}>
+  <Link className="panel-block" to={{ pathname: `/message/${message.docId}` }}>
     <div className="field is-grouped is-grouped-multiline">
       <div className="control">
         <Tags className="has-addons">
