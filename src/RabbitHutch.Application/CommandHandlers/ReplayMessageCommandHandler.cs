@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using MediatR;
 using RabbitHutch.Domain;
 using RabbitMQ.Client;
