@@ -52,6 +52,7 @@
     <Compile Include="CommandHandlers\DocumentSearchQueryHandler.cs" />
     <Compile Include="CommandHandlers\HandleMessageCommandHandler.cs" />
     <Compile Include="CommandHandlers\MessageDocumentQueryHandler.cs" />
+    <Compile Include="CommandHandlers\ReplayMessageCommandHandler.cs" />
     <Compile Include="Helpers\BasicPropertiesExtensions.cs" />
     <Compile Include="Helpers\DictionaryExtensions.cs" />
     <Compile Include="Host.cs" />
