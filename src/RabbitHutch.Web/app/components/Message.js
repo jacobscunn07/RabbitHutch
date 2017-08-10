@@ -45,6 +45,19 @@ const Message = props => (
         </div>
       ))
     }
+
+    <div className="field is-grouped">
+      <p className="control">
+        <a className="button is-primary">
+          Replay
+        </a>
+      </p>
+      <p className="control">
+        <a className="button">
+          Back
+        </a>
+      </p>
+    </div>
   </div>
 );
 
