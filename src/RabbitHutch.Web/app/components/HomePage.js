@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import ApplicationsContainer from './ApplicationsContainer';
 import MessageListContainer from './MessageListContainer';
 import {
   Column,
@@ -17,10 +16,7 @@ class HomePage extends React.Component {
     return (
       <Container>
         <Columns>
-          <Column className="is-3">
-            <ApplicationsContainer />
-          </Column>
-          <Column className="is-9">
+          <Column className="is-12">
             <MessageListContainer />
           </Column>
         </Columns>
