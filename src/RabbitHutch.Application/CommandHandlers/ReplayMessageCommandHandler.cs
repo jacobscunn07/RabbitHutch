@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MediatR;
+using RabbitHutch.Application.ServiceBusTechnologies;
 using RabbitHutch.Domain;
 using RabbitMQ.Client;
 
@@ -19,26 +20,35 @@ namespace RabbitHutch.Application.CommandHandlers
             using (var conn = factory.CreateConnection())
             using (var channel = conn.CreateModel())
             {
-                var messageBodyBytes = System.Text.Encoding.UTF8.GetBytes(cmd.MessageDocument.Body);
-                var basicProps = channel.CreateBasicProperties();
-                basicProps.ContentType = "text/plain";
-                basicProps.DeliveryMode = 2;
-                basicProps.Headers = new Dictionary<string, object>
-                {
-                    {"RabbitHutch.IsReplay", true},
-                    {"RabbitHutch.ReplayDateTime", $"{DateTime.UtcNow:u}"}
-                };
-                foreach (var header in cmd.MessageDocument.Headers)
-                {
-                    basicProps.Headers.Add(header.Key, header.Value);
-                }
+                var messageParserFactory = new MessageParserFactory();
+                var parser = messageParserFactory.GetMessageDocumentParser(cmd.MessageDocument);
 
-                channel.BasicPublish("",
-                    "Autobahn.Ordering.Host", basicProps,
-                    messageBodyBytes);
+                var messageBodyBytes = System.Text.Encoding.UTF8.GetBytes(cmd.MessageDocument.Body);
+                var basicProps = GetBasicProperties(channel.CreateBasicProperties(), cmd.MessageDocument, parser);
+
+                channel.BasicPublish("", parser.ProcessingEndPoint, basicProps, messageBodyBytes);
             }
 
             return new ReplayMessageCommandResult { Success = true };
+        }
+
+        private IBasicProperties GetBasicProperties(IBasicProperties basicProps, MessageDocument document, IMessageParser parser)
+        {
+            basicProps.ContentType = "text/plain";
+            basicProps.DeliveryMode = 2;
+            basicProps.MessageId = parser.MessageId;
+            basicProps.CorrelationId = parser.MessageId;
+            basicProps.Headers = new Dictionary<string, object>
+            {
+                {"RabbitHutch.IsReplay", true},
+                {"RabbitHutch.ReplayDateTime", $"{DateTime.UtcNow:u}"}
+            };
+            foreach (var header in document.Headers)
+            {
+                basicProps.Headers.Add(header.Key, header.Value);
+            }
+
+            return basicProps;
         }
     }
 
