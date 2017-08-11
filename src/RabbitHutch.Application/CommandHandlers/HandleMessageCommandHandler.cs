@@ -29,6 +29,7 @@ namespace RabbitHutch.Application.CommandHandlers
             var messageDocument =
                 MessageDocumentBuilder
                     .BuildDocument()
+                    .WithMessageId(messageParser.MessageId)
                     .WithHeaders(messageParser.Headers)
                     .WithBody(messageParser.Body)
                     .WithBusTechnology(messageParser.ServiceBusTechnology)
@@ -36,6 +37,17 @@ namespace RabbitHutch.Application.CommandHandlers
                     .WithMessageTypes(messageParser.MessageTypes)
                     .IsError(messageParser.IsError)
                     .Finish();
+
+            if (messageParser.IsReplay)
+            {
+                // find document with same message id
+                // insert this document into replays collection
+            }
+            else
+            {
+                var s = _database.Insert(messageDocument);
+                return new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument };
+            }
 
             var success = _database.Insert(messageDocument);
 

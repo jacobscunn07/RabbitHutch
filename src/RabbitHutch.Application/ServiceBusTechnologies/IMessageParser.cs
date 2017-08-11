@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RabbitHutch.Application.ServiceBusTechnologies
 {
@@ -14,5 +15,7 @@ namespace RabbitHutch.Application.ServiceBusTechnologies
 		string FailedQueue { get; }
 		string MessageTypes { get; }
 		string ServiceBusTechnology { get; }
+        bool IsReplay { get; }
+        DateTime ReplayDateTime { get; }
 	}
 }

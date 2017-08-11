@@ -1,8 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RabbitHutch.Domain;
 
 namespace RabbitHutch.Application.Interfaces
 {
+    public interface IMessageId
+    {
+        IMessageHeaders WithMessageId(string id);
+    }
+
     public interface IMessageHeaders
     {
         IMessageBody WithHeaders(IDictionary<string, string> headers);

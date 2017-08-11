@@ -18,5 +18,7 @@
         public const string StackStrace = "NServiceBus.ExceptionInfo.StackTrace";
         public const string FailedQ = "NServiceBus.FailedQ";
         public const string TimeOfFailure = "NServiceBus.TimeOfFailure";
+        public const string IsReplay = "RabbitHutch.IsReplay";
+        public const string ReplayDateTime = "RabbitHutch.ReplayDateTime";
     }
 }

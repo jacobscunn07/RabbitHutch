@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using RabbitHutch.Application.Helpers;
 using RabbitHutch.Domain;
@@ -40,5 +41,9 @@ namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 		public string MessageTypes => Headers.GetValueByKey(NServiceBus.Headers.EnclosedMessageTypes);
 
 		public string ServiceBusTechnology => "NServiceBus";
+
+	    public bool IsReplay => Headers.ContainsKey(NServiceBus.Headers.IsReplay);
+
+	    public DateTime ReplayDateTime => DateTime.Parse(Headers.GetValueByKey(NServiceBus.Headers.ReplayDateTime));
 	}
 }

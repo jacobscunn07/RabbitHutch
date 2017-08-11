@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RabbitHutch.Domain
 {
@@ -6,6 +7,7 @@ namespace RabbitHutch.Domain
     {
         public long Id { get; set; }
         public long DocId => Id;
+        public string MessageId { get; set; }
         public IDictionary<string, string> Headers { get; set; }
         public string Body { get; set; }
         public string ServiceBusTechnology { get; set; }

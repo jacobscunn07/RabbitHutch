@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using RabbitHutch.Application.Interfaces;
-using RabbitHutch.Application.ServiceBusTechnologies.NServiceBus;
 using RabbitHutch.Domain;
 
 namespace RabbitHutch.Application
 {
     public class MessageDocumentBuilder :
+        IMessageId,
         IMessageHeaders,
         IMessageBody,
         IBusTechnology,
@@ -13,6 +13,7 @@ namespace RabbitHutch.Application
         IMessageTypes,
         IMessageDocumentOptionalValues
     {
+        private string _messageId;
         private IDictionary<string, string> _headers;
         private string _body;
         private string _busTechnology;
@@ -25,9 +26,15 @@ namespace RabbitHutch.Application
             _isError = false;
         }
 
-        public static IMessageHeaders BuildDocument()
+        public static IMessageId BuildDocument()
         {
             return new MessageDocumentBuilder();
+        }
+
+        public IMessageHeaders WithMessageId(string id)
+        {
+            _messageId = id;
+            return this;
         }
 
         public IMessageBody WithHeaders(IDictionary<string, string> headers)
@@ -70,6 +77,7 @@ namespace RabbitHutch.Application
         {
             return new MessageDocument
             {
+                MessageId = _messageId,
                 Headers = _headers,
                 Body = _body,
                 ServiceBusTechnology = _busTechnology,
@@ -78,5 +86,7 @@ namespace RabbitHutch.Application
                 IsError = _isError
             };
         }
+
+        
     }
 }
