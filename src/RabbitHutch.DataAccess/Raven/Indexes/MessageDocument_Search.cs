@@ -23,6 +23,7 @@ namespace RabbitHutch.DataAccess.Raven.Indexes
                     document.DocId,
                     document.IsError,
                     document.ServiceBusTechnology,
+                    document.MessageId
                 });
 
             Sort(x => x.DocId, SortOptions.Long);

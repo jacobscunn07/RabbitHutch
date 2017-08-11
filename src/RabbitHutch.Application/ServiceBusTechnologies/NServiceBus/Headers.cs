@@ -13,6 +13,7 @@
 	    public const string ProcessingEndPoint = "NServiceBus.ProcessingEndpoint";
 	    public const string ProcessingDateTimeStarted = "NServiceBus.ProcessingStarted";
 	    public const string ProcessingDateTimeEnded = "NServiceBus.ProcessingStarted";
+        public const string ReplyTo = "NServiceBus.ReplyToAddress";
 		public const string ExceptionType = "NServiceBus.ExceptionInfo.ExceptionType";
         public const string ExceptionMessage = "NServiceBus.ExceptionInfo.Message";
         public const string StackStrace = "NServiceBus.ExceptionInfo.StackTrace";

@@ -12,7 +12,8 @@ namespace RabbitHutch.Application.ServiceBusTechnologies
 		string ContentType { get; }
 		string OriginatingEndPoint { get; }
 		string ProcessingEndPoint { get; }
-		string FailedQueue { get; }
+	    string ReplyTo { get; }
+        string FailedQueue { get; }
 		string MessageTypes { get; }
 		string ServiceBusTechnology { get; }
         bool IsReplay { get; }

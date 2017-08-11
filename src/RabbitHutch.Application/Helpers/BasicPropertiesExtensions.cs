@@ -13,7 +13,8 @@ namespace RabbitHutch.Application.Helpers
 			{
 				foreach (var header in basicProperties.Headers)
 				{
-					dict.Add(header.Key, Encoding.UTF8.GetString((byte[])header.Value));
+                    var bytes = header.Value == null ? Encoding.UTF8.GetBytes(string.Empty) : (byte[])header.Value;
+					dict.Add(header.Key, Encoding.UTF8.GetString(bytes));
 				}
 			}
 			return dict;

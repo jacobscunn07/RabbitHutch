@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using System;
+using System.Linq;
+using MediatR;
 using RabbitHutch.Application.ServiceBusTechnologies;
 using RabbitHutch.DataAccess;
 using RabbitHutch.Domain;
@@ -40,8 +42,16 @@ namespace RabbitHutch.Application.CommandHandlers
 
             if (messageParser.IsReplay)
             {
-                // find document with same message id
-                // insert this document into replays collection
+                try
+                {
+                    var parentDocument = _database.Search($"MessageId: {messageParser.MessageId}", 1, 1).DocumentResults.SingleOrDefault();
+                    parentDocument?.Replays.Add(messageDocument);
+                    _database.Insert(parentDocument);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
             else
             {
