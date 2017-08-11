@@ -27,12 +27,19 @@ class MessagePage extends React.Component {
     .then(json => this.setState({ message: json }));
   }
 
+  replayMessage = (docId) => {
+    fetch(`/api/replay?docId=${docId}`, {
+      method: 'POST',
+    })
+    .then(response => response.json());
+  }
+
   render() {
     return (
       <Container>
         <Columns>
           <Column className="is-12">
-            <Message message={this.state.message} />
+            <Message message={this.state.message} replayMessage={this.replayMessage} />
           </Column>
         </Columns>
       </Container>);
@@ -40,7 +47,9 @@ class MessagePage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { message: state.applications.get('messages') };
+  return {
+    message: state.applications.get('messages'),
+  };
 }
 
 function mapDispatchToProps(dispatch) {

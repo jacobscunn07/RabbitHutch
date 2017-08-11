@@ -1,24 +1,24 @@
 import React, { PropTypes } from 'react';
 
-const Message = props => (
+const Message = ({ message, replayMessage }) => (
   <div>
     <div className="field">
       <label htmlFor="a" className="label">Service Bus</label>
       <div className="control">
-        <input className="input" type="text" placeholder="Normal sized input" value={props.message.serviceBusTechnology} disabled />
+        <input className="input" type="text" placeholder="Normal sized input" value={message.serviceBusTechnology} disabled />
       </div>
     </div>
 
     <div className="field">
       <label htmlFor="a" className="label">Body</label>
       <div className="control">
-        <textarea className="textarea" type="text" placeholder="Disabled textarea" value={props.message.body} disabled />
+        <textarea className="textarea" type="text" placeholder="Disabled textarea" value={message.body} disabled />
       </div>
     </div>
 
     {
-      props.message.headers &&
-      props.message.headers.map(header => (
+      message.headers &&
+      message.headers.map(header => (
         <div className="field" key={header.key}>
           <label htmlFor="a" className="label">{header.key}</label>
           <div className="control">
@@ -30,7 +30,7 @@ const Message = props => (
 
     <div className="field is-grouped">
       <p className="control">
-        <a className="button is-primary">
+        <a href="#a" role="button" onClick={(e) => { e.preventDefault(); replayMessage(message.documentId); }} className="button is-primary">
           Replay
         </a>
       </p>
@@ -45,10 +45,12 @@ const Message = props => (
 
 Message.propTypes = {
   message: PropTypes.shape({
+    documentId: PropTypes.number,
     serviceBusTechnology: PropTypes.string,
     body: PropTypes.string,
     headers: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
+  replayMessage: PropTypes.func.isRequired,
 };
 
 export default Message;
