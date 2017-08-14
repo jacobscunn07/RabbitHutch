@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Headers from './Headers';
 import {
   PanelBlock,
 } from './../common';
@@ -19,17 +20,7 @@ const Message = ({ message, replayMessage }) => (
         replay
       </button>
     </PanelBlock>
-    {
-      message.headers &&
-      message.headers.map(header => (
-        <PanelBlock key={header.key}>
-          <div className="content">
-            <strong>{header.key}</strong>
-            <p>{header.value}</p>
-          </div>
-        </PanelBlock>
-      ))
-    }
+    <Headers headers={message.headers} />
     <PanelBlock>
       <button onClick={() => { replayMessage(message.documentId); }} className="button is-primary is-outlined is-fullwidth">
         replay
