@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using MediatR;
@@ -18,15 +21,23 @@ namespace RabbitHutch.Web.Controllers
             _mediator = mediator;
         }
 
-        public async Task<SearchResult> Get(string query = "", int pageSize = 20, int pageIndex = 1)
+        public async Task<HttpResponseMessage> Get(string query = "", int pageSize = 20, int pageIndex = 1)
         {
-            var result = await _mediator.Send(new DocumentSearchQuery {PageSize = pageSize, PageIndex = pageIndex, QueryString = query});
-
-            return new SearchResult
+            try
             {
-                TotalResults = result.TotalResults,
-                Results = result.Results.Select(ParseMessage)
-            };
+                var search = await _mediator.Send(new DocumentSearchQuery {PageSize = pageSize, PageIndex = pageIndex, QueryString = query});
+
+                var result = new SearchResult
+                {
+                    TotalResults = search.TotalResults,
+                    Results = search.Results.Select(ParseMessage)
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.PreconditionFailed, e.Message);
+            }
         }
 
         private static SearchResult.SearchMessageResult ParseMessage(MessageDocument document)
@@ -40,7 +51,7 @@ namespace RabbitHutch.Web.Controllers
                 MessageId = parser.MessageId,
                 IsError = document.IsError,
                 Body = document.Body,
-                ProcessedEndpoint = parser.ProcessingEndPoint,
+                ProcessedEndpoint = parser.IsError ? parser.FailedQueue : parser.ProcessingEndPoint,
                 ClassType = parser.MessageTypes.Split(' ').Select(x => x.Remove(x.Length-1)).FirstOrDefault()
             };
         }

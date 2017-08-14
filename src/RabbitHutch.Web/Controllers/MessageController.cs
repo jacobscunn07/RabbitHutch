@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using MediatR;
 using RabbitHutch.Application.CommandHandlers;
-using RabbitHutch.Domain;
 using RabbitHutch.Web.Models;
 
 namespace RabbitHutch.Web.Controllers
@@ -22,17 +21,31 @@ namespace RabbitHutch.Web.Controllers
 
         public async Task<HttpResponseMessage> Get(long id)
         {
-            var result = await _mediator.Send(new MessageDocumentQuery {DocumentId = id});
-
-            var msg = new MessageResult
+            try
             {
-                DocumentId = result.MessageDocument.DocId,
-                Body = result.MessageDocument.Body,
-                Headers = result.MessageDocument.Headers.Select(x=> new { x.Key, x.Value}).Where(x => !x.Key.StartsWith("$")).ToList(),
-                ServiceBusTechnology = result.MessageDocument.ServiceBusTechnology
-            };
-            
-            return Request.CreateResponse(HttpStatusCode.OK, msg);
+                var result = await _mediator.Send(new MessageDocumentQuery { DocumentId = id });
+
+                var msg = new MessageResult
+                {
+                    DocumentId = result.MessageDocument.DocId,
+                    Body = result.MessageDocument.Body,
+                    Headers = result.MessageDocument.Headers.Select(x => new { x.Key, x.Value }).Where(x => !x.Key.StartsWith("$")).ToList(),
+                    ServiceBusTechnology = result.MessageDocument.ServiceBusTechnology,
+                    Replays = result.MessageDocument.Replays.Select(x => new MessageResult
+                    {
+                        DocumentId = x.DocId,
+                        Body = x.Body,
+                        Headers = x.Headers.Select(h => new { h.Key, h.Value }).Where(h => !h.Key.StartsWith("$")).ToList(),
+                        ServiceBusTechnology = x.ServiceBusTechnology
+                    })
+                };
+
+                return Request.CreateResponse(HttpStatusCode.OK, msg);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.PreconditionFailed, e.Message);
+            }
         }
     }
 }
