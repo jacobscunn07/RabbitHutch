@@ -8,6 +8,7 @@ import Menu from './Menu';
 import MenuLabel from './MenuLabel';
 import MenuList from './MenuList';
 import MenuListItem from './MenuListItem';
+import PanelBlock from './PanelBlock';
 import Tab from './Tab';
 import Tabs from './Tabs';
 import TabList from './TabList';
@@ -24,6 +25,7 @@ export {
   MenuLabel,
   MenuList,
   MenuListItem,
+  PanelBlock,
   Section,
   Tab,
   Tabs,
