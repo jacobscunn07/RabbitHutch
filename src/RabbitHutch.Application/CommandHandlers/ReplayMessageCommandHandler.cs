@@ -26,7 +26,7 @@ namespace RabbitHutch.Application.CommandHandlers
                 var messageBodyBytes = System.Text.Encoding.UTF8.GetBytes(cmd.MessageDocument.Body);
                 var basicProps = GetBasicProperties(channel.CreateBasicProperties(), cmd.MessageDocument, parser);
 
-                channel.BasicPublish("", parser.ReplyTo, basicProps, messageBodyBytes);
+                channel.BasicPublish("", "Autobahn.Ordering.Host", basicProps, messageBodyBytes);
             }
 
             return new ReplayMessageCommandResult { Success = true };
@@ -40,8 +40,8 @@ namespace RabbitHutch.Application.CommandHandlers
             basicProps.CorrelationId = parser.MessageId;
             basicProps.Headers = new Dictionary<string, object>
             {
-                {"RabbitHutch.IsReplay", true},
-                {"RabbitHutch.ReplayDateTime", $"{DateTime.UtcNow:u}"}
+                {"RabbitHutch.IsReplay", "true"},
+                {"RabbitHutch.ReplayDateTime", $"{DateTime.UtcNow:u}"},
             };
             foreach (var header in document.Headers)
             {

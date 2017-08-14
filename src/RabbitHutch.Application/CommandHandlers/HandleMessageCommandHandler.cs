@@ -40,13 +40,15 @@ namespace RabbitHutch.Application.CommandHandlers
                     .IsError(messageParser.IsError)
                     .Finish();
 
+	        bool s;
+
             if (messageParser.IsReplay)
             {
                 try
                 {
                     var parentDocument = _database.Search($"MessageId: {messageParser.MessageId}", 1, 1).DocumentResults.SingleOrDefault();
                     parentDocument?.Replays.Add(messageDocument);
-                    _database.Insert(parentDocument);
+                    s = _database.Insert(parentDocument);
                 }
                 catch (Exception e)
                 {
@@ -55,13 +57,11 @@ namespace RabbitHutch.Application.CommandHandlers
             }
             else
             {
-                var s = _database.Insert(messageDocument);
+                s = _database.Insert(messageDocument);
                 return new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument };
             }
 
-            var success = _database.Insert(messageDocument);
-
-            return new HandleMessageCommandResult { IsSuccessful = success, MessageDocument = messageDocument };
+            return new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument };
         }
     }
 
