@@ -38,9 +38,9 @@ namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 
 	    public string ReplyTo => Headers.GetValueByKey(NServiceBus.Headers.ReplyTo);
 
-        public string FailedQueue => Headers.GetValueByKey(NServiceBus.Headers.FailedQ);
+	    public string FailedQueue => Headers.GetValueByKey(NServiceBus.Headers.FailedQ).Split('@')[0];
 
-		public string MessageTypes => Headers.GetValueByKey(NServiceBus.Headers.EnclosedMessageTypes);
+	    public string MessageTypes => Headers.GetValueByKey(NServiceBus.Headers.EnclosedMessageTypes);
 
 		public string ServiceBusTechnology => "NServiceBus";
 
