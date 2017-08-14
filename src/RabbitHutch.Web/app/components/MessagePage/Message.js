@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Headers from './Headers';
+import Replays from './Replays';
 import {
   PanelBlock,
 } from './../common';
@@ -20,6 +21,7 @@ const Message = ({ message, replayMessage }) => (
         replay
       </button>
     </PanelBlock>
+    <Replays replays={message.replays} />
     <Headers headers={message.headers} />
     <PanelBlock>
       <button onClick={() => { replayMessage(message.documentId); }} className="button is-primary is-outlined is-fullwidth">

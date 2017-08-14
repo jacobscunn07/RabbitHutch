@@ -15,6 +15,7 @@ class MessagePage extends React.Component {
         serviceBusTechnology: '',
         body: '',
         headers: [],
+        replays: [],
       },
     };
   }
