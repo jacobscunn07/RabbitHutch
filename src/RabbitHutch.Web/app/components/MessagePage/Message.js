@@ -6,7 +6,7 @@ import {
 const Message = ({ message, replayMessage }) => (
   <nav className="panel">
     <p className="panel-heading">
-      Message: {message.documentId}
+      Message: {message.messageId}
     </p>
     <p className="panel-tabs">
       <a>stacktrace</a>

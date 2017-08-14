@@ -27,12 +27,14 @@ namespace RabbitHutch.Web.Controllers
 
                 var msg = new MessageResult
                 {
+                    MessageId = result.MessageDocument.MessageId,
                     DocumentId = result.MessageDocument.DocId,
                     Body = result.MessageDocument.Body,
                     Headers = result.MessageDocument.Headers.Select(x => new { x.Key, x.Value }).Where(x => !x.Key.StartsWith("$")).ToList(),
                     ServiceBusTechnology = result.MessageDocument.ServiceBusTechnology,
                     Replays = result.MessageDocument.Replays.Select(x => new MessageResult
                     {
+                        MessageId = x.MessageId,
                         DocumentId = x.DocId,
                         Body = x.Body,
                         Headers = x.Headers.Select(h => new { h.Key, h.Value }).Where(h => !h.Key.StartsWith("$")).ToList(),
