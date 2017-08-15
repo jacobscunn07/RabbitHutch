@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import moment from 'moment';
 import {
   PanelBlock,
 } from './../common';
@@ -14,7 +15,7 @@ const Replays = ({ replays }) => (
               <span className="tag is-success">Success</span>) ||
               <span className="tag is-danger">Error</span>
             }
-            <strong>{replay.replayDateTime}</strong>
+            <strong>{moment(replay.replayDateTime).format('dddd, MMMM Do YYYY, h:mm:ss a')}</strong>
           </div>
         </PanelBlock>
       ))
