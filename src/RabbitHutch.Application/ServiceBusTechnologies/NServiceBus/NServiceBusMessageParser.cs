@@ -28,7 +28,7 @@ namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 
 	    public string Body { get; }
 
-		public bool IsError => Headers.ContainsKey(NServiceBus.Headers.ExceptionType);
+		public bool IsError => !Headers.ContainsKey(NServiceBus.Headers.ProcessingEndPoint);
 
 		public string ContentType => Headers.GetValueByKey(NServiceBus.Headers.ContentType);
 
@@ -47,5 +47,7 @@ namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 	    public bool IsReplay => Headers.ContainsKey(NServiceBus.Headers.IsReplay);
 
 	    public DateTime ReplayDateTime => DateTime.Parse(Headers.GetValueByKey(NServiceBus.Headers.ReplayDateTime));
+
+	    public string StackTrace => Headers.GetValueByKey(NServiceBus.Headers.StackStrace);
 	}
 }

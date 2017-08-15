@@ -9,7 +9,12 @@ const Replays = ({ replays }) => (
       replays && replays.map(replay => (
         <PanelBlock>
           <div className="content">
-            <strong>{replay.messageId}</strong>
+            {
+              (!replay.isError &&
+              <span className="tag is-success">Success</span>) ||
+              <span className="tag is-danger">Error</span>
+            }
+            <strong>{replay.replayDateTime}</strong>
           </div>
         </PanelBlock>
       ))

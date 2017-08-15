@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using MediatR;
 using RabbitHutch.Application.CommandHandlers;
+using RabbitHutch.Application.ServiceBusTechnologies;
+using RabbitHutch.Domain;
 using RabbitHutch.Web.Models;
 
 namespace RabbitHutch.Web.Controllers
@@ -24,22 +26,17 @@ namespace RabbitHutch.Web.Controllers
             try
             {
                 var result = await _mediator.Send(new MessageDocumentQuery { DocumentId = id });
+                var parser = new MessageParserFactory().GetMessageDocumentParser(result.MessageDocument);
 
                 var msg = new MessageResult
                 {
-                    MessageId = result.MessageDocument.MessageId,
+                    MessageId = parser.MessageId,
                     DocumentId = result.MessageDocument.DocId,
-                    Body = result.MessageDocument.Body,
-                    Headers = result.MessageDocument.Headers.Select(x => new { x.Key, x.Value }).Where(x => !x.Key.StartsWith("$")).ToList(),
-                    ServiceBusTechnology = result.MessageDocument.ServiceBusTechnology,
-                    Replays = result.MessageDocument.Replays.Select(x => new MessageResult
-                    {
-                        MessageId = x.MessageId,
-                        DocumentId = x.DocId,
-                        Body = x.Body,
-                        Headers = x.Headers.Select(h => new { h.Key, h.Value }).Where(h => !h.Key.StartsWith("$")).ToList(),
-                        ServiceBusTechnology = x.ServiceBusTechnology
-                    })
+                    Body = parser.Body,
+                    StackTrace = parser.StackTrace,
+                    Headers = parser.Headers.Select(x => new { x.Key, x.Value }).Where(x => !x.Key.StartsWith("$")).ToList(),
+                    ServiceBusTechnology = parser.ServiceBusTechnology,
+                    Replays = result.MessageDocument.Replays.Select(ParseReplay)
                 };
 
                 return Request.CreateResponse(HttpStatusCode.OK, msg);
@@ -48,6 +45,17 @@ namespace RabbitHutch.Web.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.PreconditionFailed, e.Message);
             }
+        }
+
+        private static MessageResult.MessageReplayResult ParseReplay(MessageDocument document)
+        {
+            var parser = new MessageParserFactory().GetMessageDocumentParser(document);
+
+            return new MessageResult.MessageReplayResult
+            {
+                ReplayDateTime = parser.ReplayDateTime,
+                IsError = parser.IsError
+            };
         }
     }
 }

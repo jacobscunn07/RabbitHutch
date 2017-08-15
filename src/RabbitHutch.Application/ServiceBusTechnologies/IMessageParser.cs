@@ -18,5 +18,6 @@ namespace RabbitHutch.Application.ServiceBusTechnologies
 		string ServiceBusTechnology { get; }
         bool IsReplay { get; }
         DateTime ReplayDateTime { get; }
+        string StackTrace { get; }
 	}
 }
