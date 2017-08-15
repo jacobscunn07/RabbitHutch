@@ -12,6 +12,7 @@ class MessagePage extends React.Component {
     super(props);
     this.state = {
       message: {
+        stackTrace: '',
         serviceBusTechnology: '',
         body: '',
         headers: [],
