@@ -8,7 +8,8 @@ const Body = ({ body }) => (
     {
       <PanelBlock>
         <div className="content">
-          <strong>{body}</strong>
+          <strong>Body</strong>
+          <p>{body}</p>
         </div>
       </PanelBlock>
     }

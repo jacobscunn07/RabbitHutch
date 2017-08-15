@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Headers from './Headers';
 import Replays from './Replays';
 import StackTrace from './StackTrace';
+import Body from './Body';
 import {
   PanelBlock,
 } from './../common';
@@ -22,6 +23,7 @@ const Message = ({ message, replayMessage }) => (
         replay
       </button>
     </PanelBlock>
+    <Body body={message.body} />
     <StackTrace stackTrace={message.stackTrace} />
     <Replays replays={message.replays} />
     <Headers headers={message.headers} />
