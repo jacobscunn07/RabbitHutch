@@ -5,7 +5,7 @@ import {
   Column,
   Columns,
   Container } from './../common';
-import { requestSwitchApp, requestAppMessages } from './../../redux/application/actions';
+import { requestSwitchMessageTab } from './../../redux/application/actions';
 
 class MessagePage extends React.Component {
   constructor(props) {
@@ -41,7 +41,12 @@ class MessagePage extends React.Component {
       <Container>
         <Columns>
           <Column className="is-12">
-            <Message message={this.state.message} replayMessage={this.replayMessage} />
+            <Message
+              message={this.state.message}
+              replayMessage={this.replayMessage}
+              currentTab={this.props.currentTab}
+              tabOnClick={this.props.requestSwitchMessageTab}
+            />
           </Column>
         </Columns>
       </Container>);
@@ -50,14 +55,14 @@ class MessagePage extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    currentTab: state.applications.get('messageTab'),
     message: state.applications.get('messages'),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    requestApplicationMessages: () => dispatch(requestAppMessages()),
-    requestSwitchApp: appId => dispatch(requestSwitchApp(appId)),
+    requestSwitchMessageTab: tab => dispatch(requestSwitchMessageTab(tab)),
   };
 }
 
@@ -67,6 +72,8 @@ MessagePage.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+  currentTab: PropTypes.string.isRequired,
+  requestSwitchMessageTab: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagePage);

@@ -1,4 +1,5 @@
 import {
+  REQUEST_SWITCH_MESSAGE_TAB,
   REQUEST_SWITCH_APP,
   REQUEST_APP_MESSAGES_SUCCESS,
   REQUEST_APP_MESSAGES_FAILURE } from './constants';
@@ -7,6 +8,13 @@ function fetchMessages(query = '') {
   return fetch(`/api/search?query=${query}`, {
     method: 'GET',
   });
+}
+
+export function requestSwitchMessageTab(tab) {
+  return {
+    type: REQUEST_SWITCH_MESSAGE_TAB,
+    tab,
+  };
 }
 
 export function requestSwitchApp(applicationId) {
