@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Tab,
   TabList,
-  Tabs } from './common';
+  Tabs } from './../common';
 import MessagePanel from './MessagePanel';
 // import { Route } from 'react-router-dom';
 

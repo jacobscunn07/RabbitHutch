@@ -5,8 +5,8 @@ import MessageListContainer from './MessageListContainer';
 import {
   Column,
   Columns,
-  Container } from './common';
-import { requestSwitchApp, requestAppMessages } from './../redux/application/actions';
+  Container } from './../common';
+import { requestSwitchApp, requestAppMessages } from './../../redux/application/actions';
 
 class HomePage extends React.Component {
   componentWillMount() {
