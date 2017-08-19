@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Headers from './Headers';
-import Replays from './Replays';
-import StackTrace from './StackTrace';
-import Body from './Body';
+import moment from 'moment';
 import {
   PanelBlock,
 } from './../common';
@@ -25,10 +22,49 @@ const Message = ({ message, replayMessage, currentTab, tabOnClick }) => (
         replay
       </button>
     </PanelBlock>
-    {currentTab === 'stacktrace' && <StackTrace stackTrace={message.stackTrace} />}
-    {currentTab === 'headers' && <Headers headers={message.headers} />}
-    {currentTab === 'body' && <Body body={message.body} />}
-    {currentTab === 'replays' && <Replays replays={message.replays} />}
+    {
+      currentTab === 'stacktrace' &&
+      <PanelBlock>
+        <div className="content">
+          <strong>Stacktrace</strong>
+          <p>{message.stackTrace}</p>
+        </div>
+      </PanelBlock>
+    }
+    {
+      currentTab === 'headers' &&
+      message.headers.map(header => (
+        <PanelBlock key={header.key}>
+          <div className="content">
+            <strong>{header.key}</strong>
+            <p>{header.value}</p>
+          </div>
+        </PanelBlock>))
+    }
+    {
+      currentTab === 'body' &&
+      <PanelBlock>
+        <div className="content">
+          <strong>Body</strong>
+          <p>{message.body}</p>
+        </div>
+      </PanelBlock>
+    }
+    {
+      currentTab === 'replays' &&
+      message.replays.map(replay => (
+        <PanelBlock key={replay.replayDateTime}>
+          <div className="content">
+            {
+              (!replay.isError &&
+              <span className="tag is-success">Success</span>) ||
+              <span className="tag is-danger">Error</span>
+            }
+            <strong>{moment(replay.replayDateTime).format('dddd, MMMM Do YYYY, h:mm:ss a')}</strong>
+          </div>
+        </PanelBlock>
+      ))
+    }
     <PanelBlock>
       <button onClick={() => { replayMessage(message.documentId); }} className="button is-primary is-outlined is-fullwidth">
         replay
