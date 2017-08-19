@@ -8,7 +8,7 @@ const Replays = ({ replays }) => (
   <div>
     {
       replays && replays.map(replay => (
-        <PanelBlock>
+        <PanelBlock key={replay.replayDateTime}>
           <div className="content">
             {
               (!replay.isError &&

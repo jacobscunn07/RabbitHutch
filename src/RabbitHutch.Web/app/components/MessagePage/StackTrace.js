@@ -5,14 +5,12 @@ import {
 
 const StackTrace = ({ stackTrace }) => (
   <div>
-    {
-      <PanelBlock>
-        <div className="content">
-          <strong>Stacktrace</strong>
-          <p>{stackTrace}</p>
-        </div>
-      </PanelBlock>
-    }
+    <PanelBlock>
+      <div className="content">
+        <strong>Stacktrace</strong>
+        <p>{stackTrace}</p>
+      </div>
+    </PanelBlock>
   </div>
 );
 

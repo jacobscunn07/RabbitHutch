@@ -5,14 +5,12 @@ import {
 
 const Body = ({ body }) => (
   <div>
-    {
-      <PanelBlock>
-        <div className="content">
-          <strong>Body</strong>
-          <p>{body}</p>
-        </div>
-      </PanelBlock>
-    }
+    <PanelBlock>
+      <div className="content">
+        <strong>Body</strong>
+        <p>{body}</p>
+      </div>
+    </PanelBlock>
   </div>
 );
 
