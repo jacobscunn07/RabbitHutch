@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MessageListContainer from './MessageListContainer';
+import SearchContainer from './SearchContainer';
 import {
   Column,
   Columns,
@@ -18,6 +19,7 @@ class HomePage extends React.Component {
       <Container>
         <Columns>
           <Column className="is-12">
+            <SearchContainer />
             <MessageListContainer />
           </Column>
         </Columns>
