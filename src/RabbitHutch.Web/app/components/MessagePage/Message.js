@@ -12,10 +12,10 @@ const Message = ({ message, replayMessage, currentTab, tabOnClick }) => (
       Message: {message.messageId}
     </p>
     <p className="panel-tabs">
-      <a className={classNames({ 'is-active': currentTab === 'stacktrace' })} href="#a" role="button" onClick={(e) => { e.preventDefault(); tabOnClick('stacktrace'); }}>stacktrace</a>
+      {message.stackTrace && <a className={classNames({ 'is-active': currentTab === 'stacktrace' })} href="#a" role="button" onClick={(e) => { e.preventDefault(); tabOnClick('stacktrace'); }}>stacktrace</a>}
       <a className={classNames({ 'is-active': currentTab === 'headers' })} href="#a" role="button" onClick={(e) => { e.preventDefault(); tabOnClick('headers'); }}>headers</a>
       <a className={classNames({ 'is-active': currentTab === 'body' })} href="#a" role="button" onClick={(e) => { e.preventDefault(); tabOnClick('body'); }}>body</a>
-      <a className={classNames({ 'is-active': currentTab === 'replays' })} href="#a" role="button" onClick={(e) => { e.preventDefault(); tabOnClick('replays'); }}>replays</a>
+      {message.replays.length > 0 && <a className={classNames({ 'is-active': currentTab === 'replays' })} href="#a" role="button" onClick={(e) => { e.preventDefault(); tabOnClick('replays'); }}>replays</a>}
     </p>
     <PanelBlock>
       <button onClick={() => { replayMessage(message.documentId); }} className="button is-primary is-outlined is-fullwidth">
