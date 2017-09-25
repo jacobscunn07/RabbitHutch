@@ -22,15 +22,9 @@ const ReplayModal = ({ isActive, submit, cancel }) => (
 );
 
 ReplayModal.propTypes = {
-  isActive: PropTypes.bool,
-  submit: PropTypes.func,
-  cancel: PropTypes.func,
-};
-
-ReplayModal.defaultProps = {
-  isActive: true,
-  submit: () => {},
-  cancel: () => {},
+  isActive: PropTypes.bool.isRequired,
+  submit: PropTypes.func.isRequired,
+  cancel: PropTypes.func.isRequired,
 };
 
 export default ReplayModal;

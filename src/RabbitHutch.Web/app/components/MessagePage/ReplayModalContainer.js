@@ -3,11 +3,29 @@ import { connect } from 'react-redux';
 import ReplayModal from './ReplayModal';
 
 class MessageListContainer extends React.Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalActive: false,
+    };
+  }
+
+  submit = () => {
+    alert('Implement Me!');
+  }
+
+  cancel = () => {
+    this.setState({
+      modalActive: false,
+    });
   }
 
   render() {
-    return (<ReplayModal />);
+    return (<ReplayModal
+      isActive={this.state.modalActive}
+      submit={this.submit}
+      cancel={this.cancel}
+    />);
   }
 }
 
