@@ -6,7 +6,7 @@ import {
   PanelBlock,
 } from './../common';
 
-const Message = ({ message, replayMessage, currentTab, tabOnClick }) => (
+const Message = ({ message, replayButtonClick, currentTab, tabOnClick }) => (
   <nav className="panel">
     <p className="panel-heading">
       Message: {message.messageId}
@@ -18,7 +18,7 @@ const Message = ({ message, replayMessage, currentTab, tabOnClick }) => (
       {message.replays.length > 0 && <a className={classNames({ 'is-active': currentTab === 'replays' })} href="#a" role="button" onClick={(e) => { e.preventDefault(); tabOnClick('replays'); }}>replays</a>}
     </p>
     <PanelBlock>
-      <button onClick={() => { replayMessage(message.documentId); }} className="button is-primary is-outlined is-fullwidth">
+      <button onClick={() => { replayButtonClick(message.documentId); }} className="button is-primary is-outlined is-fullwidth">
         replay
       </button>
     </PanelBlock>
@@ -66,7 +66,7 @@ const Message = ({ message, replayMessage, currentTab, tabOnClick }) => (
       ))
     }
     <PanelBlock>
-      <button onClick={() => { replayMessage(message.documentId); }} className="button is-primary is-outlined is-fullwidth">
+      <button onClick={() => { replayButtonClick(message.documentId); }} className="button is-primary is-outlined is-fullwidth">
         replay
       </button>
     </PanelBlock>
@@ -80,7 +80,7 @@ Message.propTypes = {
     body: PropTypes.string,
     headers: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
-  replayMessage: PropTypes.func.isRequired,
+  replayButtonClick: PropTypes.func.isRequired,
   currentTab: PropTypes.string.isRequired,
   tabOnClick: PropTypes.func.isRequired,
 };
