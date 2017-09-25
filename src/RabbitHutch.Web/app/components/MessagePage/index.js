@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Message from './Message';
+import ReplayModalContainer from './ReplayModalContainer';
 import {
   Column,
   Columns,
@@ -39,18 +40,21 @@ class MessagePage extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Columns>
-          <Column className="is-12">
-            <Message
-              message={this.state.message}
-              replayMessage={this.replayMessage}
-              currentTab={this.props.currentTab}
-              tabOnClick={this.props.requestSwitchMessageTab}
-            />
-          </Column>
-        </Columns>
-      </Container>);
+      <div>
+        <ReplayModalContainer />
+        <Container>
+          <Columns>
+            <Column className="is-12">
+              <Message
+                message={this.state.message}
+                replayMessage={this.replayMessage}
+                currentTab={this.props.currentTab}
+                tabOnClick={this.props.requestSwitchMessageTab}
+              />
+            </Column>
+          </Columns>
+        </Container>
+      </div>);
   }
 }
 
