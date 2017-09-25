@@ -14,7 +14,7 @@ const ReplayModal = ({ isActive, submit, cancel }) => (
         <p>Editable message body goes here...</p>
       </section>
       <footer className="modal-card-foot">
-        <button className="button is-success" onClick={submit}>Replay</button>
+        <button className="button is-primary" onClick={submit}>Replay</button>
         <button className="button" onClick={cancel}>Cancel</button>
       </footer>
     </div>

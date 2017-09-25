@@ -32,13 +32,6 @@ class MessagePage extends React.Component {
     .then(json => this.setState({ message: json }));
   }
 
-  replayMessage = (docId) => {
-    fetch(`/api/replay?docId=${docId}`, {
-      method: 'POST',
-    })
-    .then(response => response.json());
-  }
-
   openModal = () => {
     this.setState({
       modalActive: true,
@@ -46,10 +39,11 @@ class MessagePage extends React.Component {
   }
 
   submit = () => {
-    this.replayMessage(this.state.message.documentId);
-    this.setState({
-      modalActive: false,
-    });
+    fetch(`/api/replay?docId=${this.state.message.documentId}`, {
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then(() => this.setState({ modalActive: false }));
   }
 
   cancel = () => {
