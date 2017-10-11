@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
+import ReactJson from 'react-json-view';
 import {
   PanelBlock,
 } from './../common';
@@ -46,7 +47,7 @@ const Message = ({ message, replayButtonClick, currentTab, tabOnClick }) => (
       <PanelBlock>
         <div className="content">
           <strong>Body</strong>
-          <p>{message.body}</p>
+          <ReactJson src={JSON.parse(message.body)} />
         </div>
       </PanelBlock>
     }

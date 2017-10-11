@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactJson from 'react-json-view';
 import {
   PanelBlock,
 } from './../common';
@@ -9,7 +10,7 @@ const Body = ({ body }) => (
     <PanelBlock>
       <div className="content">
         <strong>Body</strong>
-        <p>{body}</p>
+        <ReactJson src={body} />
       </div>
     </PanelBlock>
   </div>
