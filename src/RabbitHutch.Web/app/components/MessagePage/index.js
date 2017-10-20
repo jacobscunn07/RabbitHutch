@@ -16,7 +16,7 @@ class MessagePage extends React.Component {
       message: {
         stackTrace: '',
         serviceBusTechnology: '',
-        body: '',
+        body: '{}',
         headers: [],
         replays: [],
       },
@@ -61,6 +61,7 @@ class MessagePage extends React.Component {
               isActive={this.state.modalActive}
               submit={this.submit}
               cancel={this.cancel}
+              json={this.state.message.body}
             />
             <Message
               message={this.state.message}

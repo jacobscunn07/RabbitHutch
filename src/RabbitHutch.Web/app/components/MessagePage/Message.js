@@ -49,9 +49,6 @@ const Message = ({ message, replayButtonClick, currentTab, tabOnClick }) => (
           <ReactJson
             src={JSON.parse(message.body)}
             name="Body"
-            onEdit={() => true}
-            onAdd={() => true}
-            onDelete={() => true}
           />
         </div>
       </PanelBlock>
