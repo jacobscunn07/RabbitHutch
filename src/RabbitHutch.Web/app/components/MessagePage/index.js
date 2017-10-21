@@ -55,9 +55,13 @@ class MessagePage extends React.Component {
   }
 
   submit = () => {
-    fetch(`/api/replay?docId=${this.state.message.documentId}`, {
+    let json = JSON.stringify({docId: this.state.message.documentId, message: JSON.stringify(this.state.replayBody)});
+    fetch(`/api/replay`, {
       method: 'POST',
-      body: JSON.stringify({message: this.state.replayBody}),
+      body: json,
+    	headers: new Headers({
+    		'Content-Type': 'application/json'
+    	}),
     })
     .then(response => response.json())
     .then(() => this.setState({ modalActive: false }));
