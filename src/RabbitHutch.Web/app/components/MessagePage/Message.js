@@ -48,7 +48,7 @@ const Message = ({ message, replayButtonClick, currentTab, tabOnClick }) => (
         <div className="content">
           <ReactJson
             src={JSON.parse(message.body)}
-            name="Body"
+            name={false}
           />
         </div>
       </PanelBlock>

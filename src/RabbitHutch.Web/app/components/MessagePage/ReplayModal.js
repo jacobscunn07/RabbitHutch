@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ReactJson from 'react-json-view';
 
-const ReplayModal = ({ isActive, submit, cancel, json }) => (
+const ReplayModal = ({ isActive, submit, cancel, json, bodyAdd, bodyEdit, bodyDelete }) => (
   <div className={classNames('modal', { 'is-active': isActive })}>
     <div className="modal-background" />
     <div className="modal-card">
@@ -13,11 +13,11 @@ const ReplayModal = ({ isActive, submit, cancel, json }) => (
       </header>
       <section className="modal-card-body">
         <ReactJson
-          src={JSON.parse(json)}
-          name="Body"
-          onEdit={() => true}
-          onAdd={() => true}
-          onDelete={() => true}
+          src={json}
+          name={false}
+          onEdit={bodyEdit}
+          onAdd={bodyAdd}
+          onDelete={bodyDelete}
         />
       </section>
       <footer className="modal-card-foot">

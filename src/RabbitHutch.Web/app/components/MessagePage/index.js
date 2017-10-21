@@ -21,6 +21,7 @@ class MessagePage extends React.Component {
         replays: [],
       },
       modalActive: false,
+      replayBody: {}
     };
   }
 
@@ -29,13 +30,28 @@ class MessagePage extends React.Component {
       method: 'GET',
     })
     .then(response => response.json())
-    .then(json => this.setState({ message: json }));
+    .then(json => this.setState({ message: json, replayBody: JSON.parse(json.body) }));
   }
 
   openModal = () => {
     this.setState({
       modalActive: true,
     });
+  }
+
+  bodyAdd = (params) => {
+    this.setState({replayBody: params.updated_src});
+    return true;
+  }
+
+  bodyEdit = (params) => {
+    this.setState({replayBody: params.updated_src});
+    return true;
+  }
+
+  bodyDelete = (params) => {
+    this.setState({replayBody: params.updated_src});
+    return true;
   }
 
   submit = () => {
@@ -49,6 +65,7 @@ class MessagePage extends React.Component {
   cancel = () => {
     this.setState({
       modalActive: false,
+      replayBody: JSON.parse(this.state.message.body),
     });
   }
 
@@ -61,7 +78,10 @@ class MessagePage extends React.Component {
               isActive={this.state.modalActive}
               submit={this.submit}
               cancel={this.cancel}
-              json={this.state.message.body}
+              json={this.state.replayBody}
+              bodyAdd={this.bodyAdd}
+              bodyEdit={this.bodyEdit}
+              bodyDelete={this.bodyDelete}
             />
             <Message
               message={this.state.message}
