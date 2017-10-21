@@ -10,6 +10,7 @@ namespace RabbitHutch.Application.CommandHandlers
     public class ReplayMessageCommand : IRequest<ReplayMessageCommandResult>
     {
         public MessageDocument MessageDocument { get; set; }
+        public string ReplayMessageBody { get; set; }
     }
 
     public class ReplayMessageCommandHandler : IRequestHandler<ReplayMessageCommand, ReplayMessageCommandResult>
@@ -23,7 +24,7 @@ namespace RabbitHutch.Application.CommandHandlers
                 var messageParserFactory = new MessageParserFactory();
                 var parser = messageParserFactory.GetMessageDocumentParser(cmd.MessageDocument);
 
-                var messageBodyBytes = System.Text.Encoding.UTF8.GetBytes(cmd.MessageDocument.Body);
+                var messageBodyBytes = System.Text.Encoding.UTF8.GetBytes(cmd.ReplayMessageBody);
                 var basicProps = GetBasicProperties(channel.CreateBasicProperties(), cmd.MessageDocument, parser);
 
                 channel.BasicPublish("", parser.FailedQueue, basicProps, messageBodyBytes);

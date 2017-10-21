@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using MediatR;
 using RabbitHutch.Application.CommandHandlers;
+using RabbitHutch.Web.Models;
 
 namespace RabbitHutch.Web.Controllers
 {
@@ -22,21 +23,14 @@ namespace RabbitHutch.Web.Controllers
         {
             try
             {
-                //TODO: need to pass on new body to be part of replay
                 var doc = await _mediator.Send(new MessageDocumentQuery { DocumentId = request.DocId });
-                var isReplayed = await _mediator.Send(new ReplayMessageCommand { MessageDocument = doc.MessageDocument });
+                var isReplayed = await _mediator.Send(new ReplayMessageCommand { MessageDocument = doc.MessageDocument, ReplayMessageBody = request.Message });
                 return Request.CreateResponse(HttpStatusCode.OK, isReplayed);
             }
             catch (Exception e)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message);
             }
-        }
-
-        public class ReplayRequest
-        {
-            public long DocId { get; set; }
-            public string Message { get; set; }
         }
     }
 }

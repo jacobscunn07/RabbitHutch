@@ -193,6 +193,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\MessageResult.cs" />
+    <Compile Include="Models\ReplayRequest.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
