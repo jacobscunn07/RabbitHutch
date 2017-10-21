@@ -34,7 +34,7 @@ namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 
 		public string OriginatingEndPoint => Headers.GetValueByKey(NServiceBus.Headers.OriginatingEndPoint);
 
-		public string ProcessingEndPoint => Headers.GetValueByKey(NServiceBus.Headers.ProcessingEndPoint);
+        public string ProcessingEndPoint => IsError ? FailedQueue : Headers.GetValueByKey(NServiceBus.Headers.ProcessingEndPoint);
 
 	    public string ReplyTo => Headers.GetValueByKey(NServiceBus.Headers.ReplyTo);
 
