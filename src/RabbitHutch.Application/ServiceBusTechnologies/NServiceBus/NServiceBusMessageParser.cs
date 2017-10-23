@@ -13,7 +13,7 @@ namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 	    public NServiceBusMessageParser(BasicDeliverEventArgs ea)
 		{
 		    Headers = ea.BasicProperties.GetHeadersDictionary();
-		    Body = Encoding.UTF8.GetString(ea.Body);
+		    Body = Encoding.UTF8.GetString(ea.Body).TrimStart('\uFEFF'); // UTF8 Preamble or BOM https://en.wikipedia.org/wiki/Byte_order_mark
         }
 
 	    public NServiceBusMessageParser(MessageDocument document)
