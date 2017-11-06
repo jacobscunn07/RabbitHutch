@@ -14,6 +14,7 @@ import Tabs from './Tabs';
 import TabList from './TabList';
 import Tag from './Tag';
 import Tags from './Tags';
+import Paginate from './Paginate';
 
 export {
   Column,
@@ -25,6 +26,7 @@ export {
   MenuLabel,
   MenuList,
   MenuListItem,
+  Paginate,
   PanelBlock,
   Section,
   Tab,
