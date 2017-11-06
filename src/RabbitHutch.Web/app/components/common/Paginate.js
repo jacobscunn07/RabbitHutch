@@ -6,6 +6,9 @@ import ReactPaginate from 'react-paginate';
 const Paginate = (props) => {
   const {
       className,
+      pageCount,
+      initialPage,
+      onPageChange,
     } = props;
   const classes = classNames(className);
   return (
@@ -14,7 +17,7 @@ const Paginate = (props) => {
         previousLabel={"previous"}
         nextLabel={"next"}
         breakLabel={<span className="pagination-ellipsis">&hellip;</span>}
-        pageCount={100}
+        pageCount={pageCount}
         marginPagesDisplay={2}
         pageRangeDisplay={5}
         containerClassName={"pagination-list"}
@@ -22,7 +25,8 @@ const Paginate = (props) => {
         nextLinkClassName={"pagination-next"}
         previousLinkClassName={"pagination-previous"}
         pageLinkClassName={"pagination-link"}
-        initialPage={1}
+        initialPage={initialPage}
+        onPageChange={onPageChange}
       />
     </nav>
   );

@@ -6,8 +6,7 @@ import SearchContainer from './SearchContainer';
 import {
   Column,
   Columns,
-  Container,
-  Paginate } from './../common';
+  Container } from './../common';
 import { requestSwitchApp, requestAppMessages } from './../../redux/application/actions';
 
 class HomePage extends React.Component {
@@ -22,7 +21,6 @@ class HomePage extends React.Component {
           <Column className="is-12">
             <SearchContainer />
             <MessageListContainer />
-            <Paginate />
           </Column>
         </Columns>
       </Container>);

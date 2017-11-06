@@ -1,13 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MessageList from './MessageList';
+import { Paginate } from './../common';
 
 class MessageListContainer extends React.Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      messagesPerPage: 10,
+      currentPage: 0,
+    };
   }
 
+  componentDidMount() {
+  }
+
+  onPageChange = (p) => {
+    this.setState({currentPage: p.selected});
+  };
+
   render() {
-    return (<MessageList {...this.props} />);
+    return (
+      <div>
+        <MessageList {...this.props} />
+        <Paginate
+          pageCount={this.props.messages.length/this.state.messagesPerPage}
+          initialPage={this.state.currentPage}
+          onPageChange={this.onPageChange}
+        />
+      </div>);
   }
 }
 
