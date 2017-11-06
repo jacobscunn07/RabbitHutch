@@ -10,7 +10,7 @@ import {
 import { requestSwitchApp, requestAppMessages } from './../../redux/application/actions';
 
 class HomePage extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.requestApplicationMessages();
   }
 

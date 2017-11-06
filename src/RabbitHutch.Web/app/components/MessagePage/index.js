@@ -25,7 +25,7 @@ class MessagePage extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetch(`/api/message?id=${this.props.match.params.id}`, {
       method: 'GET',
     })
