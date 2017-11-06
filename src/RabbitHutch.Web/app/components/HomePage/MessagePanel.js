@@ -11,20 +11,26 @@ const MessagePanel = ({ message }) => (
     <div className="field is-grouped is-grouped-multiline">
       <div className="control">
         <Tags className="has-addons">
-          <Tag className="is-dark">Message Id</Tag>
-          <Tag className="is-warning">{message.messageId}</Tag>
+          <Tag className="is-primary">Message Id</Tag>
+          <Tag className="is-dark">{message.messageId}</Tag>
         </Tags>
       </div>
       <div className="control">
         <Tags className="has-addons">
-          <Tag className="is-dark">Endpoint</Tag>
-          <Tag className="is-info">{message.processedEndpoint}</Tag>
+          <Tag className="is-primary">Originating Endpoint</Tag>
+          <Tag className="is-dark">{message.originatingEndpoint}</Tag>
         </Tags>
       </div>
       <div className="control">
         <Tags className="has-addons">
-          <Tag className="is-dark">Class Type</Tag>
-          <Tag className="is-success">{message.classType}</Tag>
+          <Tag className="is-primary">Processed Endpoint</Tag>
+          <Tag className="is-dark">{message.processedEndpoint}</Tag>
+        </Tags>
+      </div>
+      <div className="control">
+        <Tags className="has-addons">
+          <Tag className="is-primary">Class Type</Tag>
+          <Tag className="is-dark">{message.classType}</Tag>
         </Tags>
       </div>
       {
