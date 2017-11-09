@@ -4,21 +4,6 @@ import MessageList from './MessageList';
 import { Paginate } from './../common';
 
 class MessageListContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messagesPerPage: 10,
-      currentPage: 0,
-    };
-  }
-
-  componentDidMount() {
-  }
-
-  onPageChange = (p) => {
-    this.setState({currentPage: p.selected});
-  };
-
   render() {
     return (
       <div>
@@ -32,16 +17,7 @@ class MessageListContainer extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { messages: state.applications.get('messages', []) };
-}
-
-function mapDispatchToProps() {
-  return {
-  };
-}
-
 MessageListContainer.propTypes = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessageListContainer);
+export default MessageListContainer;

@@ -1,45 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MessageListContainer from './MessageListContainer';
-import SearchContainer from './SearchContainer';
+import MessageList from './MessageList';
 import {
   Column,
   Columns,
-  Container } from './../common';
-import { requestSwitchApp, requestAppMessages } from './../../redux/application/actions';
+  Container,
+  Paginate } from './../common';
 
 class HomePage extends React.Component {
-  componentDidMount() {
-    this.props.requestApplicationMessages();
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: '',
+      totalMessagesMatchingQuery: 0,
+      messages: [],
+      messagesPerPage: 10,
+      currentPage: 0,
+    };
   }
+
+  componentDidMount() {
+    fetch(`/api/search?query=${this.state.query}`, {
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(response => this.setState({messages: response.results, totalMessagesMatchingQuery: response.totalResults}))
+    .catch(err => console.log(err));
+  }
+
+  onPageChange = (p) => {
+    this.setState({currentPage: p.selected});
+  };
 
   render() {
     return (
       <Container>
         <Columns>
           <Column className="is-12">
-            <SearchContainer />
-            <MessageListContainer />
+            <MessageList messages={this.state.messages} />
+            <Paginate
+              pageCount={this.state.messages.length/this.state.messagesPerPage}
+              initialPage={this.state.currentPage}
+              onPageChange={this.onPageChange}
+            />
           </Column>
         </Columns>
       </Container>);
   }
 }
 
-function mapStateToProps(state) {
-  return { applicationId: state.applications.get('applicationId') };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    requestApplicationMessages: () => dispatch(requestAppMessages()),
-    requestSwitchApp: appId => dispatch(requestSwitchApp(appId)),
-  };
-}
-
 HomePage.propTypes = {
-  requestApplicationMessages: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default HomePage;
