@@ -21,8 +21,7 @@ namespace RabbitHutch.Application.CommandHandlers
             using (var conn = factory.CreateConnection())
             using (var channel = conn.CreateModel())
             {
-                var messageParserFactory = new MessageParserFactory();
-                var parser = messageParserFactory.GetMessageDocumentParser(cmd.MessageDocument);
+                var parser = MessageParserFactory.GetMessageDocumentParser(cmd.MessageDocument);
 
                 var messageBodyBytes = System.Text.Encoding.UTF8.GetBytes(cmd.ReplayMessageBody);
                 var basicProps = GetBasicProperties(channel.CreateBasicProperties(), cmd.MessageDocument, parser);

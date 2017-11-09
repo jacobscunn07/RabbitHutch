@@ -25,8 +25,7 @@ namespace RabbitHutch.Application.CommandHandlers
 
         public HandleMessageCommandResult Handle(HandleMessageCommand cmd)
         {
-	        var messageParserFactory = new MessageParserFactory();
-	        var messageParser = messageParserFactory.GetMessageParser(cmd.DeliveryArgs);
+	        var messageParser = MessageParserFactory.GetMessageParser(cmd.DeliveryArgs);
             
             var messageDocument =
                 MessageDocumentBuilder

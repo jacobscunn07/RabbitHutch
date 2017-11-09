@@ -7,9 +7,9 @@ using RabbitMQ.Client.Events;
 
 namespace RabbitHutch.Application.ServiceBusTechnologies
 {
-	public class MessageParserFactory : IMessageParserFactory
+	public static class MessageParserFactory
 	{
-		public IMessageParser GetMessageParser(BasicDeliverEventArgs ea)
+		public static IMessageParser GetMessageParser(BasicDeliverEventArgs ea)
 		{
 			var dict = ea.BasicProperties.GetHeadersDictionary();
 
@@ -19,7 +19,7 @@ namespace RabbitHutch.Application.ServiceBusTechnologies
 			throw new Exception($"Unable to find a concrete message parser");
 		}
 
-	    public IMessageParser GetMessageDocumentParser(MessageDocument document)
+	    public static IMessageParser GetMessageDocumentParser(MessageDocument document)
 	    {
 	        if(document.ServiceBusTechnology == "NServiceBus")
                 return new NServiceBusMessageParser(document);

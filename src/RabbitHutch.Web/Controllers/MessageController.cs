@@ -26,7 +26,7 @@ namespace RabbitHutch.Web.Controllers
             try
             {
                 var result = await _mediator.Send(new MessageDocumentQuery { DocumentId = id });
-                var parser = new MessageParserFactory().GetMessageDocumentParser(result.MessageDocument);
+                var parser = MessageParserFactory.GetMessageDocumentParser(result.MessageDocument);
 
                 var msg = new MessageResult
                 {
@@ -49,7 +49,7 @@ namespace RabbitHutch.Web.Controllers
 
         private static MessageResult.MessageReplayResult ParseReplay(MessageDocument document)
         {
-            var parser = new MessageParserFactory().GetMessageDocumentParser(document);
+            var parser = MessageParserFactory.GetMessageDocumentParser(document);
 
             return new MessageResult.MessageReplayResult
             {

@@ -21,7 +21,7 @@ const Paginate = (props) => {
         marginPagesDisplay={2}
         pageRangeDisplay={5}
         containerClassName={"pagination-list"}
-        activeLinkClassName={"is-current"}
+        activeClassName={"is-current"}
         nextLinkClassName={"pagination-next"}
         previousLinkClassName={"pagination-previous"}
         pageLinkClassName={"pagination-link"}

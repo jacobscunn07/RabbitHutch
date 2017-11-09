@@ -42,8 +42,7 @@ namespace RabbitHutch.Web.Controllers
 
         private static SearchResult.SearchMessageResult ParseMessage(MessageDocument document)
         {
-            var factory = new MessageParserFactory();
-            var parser = factory.GetMessageDocumentParser(document);
+            var parser = MessageParserFactory.GetMessageDocumentParser(document);
 
             return new SearchResult.SearchMessageResult
             {
