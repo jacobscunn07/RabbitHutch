@@ -28,7 +28,7 @@ namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 
 	    public string Body { get; }
 
-		public bool IsError => !Headers.ContainsKey(NServiceBus.Headers.ProcessingEndPoint);
+		public bool IsError => Headers.ContainsKey(NServiceBus.Headers.StackStrace);
 
 		public string ContentType => Headers.GetValueByKey(NServiceBus.Headers.ContentType);
 

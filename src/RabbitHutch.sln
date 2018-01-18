@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.Host", "RabbitHutch.Host\RabbitHutch.Host.csproj", "{CB40693F-4CBA-4021-8260-CC85C9312153}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.TestHarness", "RabbitHutch.TestHarness\RabbitHutch.TestHarness.csproj", "{25D05312-1D05-4910-8D35-9D715F14BB60}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.TestHarness.Client", "RabbitHutch.TestHarness\RabbitHutch.TestHarness.Client.csproj", "{25D05312-1D05-4910-8D35-9D715F14BB60}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.DataMigrations", "RabbitHutch.DataMigrations\RabbitHutch.DataMigrations.csproj", "{D4F85B6B-DDF7-4B0B-8A54-C8CD90EA2492}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.Domain", "RabbitHutch.Domain\RabbitHutch.Domain.csproj", "{BCB3D73D-CC5C-42BE-B884-56A9A4C6D020}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.Application", "RabbitHutch.Application\RabbitHutch.Application.csproj", "{C1EDCD4D-9F9D-4916-95CD-40F07E4F10C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestHarness", "TestHarness", "{7841958F-F957-4BE6-BD6B-58B73C4B4D78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,5 +56,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{25D05312-1D05-4910-8D35-9D715F14BB60} = {7841958F-F957-4BE6-BD6B-58B73C4B4D78}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE30A39C-EAF7-4154-B92B-A49F09B8BF81}
 	EndGlobalSection
 EndGlobal

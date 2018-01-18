@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Text;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Persistence;
+using RabbitHutch.TestHarness.Commands;
 using RabbitMQ.Client;
 
 namespace RabbitHutch.TestHarness
@@ -8,24 +12,26 @@ namespace RabbitHutch.TestHarness
     {
         static void Main(string[] args)
         {
-            var factory = new ConnectionFactory { HostName = "localhost" };
-            using (var conn = factory.CreateConnection())
-            using (var channel = conn.CreateModel())
-            {
+            AsyncMain().GetAwaiter().GetResult();
+        }
 
-                var message = "Hello World!";
-                var body = Encoding.UTF8.GetBytes(message);
+        static async Task AsyncMain()
+        {
+            var endpointConfiguration = new EndpointConfiguration("RabbitHutch.TestHarness.Client");
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>().ConnectionString("host=localhost");
+            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+            endpointConfiguration.AuditProcessedMessagesTo("audit");
+            endpointConfiguration.UseSerialization<JsonSerializer>();
 
-                channel.BasicPublish(
-                    exchange: "",
-                    routingKey: "audit",
-                    basicProperties: null,
-                    body: body);
-                Console.WriteLine($"[x] Sent {message}");
-            }
+            var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
-            Console.WriteLine("Press any key to exit.");
+            await endpointInstance.SendLocal(new SendToSelf { Name = "Test" });
+
+            Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();
+
+            await endpointInstance.Stop()
+                .ConfigureAwait(false);
         }
     }
 }
