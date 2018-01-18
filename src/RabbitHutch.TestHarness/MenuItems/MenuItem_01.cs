@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-using RabbitHutch.TestHarness.Commands;
-using System;
+﻿using RabbitHutch.TestHarness.Commands;
 using System.Threading.Tasks;
 
 namespace RabbitHutch.TestHarness.MenuItems
@@ -9,11 +7,13 @@ namespace RabbitHutch.TestHarness.MenuItems
     {
         public string Name => "Send Successful Message";
         public string Key => "01";
+        public string ServiceBus => "NServiceBus";
 
-        public void Execute(IEndpointInstance endpoint)
+        public async Task ExecuteAsync()
         {
+            var endpointbuilder = await NServiceBusEndpointBuilder.Begin().ConfigureSettings().StartAsync();
             var command = new SendToSelf { Name = "Test" };
-            endpoint.SendLocal(command);
+            await endpointbuilder.SendLocal(command).StopAsync();
         }
     }
 }

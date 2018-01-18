@@ -8,7 +8,6 @@ namespace RabbitHutch.TestHarness.Handlers
     {
         public Task Handle(SendToSelf message, IMessageHandlerContext context)
         {
-            throw new System.Exception("errorrrrr");
             return Task.FromResult(0);
         }
     }

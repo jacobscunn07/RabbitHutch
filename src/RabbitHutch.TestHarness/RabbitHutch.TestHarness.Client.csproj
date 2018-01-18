@@ -59,8 +59,10 @@
   <ItemGroup>
     <Compile Include="Commands\SendToSelf.cs" />
     <Compile Include="Handlers\SendToSelfCommandHandler.cs" />
+    <Compile Include="IServiceBusBuilder.cs" />
     <Compile Include="MenuItems\IMenuItem.cs" />
     <Compile Include="MenuItems\MenuItem_01.cs" />
+    <Compile Include="NServiceBusEndpointBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

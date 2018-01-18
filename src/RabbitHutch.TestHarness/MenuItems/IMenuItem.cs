@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
+using System.Threading.Tasks;
 
 namespace RabbitHutch.TestHarness.MenuItems
 {
@@ -6,6 +7,7 @@ namespace RabbitHutch.TestHarness.MenuItems
     {
         string Name { get; }
         string Key { get; }
-        void Execute(IEndpointInstance endpoint);
+        string ServiceBus { get; }
+        Task ExecuteAsync();
     }
 }
