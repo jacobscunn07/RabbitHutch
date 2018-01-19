@@ -29,6 +29,10 @@ class HomePage extends React.Component {
     .catch(err => console.log(err));
   }
 
+  onRowClick = (messageId) => {
+    this.props.history.push(`/message/${messageId}`);
+  }
+
   onPageChange = (p) => {
     this.setState({currentPage: p.selected});
   };
@@ -38,9 +42,9 @@ class HomePage extends React.Component {
       <Container>
         <Columns>
           <Column className="is-12">
-            <MessageList messages={this.state.messages} />
+            <MessageList messages={this.state.messages} onRowClick={this.onRowClick} />
             <Paginate
-              pageCount={this.state.messages.length/this.state.messagesPerPage}
+              pageCount={this.state.messages.length / this.state.messagesPerPage}
               initialPage={this.state.currentPage}
               onPageChange={this.onPageChange}
             />

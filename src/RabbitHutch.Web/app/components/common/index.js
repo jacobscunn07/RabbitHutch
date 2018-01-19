@@ -10,6 +10,12 @@ import MenuList from './MenuList';
 import MenuListItem from './MenuListItem';
 import PanelBlock from './PanelBlock';
 import Tab from './Tab';
+import Table from './Table';
+import TableBody from './TableBody';
+import TableCell from './TableCell';
+import TableCellHeading from './TableCellHeading';
+import TableHeading from './TableHeading';
+import TableRow from './TableRow';
 import Tabs from './Tabs';
 import TabList from './TabList';
 import Tag from './Tag';
@@ -30,6 +36,12 @@ export {
   PanelBlock,
   Section,
   Tab,
+  Table,
+  TableBody,
+  TableCell,
+  TableCellHeading,
+  TableHeading,
+  TableRow,
   Tabs,
   TabList,
   Tag,

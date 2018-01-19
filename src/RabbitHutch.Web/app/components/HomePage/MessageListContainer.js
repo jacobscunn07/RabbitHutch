@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import MessageList from './MessageList';
 import { Paginate } from './../common';
 
@@ -9,7 +9,7 @@ class MessageListContainer extends React.Component {
       <div>
         <MessageList {...this.props} />
         <Paginate
-          pageCount={this.props.messages.length/this.state.messagesPerPage}
+          pageCount={this.props.messages.length / this.state.messagesPerPage}
           initialPage={this.state.currentPage}
           onPageChange={this.onPageChange}
         />
@@ -18,6 +18,13 @@ class MessageListContainer extends React.Component {
 }
 
 MessageListContainer.propTypes = {
+  messages: PropTypes.shape({
+    length: PropTypes.number,
+  }),
+};
+
+MessageListContainer.defaultProps = {
+  messages: [],
 };
 
 export default MessageListContainer;
