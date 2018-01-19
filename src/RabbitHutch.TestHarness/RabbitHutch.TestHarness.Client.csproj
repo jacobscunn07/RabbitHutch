@@ -57,11 +57,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\SendChainMessage_PartA_B_A.cs" />
+    <Compile Include="Commands\SendChainMessage_PartA_B.cs" />
+    <Compile Include="Commands\SendChainMessage_PartA_A.cs" />
+    <Compile Include="Commands\SendChainMessage_PartA.cs" />
     <Compile Include="Commands\SendToSelf.cs" />
+    <Compile Include="Handlers\NServiceBus\MessageChain\SendChainMessage_PartA_B_A_CommandHandler.cs" />
+    <Compile Include="Handlers\NServiceBus\MessageChain\SendChainMessage_PartA_B_CommandHandler.cs" />
+    <Compile Include="Handlers\NServiceBus\MessageChain\SendChainMessage_PartA_CommandHandler.cs" />
+    <Compile Include="Handlers\NServiceBus\MessageChain\SendChainMessage_PartA_A_CommandHandler.cs" />
     <Compile Include="Handlers\SendToSelfCommandHandler.cs" />
     <Compile Include="IServiceBusBuilder.cs" />
     <Compile Include="MenuItems\IMenuItem.cs" />
     <Compile Include="MenuItems\MenuItem_01.cs" />
+    <Compile Include="MenuItems\MenuItem_02.cs" />
     <Compile Include="NServiceBusEndpointBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
