@@ -8,6 +8,7 @@ import { createBrowserHistory } from 'history';
 // import '../node_modules/bootstrap/dist/css/bootstrap.css';
 // import '../node_modules/bootstrap/dist/js/bootstrap';
 import '../node_modules/bulma/css/bulma.css';
+import './app.css';
 import configureStore from './store/configureStore';
 import App from './components/App';
 import HomePage from './components/HomePage';

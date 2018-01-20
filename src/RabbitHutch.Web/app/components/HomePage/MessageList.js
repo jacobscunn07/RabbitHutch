@@ -43,7 +43,7 @@ const MessageList = ({ messages, onRowClick }) => (
       <TableBody>
         {
         messages.map(message =>
-          (<TableRow onClick={() => { onRowClick(message.docId); }} key={message.messageId}>
+          (<TableRow className="pointer" onClick={() => { onRowClick(message.docId); }} key={message.messageId}>
             <TableCell>
               {
                 message.isError &&

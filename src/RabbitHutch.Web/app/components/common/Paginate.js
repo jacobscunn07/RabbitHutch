@@ -12,19 +12,20 @@ const Paginate = (props) => {
     } = props;
   const classes = classNames(className);
   return (
-    <nav className="pagination is-centered" role="navigation" aria-label="pagination">
-      <ReactPaginate className={classes}
-        previousLabel={"previous"}
-        nextLabel={"next"}
+    <nav className="pagination is-centered" aria-label="pagination">
+      <ReactPaginate
+        className={classes}
+        previousLabel={'previous'}
+        nextLabel={'next'}
         breakLabel={<span className="pagination-ellipsis">&hellip;</span>}
         pageCount={pageCount}
         marginPagesDisplay={2}
         pageRangeDisplay={5}
-        containerClassName={"pagination-list"}
-        activeClassName={"is-current"}
-        nextLinkClassName={"pagination-next"}
-        previousLinkClassName={"pagination-previous"}
-        pageLinkClassName={"pagination-link"}
+        containerClassName={'pagination-list'}
+        activeClassName={'is-current'}
+        nextLinkClassName={'pagination-next'}
+        previousLinkClassName={'pagination-previous'}
+        pageLinkClassName={'pagination-link'}
         initialPage={initialPage}
         onPageChange={onPageChange}
       />
@@ -34,6 +35,9 @@ const Paginate = (props) => {
 
 Paginate.propTypes = {
   className: PropTypes.string,
+  pageCount: PropTypes.number.isRequired,
+  initialPage: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
 };
 
 Paginate.defaultProps = {

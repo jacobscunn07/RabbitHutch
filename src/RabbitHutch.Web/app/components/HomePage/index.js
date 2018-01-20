@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import MessageList from './MessageList';
 import {
   Column,
@@ -25,8 +24,10 @@ class HomePage extends React.Component {
       method: 'GET',
     })
     .then(response => response.json())
-    .then(response => this.setState({messages: response.results, totalMessagesMatchingQuery: response.totalResults}))
-    .catch(err => console.log(err));
+    .then(response => this.setState({
+      messages: response.results,
+      totalMessagesMatchingQuery: response.totalResults,
+    })).catch(err => console.log(err));
   }
 
   onRowClick = (messageId) => {
@@ -34,7 +35,14 @@ class HomePage extends React.Component {
   }
 
   onPageChange = (p) => {
-    this.setState({currentPage: p.selected});
+    fetch(`/api/search?query=${this.state.query}&pageIndex=${p.selected + 1}`, {
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(response => this.setState({
+      messages: response.results,
+      totalMessagesMatchingQuery: response.totalResults,
+    })).catch(err => console.log(err));
   };
 
   render() {
@@ -55,6 +63,7 @@ class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
+  history: PropTypes.shape().isRequired,
 };
 
 export default HomePage;
