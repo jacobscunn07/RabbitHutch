@@ -24,6 +24,7 @@ namespace RabbitHutch.TestHarness
             _endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
             _endpointConfiguration.AuditProcessedMessagesTo("audit");
             _endpointConfiguration.UseSerialization<JsonSerializer>();
+            _endpointConfiguration.Recoverability().Delayed(delayed => { delayed.NumberOfRetries(0); });
             return this;
         }
 
