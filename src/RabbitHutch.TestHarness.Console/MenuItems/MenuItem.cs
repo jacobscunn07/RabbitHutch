@@ -1,14 +1,15 @@
-﻿using System.Threading.Tasks;
+﻿using NServiceBus;
+using System.Threading.Tasks;
 
 namespace RabbitHutch.TestHarness.Console.MenuItems
 {
     public abstract class MenuItem
     {
-        protected readonly ITest _test;
+        protected readonly IEndpointInstance _instance;
 
-        public MenuItem(ITest test, string name, string key, string servicebus)
+        public MenuItem(IEndpointInstance instance, string name, string key, string servicebus)
         {
-            _test = test;
+            _instance = instance;
             Name = name;
             Key = key;
             ServiceBus = servicebus;

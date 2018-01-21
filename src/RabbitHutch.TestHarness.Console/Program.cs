@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using NServiceBus;
 using RabbitHutch.TestHarness.Console.MenuItems;
 using System;
 using System.Linq;
@@ -10,9 +11,18 @@ namespace RabbitHutch.TestHarness.Console
     {
         static void Main(string[] args)
         {
+            var _endpointConfiguration = new EndpointConfiguration("RabbitHutch.TestHarness.Console");
+            _endpointConfiguration.UseTransport<RabbitMQTransport>().ConnectionString("host=localhost").UseConventionalRoutingTopology();
+            _endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+            _endpointConfiguration.AuditProcessedMessagesTo("audit");
+            _endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+            _endpointConfiguration.EnableInstallers();
+            _endpointConfiguration.Recoverability().Delayed(delayed => { delayed.NumberOfRetries(0); });
+            var instance = Endpoint.Start(_endpointConfiguration).ConfigureAwait(false).GetAwaiter().GetResult();
             var serviceProvider = new ServiceCollection()
                 .AddTransient<ITest, Test>()
                 .AddTransient<App>()
+                .AddSingleton<IEndpointInstance>(instance)
                 .BuildServiceProvider();
             var app = serviceProvider.GetService<App>();
             app.RunAsync();
@@ -27,9 +37,9 @@ namespace RabbitHutch.TestHarness.Console
 
     public class App
     {
-        private readonly ITest _testService;
+        private readonly IEndpointInstance _testService;
 
-        public App(ITest testService)
+        public App(IEndpointInstance testService)
         {
             _testService = testService;
         }

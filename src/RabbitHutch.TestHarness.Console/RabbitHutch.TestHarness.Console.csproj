@@ -7,6 +7,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-beta0012" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.0.0-beta0003" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.0.0-beta0032" />
   </ItemGroup>
 
 </Project>
