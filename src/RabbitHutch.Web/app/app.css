@@ -1,3 +1,13 @@
 .pointer {
   cursor: pointer;
 }
+
+li.is-current a {
+  background-color: hsl(171, 100%, 41%);
+  border-color: hsl(171, 100%, 41%);
+  color: #fff;
+}
+
+li.is-current a:hover {
+  color: #fff;
+}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RabbitHutch.Web.Models
 {
@@ -16,6 +17,7 @@ namespace RabbitHutch.Web.Models
             public string ProcessedEndpoint { get; set; }
             public string OriginatingEndpoint { get; set; }
             public string ClassType { get; set; }
+            public DateTime ProcessedDateTime { get; set; }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RabbitHutch.Application.Interfaces;
 using RabbitHutch.Domain;
 
@@ -11,6 +12,7 @@ namespace RabbitHutch.Application
         IBusTechnology,
         IApplicationId,
         IMessageTypes,
+        IProcessedDateTime,
         IMessageDocumentOptionalValues
     {
         private string _messageId;
@@ -20,6 +22,7 @@ namespace RabbitHutch.Application
         private string _applicationId;
         private string _messageTypes;
         private bool _isError;
+        private DateTime _processedDateTime;
 
         private MessageDocumentBuilder()
         {
@@ -61,9 +64,15 @@ namespace RabbitHutch.Application
             return this;
         }
 
-        public IMessageDocumentOptionalValues WithMessageTypes(string messageTypes)
+        public IProcessedDateTime WithMessageTypes(string messageTypes)
         {
             _messageTypes = messageTypes;
+            return this;
+        }
+
+        public IMessageDocumentOptionalValues WithProcessedDateTime(DateTime processedDateTime)
+        {
+            _processedDateTime = processedDateTime;
             return this;
         }
 
@@ -83,10 +92,9 @@ namespace RabbitHutch.Application
                 ServiceBusTechnology = _busTechnology,
                 ApplicationId = _applicationId,
                 MessageTypes = _messageTypes,
-                IsError = _isError
+                IsError = _isError,
+                ProcessedDateTime = _processedDateTime
             };
         }
-
-        
     }
 }

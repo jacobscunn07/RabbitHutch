@@ -23,10 +23,11 @@ namespace RabbitHutch.DataAccess.Raven.Indexes
                     document.DocId,
                     document.IsError,
                     document.ServiceBusTechnology,
-                    document.MessageId
+                    document.MessageId,
+                    document.ProcessedDateTime
                 });
 
-            Sort(x => x.DocId, SortOptions.Long);
+            Sort(x => x.ProcessedDateTime, SortOptions.Long);
             Index(x => x.Any, FieldIndexing.Analyzed);
             Analyzers.Add(x => x.Any, "StandardAnalyzer");
         }

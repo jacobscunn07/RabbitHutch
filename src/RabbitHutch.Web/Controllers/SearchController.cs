@@ -44,16 +44,19 @@ namespace RabbitHutch.Web.Controllers
         {
             var parser = MessageParserFactory.GetMessageDocumentParser(document);
 
-            return new SearchResult.SearchMessageResult
+            var result = new SearchResult.SearchMessageResult
             {
                 DocId = document.DocId,
                 MessageId = parser.MessageId,
-                IsError = document.IsError,
+                IsError = document.Replays.Count > 0 ? document.Replays.OrderByDescending(x => MessageParserFactory.GetMessageDocumentParser(x).ProcessedDateTime).FirstOrDefault().IsError : document.IsError,
                 Body = document.Body,
                 ProcessedEndpoint = parser.IsError ? parser.FailedQueue : parser.ProcessingEndPoint,
                 OriginatingEndpoint = parser.OriginatingEndPoint,
-                ClassType = parser.MessageTypes.Split(' ').Select(x => x.Remove(x.Length-1)).FirstOrDefault()
+                ClassType = parser.MessageTypes.Split(' ').Select(x => x.Remove(x.Length-1)).FirstOrDefault(),
+                ProcessedDateTime = document.ProcessedDateTime
             };
+
+            return result;
         }
     }
 }

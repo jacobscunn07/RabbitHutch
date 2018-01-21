@@ -36,6 +36,7 @@ namespace RabbitHutch.Application.CommandHandlers
                     .WithBusTechnology(messageParser.ServiceBusTechnology)
                     .WithApplication(cmd.Application)
                     .WithMessageTypes(messageParser.MessageTypes)
+                    .WithProcessedDateTime(messageParser.ProcessedDateTime)
                     .IsError(messageParser.IsError)
                     .Finish();
 

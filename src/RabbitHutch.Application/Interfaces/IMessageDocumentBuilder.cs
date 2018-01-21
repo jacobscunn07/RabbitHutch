@@ -31,7 +31,12 @@ namespace RabbitHutch.Application.Interfaces
 
     public interface IMessageTypes
     {
-        IMessageDocumentOptionalValues WithMessageTypes(string messageTypes);
+        IProcessedDateTime WithMessageTypes(string messageTypes);
+    }
+
+    public interface IProcessedDateTime
+    {
+        IMessageDocumentOptionalValues WithProcessedDateTime(DateTime messageTypes);
     }
 
     public interface IMessageDocumentOptionalValues

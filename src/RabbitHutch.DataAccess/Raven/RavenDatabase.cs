@@ -33,10 +33,11 @@ namespace RabbitHutch.DataAccess.Raven
                 var docs = session
                     .Advanced
                     .DocumentQuery<MessageDocument, MessageDocument_Search>()
+                    .Where(query)
+                    .OrderByDescending(x => x.DocId)
                     .Statistics(out RavenQueryStatistics stats)
                     .Skip((pageIndex - 1) * pageSize)
                     .Take(pageSize)
-                    .Where(query)
                     .ToList();
 
                 return new RavenSearchResult

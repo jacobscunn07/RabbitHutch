@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import {
   Table,
   TableBody,
@@ -38,6 +39,7 @@ const MessageList = ({ messages, onRowClick }) => (
           <TableCellHeading>Originating Endpoint</TableCellHeading>
           <TableCellHeading>Processed Endpoint</TableCellHeading>
           <TableCellHeading>Message Type</TableCellHeading>
+          <TableCellHeading>Processed Date Time</TableCellHeading>
         </TableRow>
       </TableHeading>
       <TableBody>
@@ -66,6 +68,7 @@ const MessageList = ({ messages, onRowClick }) => (
             <TableCell>{message.originatingEndpoint}</TableCell>
             <TableCell>{message.processedEndpoint}</TableCell>
             <TableCell>{message.classType}</TableCell>
+            <TableCell>{moment(message.processedDateTime).format('MM/DD/YY h:mm:ss a')}</TableCell>
           </TableRow>),
         )
       }
