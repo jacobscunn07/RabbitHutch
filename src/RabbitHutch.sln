@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.Application", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestHarness", "TestHarness", "{7841958F-F957-4BE6-BD6B-58B73C4B4D78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitHutch.TestHarness.Console", "RabbitHutch.TestHarness.Console\RabbitHutch.TestHarness.Console.csproj", "{5D93CFEB-88B6-47D6-96C6-B4968E02177F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,12 +55,17 @@ Global
 		{C1EDCD4D-9F9D-4916-95CD-40F07E4F10C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1EDCD4D-9F9D-4916-95CD-40F07E4F10C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1EDCD4D-9F9D-4916-95CD-40F07E4F10C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D93CFEB-88B6-47D6-96C6-B4968E02177F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D93CFEB-88B6-47D6-96C6-B4968E02177F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D93CFEB-88B6-47D6-96C6-B4968E02177F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D93CFEB-88B6-47D6-96C6-B4968E02177F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{25D05312-1D05-4910-8D35-9D715F14BB60} = {7841958F-F957-4BE6-BD6B-58B73C4B4D78}
+		{5D93CFEB-88B6-47D6-96C6-B4968E02177F} = {7841958F-F957-4BE6-BD6B-58B73C4B4D78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BE30A39C-EAF7-4154-B92B-A49F09B8BF81}
