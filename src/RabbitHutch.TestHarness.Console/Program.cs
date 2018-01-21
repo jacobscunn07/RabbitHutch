@@ -4,12 +4,18 @@ using RabbitHutch.TestHarness.Console.MenuItems;
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace RabbitHutch.TestHarness.Console
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            RunAsync().GetAwaiter().GetResult();
+        }
+
+        static async Task RunAsync()
         {
             var _endpointConfiguration = new EndpointConfiguration("RabbitHutch.TestHarness.Console");
             _endpointConfiguration.UseTransport<RabbitMQTransport>().ConnectionString("host=localhost").UseConventionalRoutingTopology();
@@ -25,8 +31,7 @@ namespace RabbitHutch.TestHarness.Console
                 .AddSingleton<IEndpointInstance>(instance)
                 .BuildServiceProvider();
             var app = serviceProvider.GetService<App>();
-            app.RunAsync();
-            System.Console.WriteLine("Hello World!");
+            await app.RunAsync();
             System.Console.ReadLine();
         }
     }
@@ -52,8 +57,6 @@ namespace RabbitHutch.TestHarness.Console
 
             while (true)
             {
-                System.Console.WriteLine();
-                System.Console.WriteLine();
                 System.Console.WriteLine("Key\tService Bus\tName");
                 foreach (var menuItem in menuitems)
                 {
@@ -67,9 +70,9 @@ namespace RabbitHutch.TestHarness.Console
                     var menuItem = menuitems.Single(x => x.Key == selection);
                     await menuItem.ExecuteAsync();
                 }
+                System.Console.WriteLine();
+                System.Console.WriteLine();
             }
-
-            System.Console.ReadKey();
         }
     }
 }
