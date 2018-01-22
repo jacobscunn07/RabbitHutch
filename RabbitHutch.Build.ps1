@@ -20,3 +20,24 @@ Task Start-Host {
       Write-Host "$appName already running."
   }
 }
+
+#=================================================================================================
+# Synopsis: Start Rabbit Hutch Test Harness
+#=================================================================================================
+Task Start-TestHarness {
+  $processActive = Get-Process "RabbitHutch.TestHarness.Console" -ErrorAction SilentlyContinue
+  if(!$processActive)
+  {
+    Write-Host "src/RabbitHutch.TestHarness.Console/bin/$configuration/RabbitHutch.TestHarness.Console.exe"
+    exec { dotnet "$SrcFolder/RabbitHutch.TestHarness.Console/bin/$configuration/netcoreapp2.0/RabbitHutch.TestHarness.Console.dll" }
+  } else {
+      Write-Host "$appName already running."
+  }
+}
+
+#=================================================================================================
+# Synopsis: Install the Host project as a windows service
+#=================================================================================================
+Task Start-InstallHost {
+    Write-Host "Need to implement"
+}
