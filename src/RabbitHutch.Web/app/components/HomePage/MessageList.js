@@ -8,73 +8,51 @@ import {
   TableCellHeading,
   TableHeading,
   TableRow,
-  // Tab,
-  // TabList,
-  // Tabs,
   Tags,
   Tag } from './../common';
 
 const MessageList = ({ messages, onRowClick }) => (
-  <div>
-    {
-      // <Tabs className="is-boxed is-marginless">
-      //   <TabList>
-      //     <Tab className="is-active">
-      //       <a><span>All</span></a>
-      //     </Tab>
-      //     <Tab>
-      //       <a><span>Audit</span></a>
-      //     </Tab>
-      //     <Tab>
-      //       <a><span>Error</span></a>
-      //     </Tab>
-      //   </TabList>
-      // </Tabs>
+  <Table>
+    <TableHeading>
+      <TableRow>
+        <TableCellHeading />
+        <TableCellHeading>Message Id</TableCellHeading>
+        <TableCellHeading>Processed Endpoint</TableCellHeading>
+        <TableCellHeading>Message Type</TableCellHeading>
+        <TableCellHeading>Processed Date Time</TableCellHeading>
+      </TableRow>
+    </TableHeading>
+    <TableBody>
+      {
+      messages.map(message =>
+        (<TableRow className="pointer" onClick={() => { onRowClick(message.docId); }} key={message.messageId}>
+          <TableCell>
+            {
+              message.isError &&
+              <div className="control">
+                <Tags>
+                  <Tag className="is-danger">ERROR</Tag>
+                </Tags>
+              </div>
+            }
+            {
+              !message.isError &&
+              <div className="control">
+                <Tags>
+                  <Tag className="is-success">SUCCESS</Tag>
+                </Tags>
+              </div>
+            }
+          </TableCell>
+          <TableCell>{message.messageId}</TableCell>
+          <TableCell>{message.processedEndpoint}</TableCell>
+          <TableCell>{message.classType}</TableCell>
+          <TableCell>{moment(message.processedDateTime).format('MM/DD/YY h:mm:ss a')}</TableCell>
+        </TableRow>),
+      )
     }
-    <Table>
-      <TableHeading>
-        <TableRow>
-          <TableCellHeading />
-          <TableCellHeading>Message Id</TableCellHeading>
-          <TableCellHeading>Originating Endpoint</TableCellHeading>
-          <TableCellHeading>Processed Endpoint</TableCellHeading>
-          <TableCellHeading>Message Type</TableCellHeading>
-          <TableCellHeading>Processed Date Time</TableCellHeading>
-        </TableRow>
-      </TableHeading>
-      <TableBody>
-        {
-        messages.map(message =>
-          (<TableRow className="pointer" onClick={() => { onRowClick(message.docId); }} key={message.messageId}>
-            <TableCell>
-              {
-                message.isError &&
-                <div className="control">
-                  <Tags>
-                    <Tag className="is-danger">ERROR</Tag>
-                  </Tags>
-                </div>
-              }
-              {
-                !message.isError &&
-                <div className="control">
-                  <Tags>
-                    <Tag className="is-success">SUCCESS</Tag>
-                  </Tags>
-                </div>
-              }
-            </TableCell>
-            <TableCell>{message.messageId}</TableCell>
-            <TableCell>{message.originatingEndpoint}</TableCell>
-            <TableCell>{message.processedEndpoint}</TableCell>
-            <TableCell>{message.classType}</TableCell>
-            <TableCell>{moment(message.processedDateTime).format('MM/DD/YY h:mm:ss a')}</TableCell>
-          </TableRow>),
-        )
-      }
-      </TableBody>
-    </Table>
-  </div>
+    </TableBody>
+  </Table>
 );
 
 MessageList.propTypes = {
