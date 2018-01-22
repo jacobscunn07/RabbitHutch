@@ -57,10 +57,10 @@ namespace RabbitHutch.TestHarness.Console
 
             while (true)
             {
-                System.Console.WriteLine("Key\tService Bus\tName");
+                System.Console.WriteLine("Key\tName");
                 foreach (var menuItem in menuitems)
                 {
-                    System.Console.WriteLine($"{menuItem.Key}\t{menuItem.ServiceBus}\t{menuItem.Name}");
+                    System.Console.WriteLine($"{menuItem.Key}\t{menuItem.Name}");
                 }
                 System.Console.WriteLine();
                 System.Console.WriteLine("Enter key for menu item to be executed.");
