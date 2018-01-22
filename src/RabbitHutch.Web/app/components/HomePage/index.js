@@ -14,7 +14,7 @@ class HomePage extends React.Component {
       query: '',
       totalMessagesMatchingQuery: 0,
       messages: [],
-      messagesPerPage: 10,
+      messagesPerPage: 20,
       currentPage: 0,
     };
   }
@@ -52,7 +52,7 @@ class HomePage extends React.Component {
           <Column className="is-12">
             <MessageList messages={this.state.messages} onRowClick={this.onRowClick} />
             <Paginate
-              pageCount={this.state.messages.length / this.state.messagesPerPage}
+              pageCount={this.state.totalMessagesMatchingQuery / this.state.messagesPerPage}
               initialPage={this.state.currentPage}
               onPageChange={this.onPageChange}
             />

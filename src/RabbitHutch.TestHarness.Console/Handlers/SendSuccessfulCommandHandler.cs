@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace RabbitHutch.TestHarness.Handlers
 {
-    public class SendToSelfCommandHandler : IHandleMessages<SendSuccessfulCommand>
+    public class SendSuccessfulCommandHandler : IHandleMessages<SendSuccessfulCommand>
     {
         public Task Handle(SendSuccessfulCommand message, IMessageHandlerContext context)
         {
