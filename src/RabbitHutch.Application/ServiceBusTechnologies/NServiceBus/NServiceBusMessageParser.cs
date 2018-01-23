@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using RabbitHutch.Application.Helpers;
 using RabbitHutch.Domain;
@@ -31,17 +32,17 @@ namespace RabbitHutch.Application.ServiceBusTechnologies.NServiceBus
 
         public bool IsError => Headers.ContainsKey(NServiceBus.Headers.StackStrace);
 
-        public string ContentType => Headers.GetValueByKey(NServiceBus.Headers.ContentType);
+        //public string ContentType => Headers.GetValueByKey(NServiceBus.Headers.ContentType);
 
         public string OriginatingEndPoint => Headers.GetValueByKey(NServiceBus.Headers.OriginatingEndPoint);
 
         public string ProcessingEndPoint => IsError ? FailedQueue : Headers.GetValueByKey(NServiceBus.Headers.ProcessingEndPoint);
-
-        public string ReplyTo => Headers.GetValueByKey(NServiceBus.Headers.ReplyTo);
-
+        
         public string FailedQueue => Headers.GetValueByKey(NServiceBus.Headers.FailedQ).Split('@')[0];
 
         public string MessageTypes => Headers.GetValueByKey(NServiceBus.Headers.EnclosedMessageTypes);
+
+        public string ClassType => MessageTypes.Split(' ').Select(x => x.Remove(x.Length - 1)).FirstOrDefault().Split('.').LastOrDefault();
 
         public string ServiceBusTechnology => "NServiceBus";
 

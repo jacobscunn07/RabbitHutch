@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MassTransit;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using RabbitHutch.TestHarness.Console.MenuItems;
 using System;
@@ -8,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace RabbitHutch.TestHarness.Console
 {
+    public interface ValueEntered
+    {
+        string Value { get; }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -17,6 +23,22 @@ namespace RabbitHutch.TestHarness.Console
 
         static async Task RunAsync()
         {
+            //var busControl = ConfigureMassTransit();
+            //busControl.Start();
+
+            //await busControl.Publish<ValueEntered>(new
+            //{
+            //    Value = "blabla"
+            //});
+
+            //busControl.Stop();
+            //System.Console.WriteLine();
+            //System.Console.WriteLine();
+            //System.Console.WriteLine();
+            //System.Console.WriteLine();
+            //System.Console.WriteLine();
+
+
             var _endpointConfiguration = new EndpointConfiguration("RabbitHutch.TestHarness.Console");
             _endpointConfiguration.UseTransport<RabbitMQTransport>().ConnectionString("host=localhost").UseConventionalRoutingTopology();
             _endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
@@ -33,6 +55,32 @@ namespace RabbitHutch.TestHarness.Console
             var app = serviceProvider.GetService<App>();
             await app.RunAsync();
             System.Console.ReadLine();
+        }
+
+        static IBusControl ConfigureMassTransit()
+        {
+            return Bus.Factory.CreateUsingRabbitMq(cfg =>
+            {
+                var queueName = "rabbithutch_queue";
+                var host = cfg.Host(new Uri("rabbitmq://localhost"), h =>
+                {
+                    h.Username("guest");
+                    h.Password("guest");
+                });
+
+                cfg.ReceiveEndpoint(host, queueName, e =>
+                {
+                    e.Handler<ValueEntered>(context => throw new Exception("Kill Mass Transit Message"));
+                });
+
+                cfg.ConfigurePublish(x => x.UseSendExecute(context =>
+                {
+                    context.Headers.Set("MT-OriginatingEndpoint", Assembly.GetExecutingAssembly().FullName);
+                    context.Headers.Set("MT-ProcessingEndpoint", queueName);
+                    context.Headers.Set("MT-FailedQ", queueName);
+                    context.Headers.Set("MT-MessageId", context.MessageId.ToString());
+                }));
+            });
         }
     }
 

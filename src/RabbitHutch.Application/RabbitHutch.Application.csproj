@@ -68,6 +68,8 @@
     <Compile Include="RabbitConfiguration.cs" />
     <Compile Include="ServiceBusTechnologies\IMessageParser.cs" />
     <Compile Include="ServiceBusTechnologies\IMessageParserFactory.cs" />
+    <Compile Include="ServiceBusTechnologies\MassTransit\Headers.cs" />
+    <Compile Include="ServiceBusTechnologies\MassTransit\MassTransitMessageParser.cs" />
     <Compile Include="ServiceBusTechnologies\MessageParserFactory.cs" />
     <Compile Include="ServiceBusTechnologies\NServiceBus\Headers.cs" />
     <Compile Include="ServiceBusTechnologies\NServiceBus\NServiceBusMessageParser.cs" />

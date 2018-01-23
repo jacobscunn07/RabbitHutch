@@ -52,7 +52,7 @@ namespace RabbitHutch.Web.Controllers
                 Body = document.Body,
                 ProcessedEndpoint = parser.IsError ? parser.FailedQueue : parser.ProcessingEndPoint,
                 OriginatingEndpoint = parser.OriginatingEndPoint,
-                ClassType = parser.MessageTypes.Split(' ').Select(x => x.Remove(x.Length-1)).FirstOrDefault().Split('.').LastOrDefault(),
+                ClassType = parser.ClassType,
                 ProcessedDateTime = document.ProcessedDateTime
             };
 
