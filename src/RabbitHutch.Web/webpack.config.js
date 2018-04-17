@@ -7,9 +7,9 @@ module.exports = {
     },
     target: 'web',
     output: {
-        path: __dirname + "/content/build",
+        path: __dirname + "/wwwroot/js",
         filename: "[name].js",
-        publicPath: "/content/build/"
+        publicPath: "/wwwroot/js/"
     },
     devtool: "inline-source-map",
     plugins: [

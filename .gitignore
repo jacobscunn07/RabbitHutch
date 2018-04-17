@@ -295,4 +295,4 @@ __pycache__/
 *.xsd.cs
 
 # Webpack Assets
-src/RabbitHutch.Web/content/build/**
+src/RabbitHutch.Web/wwwroot/js/**

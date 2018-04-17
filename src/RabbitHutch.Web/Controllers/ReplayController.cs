@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web.Http;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using RabbitHutch.Application.CommandHandlers;
 using RabbitHutch.Web.Models;
 
 namespace RabbitHutch.Web.Controllers
 {
-    public class ReplayController : ApiController
+    public class ReplayController : Controller
     {
         private readonly IMediator _mediator;
 
@@ -19,17 +17,17 @@ namespace RabbitHutch.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Post([FromBody]ReplayRequest request)
+        public async Task<IActionResult> Post([FromBody]ReplayRequest request)
         {
             try
             {
                 var doc = await _mediator.Send(new MessageDocumentQuery { DocumentId = request.DocId });
                 var isReplayed = await _mediator.Send(new ReplayMessageCommand { MessageDocument = doc.MessageDocument, ReplayMessageBody = request.Message });
-                return Request.CreateResponse(HttpStatusCode.OK, isReplayed);
+                return this.Ok(isReplayed);
             }
             catch (Exception e)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message);
+                return this.BadRequest(e.Message);
             }
         }
     }

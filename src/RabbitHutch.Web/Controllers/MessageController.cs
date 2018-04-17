@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web.Http;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using RabbitHutch.Application.CommandHandlers;
 using RabbitHutch.Application.ServiceBusTechnologies;
 using RabbitHutch.Domain;
@@ -12,7 +10,7 @@ using RabbitHutch.Web.Models;
 
 namespace RabbitHutch.Web.Controllers
 {
-    public class MessageController : ApiController
+    public class MessageController : Controller
     {
         private readonly IMediator _mediator;
 
@@ -21,7 +19,7 @@ namespace RabbitHutch.Web.Controllers
             _mediator = mediator;
         }
 
-        public async Task<HttpResponseMessage> Get(long id)
+        public async Task<IActionResult> Get(long id)
         {
             try
             {
@@ -39,11 +37,11 @@ namespace RabbitHutch.Web.Controllers
                     Replays = result.MessageDocument.Replays.Select(ParseReplay)
                 };
 
-                return Request.CreateResponse(HttpStatusCode.OK, msg);
+                return Ok(msg);
             }
             catch (Exception e)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.PreconditionFailed, e.Message);
+                return BadRequest(e.Message);
             }
         }
 
