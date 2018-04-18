@@ -10,7 +10,6 @@ using RabbitHutch.Web.Models;
 
 namespace RabbitHutch.Web.Controllers
 {
-    [Route("api/[controller]")]
     public class SearchController : Controller
     {
         private readonly IMediator _mediator;

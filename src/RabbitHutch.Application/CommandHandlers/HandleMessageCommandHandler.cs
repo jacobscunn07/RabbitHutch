@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
 using RabbitHutch.Application.ServiceBusTechnologies;
 using RabbitHutch.DataAccess;
@@ -25,7 +23,7 @@ namespace RabbitHutch.Application.CommandHandlers
             _database = database;
         }
 
-        public Task<HandleMessageCommandResult> Handle(HandleMessageCommand cmd, CancellationToken cancellationToken)
+        public HandleMessageCommandResult Handle(HandleMessageCommand cmd)
         {
 	        var messageParser = MessageParserFactory.GetMessageParser(cmd.DeliveryArgs);
             
@@ -60,10 +58,10 @@ namespace RabbitHutch.Application.CommandHandlers
             else
             {
                 s = _database.Insert(messageDocument);
-                return Task.FromResult(new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument });
+                return new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument };
             }
 
-            return Task.FromResult(new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument });
+            return new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument };
         }
     }
 
