@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using RabbitHutch.Application.CommandHandlers;
 using RabbitHutch.DataAccess;
 using RabbitHutch.DataAccess.Raven;
+using Raven.Client;
+using Raven.Client.Document;
 
 namespace RabbitHutch.Web
 {
@@ -22,8 +24,13 @@ namespace RabbitHutch.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddMediatR(typeof(DocumentSearchQuery).Assembly);
+            services.AddMediatR(typeof(DocumentSearchQueryHandler).Assembly);
             services.AddTransient<IDatabase, RavenDatabase>();
+            services.AddTransient<IDocumentStore>(ds => new DocumentStore
+            {
+                Url = "http://localhost:8080/",
+                DefaultDatabase = "RabbitHutch"
+            }.Initialize());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

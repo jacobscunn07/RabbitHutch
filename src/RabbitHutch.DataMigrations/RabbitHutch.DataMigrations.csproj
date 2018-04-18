@@ -62,12 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RabbitHutch.DataAccess\RabbitHutch.DataAccess.csproj">
-      <Project>{7350D796-D6A7-4046-B647-A1028A2E9C17}</Project>
+      <Project>{7350d796-d6a7-4046-b647-a1028a2e9c17}</Project>
       <Name>RabbitHutch.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RabbitHutch.Host\RabbitHutch.Host.csproj">
-      <Project>{cb40693f-4cba-4021-8260-cc85c9312153}</Project>
-      <Name>RabbitHutch.Host</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,6 +2,8 @@
 using RabbitHutch.DataAccess;
 using RabbitHutch.Domain;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace RabbitHutch.Application.CommandHandlers
 {
@@ -21,15 +23,15 @@ namespace RabbitHutch.Application.CommandHandlers
             _database = database;
         }
 
-        public DocumentSearchQueryResult Handle(DocumentSearchQuery message)
+        public Task<DocumentSearchQueryResult> Handle(DocumentSearchQuery message, CancellationToken cancellationToken)
         {
             var result = _database.Search(message.QueryString, message.PageIndex, message.PageSize);
 
-            return new DocumentSearchQueryResult
+            return Task.FromResult(new DocumentSearchQueryResult
             {
                 Results = result.DocumentResults,
                 TotalResults = result.TotalResults
-            };
+            });
         }
     }
 
