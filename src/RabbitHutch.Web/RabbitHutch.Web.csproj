@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RabbitHutch.Application\RabbitHutch.Application.csproj" />
+    <ProjectReference Include="..\RabbitHutch.DataAccess\RabbitHutch.DataAccess.csproj" />
     <ProjectReference Include="..\RabbitHutch.Domain\RabbitHutch.Domain.csproj" />
   </ItemGroup>
 
