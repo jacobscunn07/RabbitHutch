@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using RabbitHutch.DataAccess;
 using RabbitHutch.Domain;
@@ -28,6 +30,11 @@ namespace RabbitHutch.Application.CommandHandlers
             if (searchResult.TotalResults == 0)
                 throw new Exception($"There was 0 documents with Message Id {message.DocumentId}");
             return new MessageDocumentQueryResult {MessageDocument = searchResult.DocumentResults.SingleOrDefault()};
+        }
+
+        public Task<MessageDocumentQueryResult> Handle(MessageDocumentQuery request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 

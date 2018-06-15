@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using RabbitHutch.Application.ServiceBusTechnologies;
 using RabbitHutch.DataAccess;
@@ -62,6 +64,11 @@ namespace RabbitHutch.Application.CommandHandlers
             }
 
             return new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument };
+        }
+
+        public Task<HandleMessageCommandResult> Handle(HandleMessageCommand request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 

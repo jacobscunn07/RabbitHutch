@@ -2,6 +2,8 @@
 using RabbitHutch.DataAccess;
 using RabbitHutch.Domain;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace RabbitHutch.Application.CommandHandlers
 {
@@ -30,6 +32,11 @@ namespace RabbitHutch.Application.CommandHandlers
                 Results = result.DocumentResults,
                 TotalResults = result.TotalResults
             };
+        }
+
+        public Task<DocumentSearchQueryResult> Handle(DocumentSearchQuery request, CancellationToken cancellationToken)
+        {
+            throw new System.NotImplementedException();
         }
     }
 

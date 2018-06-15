@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using RabbitHutch.Application.ServiceBusTechnologies;
 using RabbitHutch.Domain;
@@ -30,6 +32,11 @@ namespace RabbitHutch.Application.CommandHandlers
             }
 
             return new ReplayMessageCommandResult { Success = true };
+        }
+
+        public Task<ReplayMessageCommandResult> Handle(ReplayMessageCommand request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
 
         private IBasicProperties GetBasicProperties(IBasicProperties basicProps, MessageDocument document, IMessageParser parser)
