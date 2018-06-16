@@ -25,10 +25,10 @@ namespace RabbitHutch.Application.CommandHandlers
             _database = database;
         }
 
-        public HandleMessageCommandResult Handle(HandleMessageCommand cmd)
+        public Task<HandleMessageCommandResult> Handle(HandleMessageCommand cmd, CancellationToken cancellationToken)
         {
-	        var messageParser = MessageParserFactory.GetMessageParser(cmd.DeliveryArgs);
-            
+            var messageParser = MessageParserFactory.GetMessageParser(cmd.DeliveryArgs);
+
             var messageDocument =
                 MessageDocumentBuilder
                     .BuildDocument()
@@ -42,7 +42,7 @@ namespace RabbitHutch.Application.CommandHandlers
                     .IsError(messageParser.IsError)
                     .Finish();
 
-	        bool s;
+            bool s;
 
             if (messageParser.IsReplay)
             {
@@ -60,15 +60,10 @@ namespace RabbitHutch.Application.CommandHandlers
             else
             {
                 s = _database.Insert(messageDocument);
-                return new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument };
+                return Task.FromResult(new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument });
             }
 
-            return new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument };
-        }
-
-        public Task<HandleMessageCommandResult> Handle(HandleMessageCommand request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
+            return Task.FromResult(new HandleMessageCommandResult { IsSuccessful = s, MessageDocument = messageDocument });
         }
     }
 

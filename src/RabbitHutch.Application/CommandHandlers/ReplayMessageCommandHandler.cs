@@ -17,7 +17,7 @@ namespace RabbitHutch.Application.CommandHandlers
 
     public class ReplayMessageCommandHandler : IRequestHandler<ReplayMessageCommand, ReplayMessageCommandResult>
     {
-        public ReplayMessageCommandResult Handle(ReplayMessageCommand cmd)
+        public Task<ReplayMessageCommandResult> Handle(ReplayMessageCommand cmd, CancellationToken cancellationToken)
         {
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var conn = factory.CreateConnection())
@@ -31,12 +31,7 @@ namespace RabbitHutch.Application.CommandHandlers
                 channel.BasicPublish("", parser.ProcessingEndPoint, basicProps, messageBodyBytes);
             }
 
-            return new ReplayMessageCommandResult { Success = true };
-        }
-
-        public Task<ReplayMessageCommandResult> Handle(ReplayMessageCommand request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
+            return Task.FromResult(new ReplayMessageCommandResult { Success = true });
         }
 
         private IBasicProperties GetBasicProperties(IBasicProperties basicProps, MessageDocument document, IMessageParser parser)
