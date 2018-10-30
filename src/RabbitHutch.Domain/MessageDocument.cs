@@ -10,8 +10,8 @@ namespace RabbitHutch.Domain
             Replays = new List<MessageDocument>();    
         }
 
-        public long Id { get; set; }
-        public long DocId => Id;
+        public string Id { get; set; }
+        public string DocId => Id;
         public string MessageId { get; set; }
         public IDictionary<string, string> Headers { get; set; }
         public string Body { get; set; }

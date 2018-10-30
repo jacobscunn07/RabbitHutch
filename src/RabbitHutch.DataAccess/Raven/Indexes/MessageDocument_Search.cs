@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using RabbitHutch.Domain;
-using Raven.Abstractions.Indexing;
-using Raven.Client.Indexes;
+using Raven.Client.Documents.Indexes;
 
 namespace RabbitHutch.DataAccess.Raven.Indexes
 {
@@ -27,9 +26,7 @@ namespace RabbitHutch.DataAccess.Raven.Indexes
                     document.ProcessedDateTime
                 });
 
-            Sort(x => x.ProcessedDateTime, SortOptions.Long);
-            Index(x => x.Any, FieldIndexing.Analyzed);
-            Analyzers.Add(x => x.Any, "StandardAnalyzer");
+            Index(x => x.Any, FieldIndexing.Search);
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using RabbitHutch.DataAccess.Raven.Indexes;
 using RabbitHutch.Domain;
-using Raven.Client;
+using Raven.Client.Documents;
+using Raven.Client.Documents.Session;
 
 namespace RabbitHutch.DataAccess.Raven
 {
@@ -20,7 +21,7 @@ namespace RabbitHutch.DataAccess.Raven
             {
                 session.Store(document);
                 session.SaveChanges();
-                return document.Id != default(long);
+                return !string.IsNullOrEmpty(document.Id);
             }
         }
 
@@ -31,11 +32,11 @@ namespace RabbitHutch.DataAccess.Raven
                 session.Advanced.MaxNumberOfRequestsPerSession = int.MaxValue;
 
                 var docs = session
-                    .Advanced
-                    .DocumentQuery<MessageDocument, MessageDocument_Search>()
-                    .Where(query)
+                    //.Advanced
+                    .Query<MessageDocument, MessageDocument_Search>()
+                    .Search(x => x.Any, query)
+                    //.Statistics(out RavenQueryStatistics stats)
                     .OrderByDescending(x => x.DocId)
-                    .Statistics(out RavenQueryStatistics stats)
                     .Skip((pageIndex - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();
@@ -43,7 +44,7 @@ namespace RabbitHutch.DataAccess.Raven
                 return new RavenSearchResult
                 {
                     DocumentResults = docs,
-                    TotalResults = stats.TotalResults
+                    //TotalResults = stats.TotalResults
                 };
             }
         }

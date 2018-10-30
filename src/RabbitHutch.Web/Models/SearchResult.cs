@@ -10,7 +10,7 @@ namespace RabbitHutch.Web.Models
 
         public class SearchMessageResult
         {
-            public long DocId { get; set; }
+            public string DocId { get; set; }
             public string MessageId { get; set; }
             public string Body { get; set; }
             public bool IsError { get; set; }
