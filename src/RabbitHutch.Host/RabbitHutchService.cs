@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -14,7 +13,7 @@ namespace RabbitHutch.Host
     {
         private readonly IMediator _mediator;
         private readonly IList<Task> _tasks;
-        private CancellationTokenSource _cancellationTokenSource;
+        private IEnumerable<IQueue> _queues;
 
         public RabbitHutchService(IMediator mediator)
         {
@@ -24,16 +23,13 @@ namespace RabbitHutch.Host
         
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _cancellationTokenSource = new CancellationTokenSource();
-
-            var rabbitConfiguration = new RabbitConfiguration();
-            var queues = GetApplicationQueues(rabbitConfiguration);
-            foreach (var queue in queues)
+            _queues = GetApplicationQueues();
+            
+            foreach (var queue in _queues)
             {
-                _tasks.Add(GetQueueTask(queue));
+                queue.Run();
             }
-
-            Task.Factory.StartNew(() => Parallel.ForEach(_tasks, task => task.Start()));
+            
             return Task.CompletedTask;
         }
 
@@ -41,44 +37,30 @@ namespace RabbitHutch.Host
         {
             try
             {
-                _cancellationTokenSource.Cancel();
-                Task.WaitAll(_tasks.ToArray());
+                foreach (var queue in _queues)
+                {
+                    queue.Stop();
+                }
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
-                // add logging 
             }
             return Task.CompletedTask;
         }
 
-        private Task GetQueueTask(IQueue queue)
+        private IEnumerable<IQueue> GetApplicationQueues()
         {
-            return new Task(() =>
-            {
-                try
-                {
-                    queue.Run();
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex);
-                    throw;
-                    // add logging
-                }
-            }, _cancellationTokenSource.Token, TaskCreationOptions.LongRunning);
-        }
-
-        private IEnumerable<Queue> GetApplicationQueues(IRabbitConfiguration configuration)
-        {
+            var configuration = new RabbitConfiguration();
+            
             var audit = new Queue(_mediator,
-                new QueueSettings(configuration.AuditQueue, configuration.ApplicationName, false, configuration.Host), _cancellationTokenSource);
+                new QueueSettings(configuration.AuditQueue, configuration.ApplicationName, false, configuration.Host));
 
             var error = new Queue(_mediator,
-                new QueueSettings(configuration.ErrorQueue, configuration.ApplicationName, true, configuration.Host), _cancellationTokenSource);
+                new QueueSettings(configuration.ErrorQueue, configuration.ApplicationName, true, configuration.Host));
 
-            return new List<Queue> {audit, error};
+            return new List<IQueue> {audit, error};
         }
     }
 }

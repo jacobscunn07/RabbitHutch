@@ -4,7 +4,6 @@ using Microsoft.Extensions.Hosting;
 using RabbitHutch.Application.CommandHandlers;
 using RabbitHutch.DataAccess;
 using RabbitHutch.DataAccess.Raven;
-using IHost = RabbitHutch.Application.Interfaces.IHost;
 
 namespace RabbitHutch.Host
 {
@@ -19,9 +18,7 @@ namespace RabbitHutch.Host
                     .AddMediatR(typeof(ReplayMessageCommand))
                     .AddRavenDb()
                     .AddScoped<IDatabase, RavenDatabase>()
-                    .AddSingleton<IHost, Application.Host>()
-                    .AddHostedService<AuditQueueWatcherService>()
-                    .AddHostedService<ErrorQueueWatcherService>();
+                    .AddHostedService<RabbitHutchService>();
             });
             hostBuilder.RunConsoleAsync().GetAwaiter().GetResult();
         }
