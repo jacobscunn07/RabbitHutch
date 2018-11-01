@@ -1,6 +1,6 @@
 ﻿namespace RabbitHutch.Application.Interfaces
 {
-    public interface IQueue
+    public interface IQueueWatcher
     {
         void Run();
         void Stop();

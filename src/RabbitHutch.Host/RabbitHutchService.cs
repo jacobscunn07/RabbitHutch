@@ -12,13 +12,11 @@ namespace RabbitHutch.Host
     public class RabbitHutchService : IHostedService
     {
         private readonly IMediator _mediator;
-        private readonly IList<Task> _tasks;
-        private IEnumerable<IQueue> _queues;
+        private IEnumerable<IQueueWatcher> _queues;
 
         public RabbitHutchService(IMediator mediator)
         {
             _mediator = mediator;
-            _tasks = new List<Task>();
         }
         
         public Task StartAsync(CancellationToken cancellationToken)
@@ -47,20 +45,21 @@ namespace RabbitHutch.Host
                 Console.WriteLine(ex);
                 throw;
             }
+            
             return Task.CompletedTask;
         }
 
-        private IEnumerable<IQueue> GetApplicationQueues()
+        private IEnumerable<IQueueWatcher> GetApplicationQueues()
         {
             var configuration = new RabbitConfiguration();
             
-            var audit = new Queue(_mediator,
+            var audit = new QueueWatcher(_mediator,
                 new QueueSettings(configuration.AuditQueue, configuration.ApplicationName, false, configuration.Host));
 
-            var error = new Queue(_mediator,
+            var error = new QueueWatcher(_mediator,
                 new QueueSettings(configuration.ErrorQueue, configuration.ApplicationName, true, configuration.Host));
 
-            return new List<IQueue> {audit, error};
+            return new List<IQueueWatcher> {audit, error};
         }
     }
 }

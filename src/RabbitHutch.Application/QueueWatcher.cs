@@ -8,14 +8,14 @@ using RabbitMQ.Client.Events;
 
 namespace RabbitHutch.Application
 {
-    public class Queue : IQueue
+    public class QueueWatcher : IQueueWatcher
     {
         private readonly IMediator _mediator;
         private readonly IQueueSettings _queueSettings;
         private IConnection _connection;
         private IModel _channel;
 
-        public Queue(IMediator mediator, IQueueSettings queueSettings)
+        public QueueWatcher(IMediator mediator, IQueueSettings queueSettings)
         {
             _mediator = mediator;
             _queueSettings = queueSettings;
