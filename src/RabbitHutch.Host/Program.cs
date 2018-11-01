@@ -20,7 +20,8 @@ namespace RabbitHutch.Host
                     .AddRavenDb()
                     .AddScoped<IDatabase, RavenDatabase>()
                     .AddSingleton<IHost, Application.Host>()
-                    .AddHostedService<RabbitHutchService>();
+                    .AddHostedService<AuditQueueWatcherService>()
+                    .AddHostedService<ErrorQueueWatcherService>();
             });
             hostBuilder.RunConsoleAsync().GetAwaiter().GetResult();
         }
