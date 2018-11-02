@@ -27,24 +27,27 @@ namespace RabbitHutch.DataAccess.Raven
 
         public ISearchResult Search(string query, int pageIndex, int pageSize)
         {
-            using (IDocumentSession session = _documentStore.OpenSession())
+            using (var session = _documentStore.OpenSession())
             {
                 session.Advanced.MaxNumberOfRequestsPerSession = int.MaxValue;
 
                 var docs = session
-                    //.Advanced
-                    .Query<MessageDocument, MessageDocument_Search>()
-                    .Search(x => x.Any, query)
-                    //.Statistics(out RavenQueryStatistics stats)
+                    .Advanced
+                    .DocumentQuery<MessageDocument, MessageDocument_Search>()
+                    .Statistics(out QueryStatistics stats)
                     .OrderByDescending(x => x.DocId)
                     .Skip((pageIndex - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+                    .Take(pageSize);
+
+                if (!string.IsNullOrEmpty(query))
+                {
+                    docs = docs.WhereLucene("Any", query);
+                }
 
                 return new RavenSearchResult
                 {
-                    DocumentResults = docs,
-                    //TotalResults = stats.TotalResults
+                    DocumentResults = docs.ToList(),
+                    TotalResults = stats.TotalResults
                 };
             }
         }
