@@ -10,6 +10,7 @@ using RabbitHutch.Web.Models;
 
 namespace RabbitHutch.Web.Controllers
 {
+    [Route("api/[controller]")]
     public class SearchController : Controller
     {
         private readonly IMediator _mediator;
@@ -19,6 +20,7 @@ namespace RabbitHutch.Web.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet("")]
         public async Task<IActionResult> Get(string query = "", int pageSize = 20, int pageIndex = 1)
         {
             try

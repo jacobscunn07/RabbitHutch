@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using RabbitHutch.Application.CommandHandlers;
 using RabbitHutch.DataAccess;
 using RabbitHutch.DataAccess.Raven;
+using RabbitHutch.DataAccess.Raven.Indexes;
+using Raven.Client.Documents;
 
 namespace RabbitHutch.Web
 {
@@ -21,9 +23,18 @@ namespace RabbitHutch.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddMediatR(typeof(DocumentSearchQuery).Assembly);
+            var ds = new DocumentStore
+            {
+                Urls = new[] {"http://localhost:8080"},
+                Database = "RabbitHutch"
+            }.Initialize();
+            
+            new MessageDocument_Search().Execute(ds);
+            
+            services.AddMediatR(typeof(ReplayMessageCommand).Assembly);
+            services.AddSingleton<IDocumentStore>(ds);
             services.AddTransient<IDatabase, RavenDatabase>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
