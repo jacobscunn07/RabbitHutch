@@ -17,7 +17,7 @@ namespace RabbitHutch.DataAccess.Raven
 
         public bool Insert(MessageDocument document)
         {
-            using (IDocumentSession session = _documentStore.OpenSession())
+            using (var session = _documentStore.OpenSession())
             {
                 session.Store(document);
                 session.SaveChanges();
