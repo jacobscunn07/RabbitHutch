@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Message from './Message';
 import ReplayModal from './ReplayModal';
 import {
   Column,
   Columns,
   Container } from './../common';
-import { requestSwitchMessageTab } from './../../redux/application/actions';
 
 class MessagePage extends React.Component {
   constructor(props) {
@@ -100,19 +98,6 @@ class MessagePage extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    currentTab: state.applications.get('messageTab'),
-    message: state.applications.get('messages'),
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    requestSwitchMessageTab: tab => dispatch(requestSwitchMessageTab(tab)),
-  };
-}
-
 MessagePage.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
@@ -123,4 +108,4 @@ MessagePage.propTypes = {
   requestSwitchMessageTab: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessagePage);
+export default MessagePage;

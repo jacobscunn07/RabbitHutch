@@ -32,7 +32,7 @@ class HomePage extends React.Component {
 
   onRowClick = (messageId) => {
     this.props.history.push(`/message/${messageId}`);
-  }
+  };
 
   onPageChange = (p) => {
     fetch(`/api/search?query=${this.state.query}&pageIndex=${p.selected + 1}`, {
