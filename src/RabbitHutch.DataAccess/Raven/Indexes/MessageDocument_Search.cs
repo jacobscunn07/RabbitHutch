@@ -15,11 +15,10 @@ namespace RabbitHutch.DataAccess.Raven.Indexes
                     {
                         document.ApplicationId,
                         document.Body,
-                        document.DocId,
+                        document.MessageId,
                         document.Headers.Select(x => x.Value),
                         document.ServiceBusTechnology
                     },
-                    document.DocId,
                     document.IsError,
                     document.ServiceBusTechnology,
                     document.MessageId,

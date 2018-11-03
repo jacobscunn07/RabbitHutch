@@ -35,22 +35,22 @@ class MessagePage extends React.Component {
     this.setState({
       modalActive: true,
     });
-  }
+  };
 
   bodyAdd = (params) => {
     this.setState({replayBody: params.updated_src});
     return true;
-  }
+  };
 
   bodyEdit = (params) => {
     this.setState({replayBody: params.updated_src});
     return true;
-  }
+  };
 
   bodyDelete = (params) => {
     this.setState({replayBody: params.updated_src});
     return true;
-  }
+  };
 
   submit = () => {
     let json = JSON.stringify({docId: this.state.message.documentId, message: JSON.stringify(this.state.replayBody)});
@@ -63,14 +63,14 @@ class MessagePage extends React.Component {
     })
     .then(response => response.json())
     .then(() => this.setState({ modalActive: false }));
-  }
+  };
 
   cancel = () => {
     this.setState({
       modalActive: false,
       replayBody: JSON.parse(this.state.message.body),
     });
-  }
+  };
 
   render() {
     return (
@@ -89,8 +89,9 @@ class MessagePage extends React.Component {
             <Message
               message={this.state.message}
               replayButtonClick={this.openModal}
-              currentTab={this.props.currentTab}
-              tabOnClick={this.props.requestSwitchMessageTab}
+              currentTab='body'
+              tabOnClick={() => {}}
+              // tabOnClick={this.props.requestSwitchMessageTab}
             />
           </Column>
         </Columns>
@@ -104,8 +105,8 @@ MessagePage.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  currentTab: PropTypes.string.isRequired,
-  requestSwitchMessageTab: PropTypes.func.isRequired,
+  //currentTab: PropTypes.string.isRequired,
+  // requestSwitchMessageTab: PropTypes.func.isRequired,
 };
 
 export default MessagePage;

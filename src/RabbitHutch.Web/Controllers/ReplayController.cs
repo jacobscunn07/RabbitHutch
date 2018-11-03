@@ -21,7 +21,7 @@ namespace RabbitHutch.Web.Controllers
         {
             try
             {
-                var doc = await _mediator.Send(new MessageDocumentQuery { DocumentId = request.DocId });
+                var doc = await _mediator.Send(new MessageDocumentQuery { MessageId = request.MessageId });
                 var isReplayed = await _mediator.Send(new ReplayMessageCommand { MessageDocument = doc.MessageDocument, ReplayMessageBody = request.Message });
                 return this.Ok(isReplayed);
             }

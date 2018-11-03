@@ -35,7 +35,7 @@ namespace RabbitHutch.DataAccess.Raven
                     .Advanced
                     .DocumentQuery<MessageDocument, MessageDocument_Search>()
                     .Statistics(out QueryStatistics stats)
-                    .OrderByDescending(x => x.DocId)
+                    .OrderByDescending(x => x.ProcessedDateTime)
                     .Skip((pageIndex - 1) * pageSize)
                     .Take(pageSize);
 

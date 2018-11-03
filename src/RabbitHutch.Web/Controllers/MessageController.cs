@@ -10,6 +10,7 @@ using RabbitHutch.Web.Models;
 
 namespace RabbitHutch.Web.Controllers
 {
+    [Route("api/[controller]")]
     public class MessageController : Controller
     {
         private readonly IMediator _mediator;
@@ -19,17 +20,17 @@ namespace RabbitHutch.Web.Controllers
             _mediator = mediator;
         }
 
-        public async Task<IActionResult> Get(long id)
+        [HttpGet("")]
+        public async Task<IActionResult> Get(string id)
         {
             try
             {
-                var result = await _mediator.Send(new MessageDocumentQuery { DocumentId = id });
+                var result = await _mediator.Send(new MessageDocumentQuery { MessageId = id });
                 var parser = MessageParserFactory.GetMessageDocumentParser(result.MessageDocument);
 
                 var msg = new MessageResult
                 {
                     MessageId = parser.MessageId,
-                    DocumentId = result.MessageDocument.DocId,
                     Body = parser.Body,
                     StackTrace = parser.StackTrace,
                     Headers = parser.Headers.Select(x => new { x.Key, x.Value }).Where(x => !x.Key.StartsWith("$")).ToList(),

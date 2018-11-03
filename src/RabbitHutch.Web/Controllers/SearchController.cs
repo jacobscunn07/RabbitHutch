@@ -46,7 +46,6 @@ namespace RabbitHutch.Web.Controllers
 
             var result = new SearchResult.SearchMessageResult
             {
-                DocId = document.DocId,
                 MessageId = parser.MessageId,
                 IsError = document.Replays.Count > 0 ? document.Replays.OrderByDescending(x => MessageParserFactory.GetMessageDocumentParser(x).ProcessedDateTime).FirstOrDefault().IsError : document.IsError,
                 Body = document.Body,

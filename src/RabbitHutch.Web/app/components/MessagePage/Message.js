@@ -78,7 +78,7 @@ const Message = ({ message, replayButtonClick, currentTab, tabOnClick }) => (
 
 Message.propTypes = {
   message: PropTypes.shape({
-    documentId: PropTypes.number,
+    documentId: PropTypes.string,
     serviceBusTechnology: PropTypes.string,
     body: PropTypes.string,
     headers: PropTypes.arrayOf(PropTypes.object),
