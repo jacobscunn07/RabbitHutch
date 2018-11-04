@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
-import ReactJson from 'react-json-view';
+import Body from './Body';
+import Headers from './Headers';
 import {
   PanelBlock,
 } from './../common';
@@ -34,24 +35,11 @@ const Message = ({ message, replayButtonClick, currentTab, tabOnClick }) => (
     }
     {
       currentTab === 'headers' &&
-      message.headers.map(header => (
-        <PanelBlock key={header.key}>
-          <div className="content">
-            <strong>{header.key}</strong>
-            <p>{header.value}</p>
-          </div>
-        </PanelBlock>))
+        <Headers headers={message.headers} />
     }
     {
       currentTab === 'body' &&
-      <PanelBlock>
-        <div className="content">
-          <ReactJson
-            src={JSON.parse(message.body)}
-            name={false}
-          />
-        </div>
-      </PanelBlock>
+        <Body body={message.body} />
     }
     {
       currentTab === 'replays' &&

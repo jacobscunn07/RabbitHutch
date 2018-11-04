@@ -10,7 +10,7 @@ const Body = ({ body }) => (
     <PanelBlock>
       <div className="content">
         <strong>Body</strong>
-        <ReactJson src={body} />
+        <ReactJson src={JSON.parse(body)} name={false} />
       </div>
     </PanelBlock>
   </div>
