@@ -19,6 +19,7 @@ class MessagePage extends React.Component {
         replays: [],
       },
       modalActive: false,
+      currentTab: 'body',
       replayBody: {}
     };
   }
@@ -71,6 +72,8 @@ class MessagePage extends React.Component {
       replayBody: JSON.parse(this.state.message.body),
     });
   };
+  
+  tabOnClick = (tab) => { this.setState({currentTab: tab})};
 
   render() {
     return (
@@ -89,9 +92,8 @@ class MessagePage extends React.Component {
             <Message
               message={this.state.message}
               replayButtonClick={this.openModal}
-              currentTab='body'
-              tabOnClick={() => {}}
-              // tabOnClick={this.props.requestSwitchMessageTab}
+              currentTab={this.state.currentTab}
+              tabOnClick={this.tabOnClick}
             />
           </Column>
         </Columns>
@@ -105,8 +107,6 @@ MessagePage.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  //currentTab: PropTypes.string.isRequired,
-  // requestSwitchMessageTab: PropTypes.func.isRequired,
 };
 
 export default MessagePage;
